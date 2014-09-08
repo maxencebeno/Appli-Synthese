@@ -1,3 +1,1 @@
-﻿<?php
-
-?>
+﻿<h1>Appli synthèse</h1>
