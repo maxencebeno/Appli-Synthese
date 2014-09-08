@@ -1,2 +1,2 @@
-Appli-Sythese
+Appli-Synthese
 =============
