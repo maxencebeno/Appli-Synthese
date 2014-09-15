@@ -28,6 +28,9 @@ public class Appli {
     public static java.sql.Connection conn;
     
     public static void main(String[] args) {
+        Statement statement = null;
+        ResultSet resultat;
+        Connection connexion = null;
         try {
             System.out.println( "Chargement du driver..." );
             Class.forName( "com.mysql.jdbc.Driver" );
@@ -54,19 +57,21 @@ public class Appli {
             System.out.println("\n Connection ratee: "+ e);
             System.exit(-1);
 	}
-		try {
-            // la requete
-			String requete = "SELECT * FROM vip";
-			// execution de la requete
-			Statement stat=conn.createStatement();
-			ResultSet rset = stat.executeQuery(requete);
-			// affichage du rÈsultat
-			while(rset.next())
-				System.out.println("\t"+rset.getString("nom_vip"));
-			rset.close();
-        } catch (Exception ex) {
-            System.out.println("\n Probleme dans la requete listeEmp: " + ex.getMessage());           
+	try {
+            PreparedStatement preparedStatement = connexion.prepareStatement( "SELECT * FROM vip;" );
+            System.out.println( "Requête préparée créée !" );
+            resultat = statement.executeQuery( "SELECT * FROM vip;" );
+            System.out.println( "Requête \"SELECT * FROM vip;\" effectuée !" );
+
+            /* Récupération des données du résultat de la requête de lecture */
+            while ( resultat.next() ) {
+                int num_vip = resultat.getInt( "num_vip" );
+                String nom_vip = resultat.getString( "nom_vip" );
+                /* Formatage des données pour affichage dans la JSP finale. */
+                System.out.println( "Données retournées par la requête : id = " + num_vip + ", nom = " + nom_vip + "." );
         }
-	}
-    
+	} catch (Exception e) {
+            System.out.println("Erreur");
+        }
+    }
 }
