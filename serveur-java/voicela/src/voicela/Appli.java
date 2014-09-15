@@ -58,17 +58,16 @@ public class Appli {
             System.exit(-1);
 	}
 	try {
-            PreparedStatement preparedStatement = connexion.prepareStatement( "SELECT * FROM vip;" );
             System.out.println( "Requête préparée créée !" );
-            resultat = statement.executeQuery( "SELECT * FROM vip;" );
-            System.out.println( "Requête \"SELECT * FROM vip;\" effectuée !" );
+            resultat = statement.executeQuery( "SELECT * FROM photographie;" );
+            System.out.println( "Requête \"SELECT * FROM photographie;\" effectuée !" );
 
             /* Récupération des données du résultat de la requête de lecture */
             while ( resultat.next() ) {
-                int num_vip = resultat.getInt( "num_vip" );
-                String nom_vip = resultat.getString( "nom_vip" );
+                int num_photo = resultat.getInt( "num_photo" );
+                String chemin_photo = resultat.getString( "chemin_photo" );
                 /* Formatage des données pour affichage dans la JSP finale. */
-                System.out.println( "Données retournées par la requête : id = " + num_vip + ", nom = " + nom_vip + "." );
+                System.out.println( "Données retournées par la requête : id = " + num_photo + ", nom = " + chemin_photo + "." );
         }
 	} catch (Exception e) {
             System.out.println("Erreur");
