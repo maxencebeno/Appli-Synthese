@@ -28,6 +28,23 @@ public class VIP {
     private Date dateNaissance;
     private int enfants;
     
+    // Constructeurs
+    public VIP(String nom, String prenomUsage, String prenoms, String sexe, int age, String statut, Date dateNaissance, int enfants) {
+        this.nom = nom;
+        this.prenomUsage = prenomUsage;
+        this.prenoms = prenoms;
+        this.sexe = sexe;
+        this.age = age;
+        this.statut = statut;
+        this.dateNaissance = dateNaissance;
+        this.enfants = enfants;
+    }
+    
+    
+    public VIP(){
+        
+    }
+    
     // Getters
     public int getId() {
         return id;
