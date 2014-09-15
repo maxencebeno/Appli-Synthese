@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?PowerDesigner AppLocale="UTF16" ID="{D8C8E846-3D5E-4292-B510-F7E9CCF49D13}" Label="" LastModificationDate="1410256014" Name="Diagrammes de séquences" Objects="38" Symbols="58" Target="Java" TargetLink="Reference" Type="{18112060-1A4B-11D1-83D9-444553540000}" signature="CLD_OBJECT_MODEL" version="15.1.0.2850"?>
+<?PowerDesigner AppLocale="UTF16" ID="{D8C8E846-3D5E-4292-B510-F7E9CCF49D13}" Label="" LastModificationDate="1410256289" Name="Diagrammes de séquences" Objects="38" Symbols="58" Target="Java" TargetLink="Reference" Type="{18112060-1A4B-11D1-83D9-444553540000}" signature="CLD_OBJECT_MODEL" version="15.1.0.2850"?>
 <!-- Veuillez ne pas modifier ce fichier -->
 
 <Model xmlns:a="attribute" xmlns:c="collection" xmlns:o="object">
@@ -1972,7 +1972,7 @@ Shadow=0</a:DisplayPreferences>
 <o:MessageSymbol Id="o28">
 <a:CreationDate>1410255832</a:CreationDate>
 <a:ModificationDate>1410255832</a:ModificationDate>
-<a:Rect>((-18226,4417), (-7878,5963))</a:Rect>
+<a:Rect>((-18226,4417), (-7878,6450))</a:Rect>
 <a:ListOfPoints>((-18226,4717),(-7878,4717))</a:ListOfPoints>
 <a:ArrowStyle>8</a:ArrowStyle>
 <a:LineColor>12615808</a:LineColor>
@@ -2716,7 +2716,7 @@ ETIM 0 Arial,8,N</a:FontList>
 <o:MessageSymbol Id="o71">
 <a:CreationDate>1410255902</a:CreationDate>
 <a:ModificationDate>1410255919</a:ModificationDate>
-<a:Rect>((-15451,4867), (-5103,6413))</a:Rect>
+<a:Rect>((-15451,4867), (-5103,6900))</a:Rect>
 <a:ListOfPoints>((-15451,5167),(-5103,5167))</a:ListOfPoints>
 <a:ArrowStyle>8</a:ArrowStyle>
 <a:LineColor>12615808</a:LineColor>
@@ -3120,8 +3120,9 @@ DISPNAME 0 Arial,8,U</a:FontList>
 <a:Code>Valider_mariage</a:Code>
 <a:CreationDate>1410255716</a:CreationDate>
 <a:Creator>Vincent</a:Creator>
-<a:ModificationDate>1410255992</a:ModificationDate>
+<a:ModificationDate>1410256289</a:ModificationDate>
 <a:Modifier>Vincent</a:Modifier>
+<a:SequenceNumber>2</a:SequenceNumber>
 <c:Object1>
 <o:UMLObject Ref="o49"/>
 </c:Object1>
@@ -3135,8 +3136,9 @@ DISPNAME 0 Arial,8,U</a:FontList>
 <a:Code>Attente_validation_</a:Code>
 <a:CreationDate>1410255832</a:CreationDate>
 <a:Creator>Vincent</a:Creator>
-<a:ModificationDate>1410255857</a:ModificationDate>
+<a:ModificationDate>1410256276</a:ModificationDate>
 <a:Modifier>Vincent</a:Modifier>
+<a:SequenceNumber>1.2</a:SequenceNumber>
 <c:Object1>
 <o:UMLObject Ref="o51"/>
 </c:Object1>
@@ -3150,8 +3152,9 @@ DISPNAME 0 Arial,8,U</a:FontList>
 <a:Code>Attente_validation_</a:Code>
 <a:CreationDate>1410255902</a:CreationDate>
 <a:Creator>Vincent</a:Creator>
-<a:ModificationDate>1410255902</a:ModificationDate>
+<a:ModificationDate>1410256248</a:ModificationDate>
 <a:Modifier>Vincent</a:Modifier>
+<a:SequenceNumber>1.2</a:SequenceNumber>
 <c:Object1>
 <o:UMLObject Ref="o79"/>
 </c:Object1>
@@ -3165,8 +3168,9 @@ DISPNAME 0 Arial,8,U</a:FontList>
 <a:Code>Valider_divorce</a:Code>
 <a:CreationDate>1410255902</a:CreationDate>
 <a:Creator>Vincent</a:Creator>
-<a:ModificationDate>1410255979</a:ModificationDate>
+<a:ModificationDate>1410256263</a:ModificationDate>
 <a:Modifier>Vincent</a:Modifier>
+<a:SequenceNumber>2</a:SequenceNumber>
 <c:Object1>
 <o:UMLObject Ref="o77"/>
 </c:Object1>
