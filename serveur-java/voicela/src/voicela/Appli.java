@@ -5,6 +5,9 @@
  */
 
 package voicela;
+import java.util.*;
+import java.io.*;
+import voicela.VIP;
 
 /**
  *
@@ -16,7 +19,7 @@ public class Appli {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        VIP vip = new VIP();
     }
     
 }
