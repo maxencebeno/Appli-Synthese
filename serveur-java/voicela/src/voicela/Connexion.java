@@ -1,33 +1,26 @@
 package voicela;
 
 import java.sql.*;
+import oracle.jdbc.pool.OracleDataSource;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.util.*;
 
 public class Connexion 
 {
-    public String Connecter() throws Exception
-    {
-        String result="";
-        Properties properties = new Properties();
-
-        try
-        {
-            InputStream file = getClass().getClassLoader().getResourceAsStream("config.properties");
-            properties.load(file);
-
-            String DataBaseHost = properties.getProperty("serveur");
-            String user = properties.getProperty("user");
-            String password = properties.getProperty("pwd");
-            String dataBaseName = properties.getProperty("user");
-
-            result="jdbc:mysql://" + DataBaseHost +"/" + dataBaseName +"?user=" + user +"&password=" + password;
-        }
-        catch(Exception e)
-        {
-            throw new Exception("Erreur dans la classe DBConnexion.getURLConnexion\nType de l'exception : " + e.toString());
-        }
-        return result;
-    }
+   public Connexion() {
+   }
+   public Connection Connecter() throws Exception
+   {
+       Properties props = new Properties();
+       FileInputStream fichier = new FileInputStream("connexion.properties");
+       props.load(fichier);
+       OracleDataSource ods = new OracleDataSource();
+       ods.setDriverType(props.getProperty("pilote"));
+       ods.setPortNumber(new Integer(props.getProperty("port")).intValue());
+       ods.setServiceName(props.getProperty("service"));
+       ods.setUser(props.getProperty("user"));
+       ods.setPassword(props.getProperty("pwd"));
+       ods.setServerName(props.getProperty("serveur"));
+       return(ods.getConnection());
+   }
 }

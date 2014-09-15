@@ -23,11 +23,7 @@ public class Appli {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        try {
-            java.sql.Connection connection = DriverManager.getConnection("jdbc:mysql:iuta.univ-lyon1.fr", "p1201896", "169657");    
-        } catch(SQLException ex) {
-            System.out.println(ex);
-        }
+        
         VIP vip = new VIP();
     }
 }
