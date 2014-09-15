@@ -9,7 +9,6 @@ package voicela;
 import java.util.Date;
 import java.util.*;
 import java.io.*;
-import java.util.Objects;
 
 /**
  *
@@ -17,16 +16,16 @@ import java.util.Objects;
  */
 public class VIP {
     // Attributs de VIP
-    private int id;
-    private String nom;
-    private String prenomUsage;
-    private String prenoms;
-    private String sexe;
-    private int age;
-    private String statut;
-    private String lieuNaissance;
-    private Date dateNaissance;
-    private int enfants;
+    protected int id;
+    protected String nom;
+    protected String prenomUsage;
+    protected String prenoms;
+    protected String sexe;
+    protected int age;
+    protected String statut;
+    protected String lieuNaissance;
+    protected Date dateNaissance;
+    protected int enfants;
     
     // Constructeurs
     public VIP(String nom, String prenomUsage, String prenoms, String sexe, int age, String statut, Date dateNaissance, int enfants) {
