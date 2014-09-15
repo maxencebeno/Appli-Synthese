@@ -5,6 +5,9 @@
  */
 
 package voicela;
+import java.util.*;
+import java.io.*;
+import voicela.VIP;
 
 import java.util.*;
 import java.sql.*;
@@ -25,5 +28,6 @@ public class Appli {
         } catch(SQLException ex) {
             System.out.println(ex);
         }
+        VIP vip = new VIP();
     }
 }
