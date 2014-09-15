@@ -11,23 +11,23 @@ public static java.sql.Connection conn;
     public static void Connecter(String [] args) {
         try{
 
-			// parametres de connexion
-			String url="jdbc:mysql://iutdoua-webetu.univ-lyon1.fr/";
-			String login="p1201896";
-			String pass="169657";
+            // parametres de connexion
+            String url="jdbc:mysql://iutdoua-webetu.univ-lyon1.fr/";
+            String login="p1201896";
+            String pass="169657";
 
-			// connexion
-		    Class.forName("com.mysql.jdbc.Driver").newInstance();
-		    conn = java.sql.DriverManager.getConnection(url+"?user="+login+"&password="+pass);
-		    System.out.println("\n connection reussie \n");
+            // connexion
+            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            conn = java.sql.DriverManager.getConnection(url+"?user="+login+"&password="+pass);
+            System.out.println("\n connection reussie \n");
 			
-		}
-
-		catch(Exception e){
-		    System.out.println("\n Connection ratee: "+ e);
-		    System.exit(-1);
-		}
 	}
+
+	catch(Exception e){
+            System.out.println("\n Connection ratee: "+ e);
+            System.exit(-1);
+	}
+    }
 	
 	/*public static int recupererIdMax() {
 		int result=0, auto=1;
@@ -63,7 +63,7 @@ public static java.sql.Connection conn;
 			ResultSet rset = stat.executeQuery(requete);
 			// affichage du rÈsultat
 			while(rset.next())
-				System.out.println("\t"+rset.getInt(1));
+				System.out.println("\t"+rset.getString("nom_vip"));
 			rset.close();
         } catch (Exception ex) {
             System.out.println("\n Probleme dans la requete listeEmp: " + ex.getMessage());           

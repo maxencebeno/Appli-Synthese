@@ -5,6 +5,7 @@
  */
 
 package voicela;
+
 import java.util.*;
 import java.io.*;
 import voicela.VIP;
@@ -13,6 +14,7 @@ import java.util.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static voicela.Connexion.lister;
 /**
  *
  * @author Vincent
@@ -23,7 +25,7 @@ public class Appli {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+        lister();
         VIP vip = new VIP();
     }
 }
