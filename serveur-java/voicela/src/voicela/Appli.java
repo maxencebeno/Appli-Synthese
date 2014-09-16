@@ -39,47 +39,61 @@ public class Appli extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        boutonMenuAjoutVIP = new javax.swing.JMenuItem();
+        boutonMenuModifierVIP = new javax.swing.JMenu();
+        boutonMenuAjouterVIP = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        boutonMenuModifierMariage = new javax.swing.JMenuItem();
+        boutonMenuAjouterDivorce = new javax.swing.JMenuItem();
+        boutonMenuAjouterPhoto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        boutonMenuAide = new javax.swing.JMenuItem();
+        boutonMenuAPropos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
 
-        jMenu1.setText("File");
+        boutonMenuModifierVIP.setText("File");
 
-        boutonMenuAjoutVIP.setText("Ajouter un VIP");
-        jMenu1.add(boutonMenuAjoutVIP);
+        boutonMenuAjouterVIP.setText("Ajouter un VIP");
+        boutonMenuModifierVIP.add(boutonMenuAjouterVIP);
 
         jMenuItem1.setText("Modifier un VIP");
-        jMenu1.add(jMenuItem1);
+        boutonMenuModifierVIP.add(jMenuItem1);
 
-        jMenuItem2.setText("Ajouter mariage");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        boutonMenuModifierMariage.setText("Ajouter mariage");
+        boutonMenuModifierMariage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                boutonMenuModifierMariageActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        boutonMenuModifierVIP.add(boutonMenuModifierMariage);
 
-        jMenuItem3.setText("Ajouter divorce");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        boutonMenuAjouterDivorce.setText("Ajouter divorce");
+        boutonMenuAjouterDivorce.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                boutonMenuAjouterDivorceActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        boutonMenuModifierVIP.add(boutonMenuAjouterDivorce);
 
-        jMenuItem4.setText("Ajouter une photo");
-        jMenu1.add(jMenuItem4);
+        boutonMenuAjouterPhoto.setText("Ajouter une photo");
+        boutonMenuModifierVIP.add(boutonMenuAjouterPhoto);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(boutonMenuModifierVIP);
 
         jMenu2.setText("A propos");
+
+        boutonMenuAide.setText("Aide");
+        jMenu2.add(boutonMenuAide);
+
+        boutonMenuAPropos.setText("A propos de voicela");
+        boutonMenuAPropos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonMenuAProposActionPerformed(evt);
+            }
+        });
+        jMenu2.add(boutonMenuAPropos);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -98,13 +112,17 @@ public class Appli extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void boutonMenuModifierMariageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierMariageActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_boutonMenuModifierMariageActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void boutonMenuAjouterDivorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAjouterDivorceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_boutonMenuAjouterDivorceActionPerformed
+
+    private void boutonMenuAProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAProposActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boutonMenuAProposActionPerformed
 
     // Connexion
     public static java.sql.Connection conn;
@@ -146,13 +164,15 @@ public class Appli extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem boutonMenuAjoutVIP;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem boutonMenuAPropos;
+    private javax.swing.JMenuItem boutonMenuAide;
+    private javax.swing.JMenuItem boutonMenuAjouterDivorce;
+    private javax.swing.JMenuItem boutonMenuAjouterPhoto;
+    private javax.swing.JMenuItem boutonMenuAjouterVIP;
+    private javax.swing.JMenuItem boutonMenuModifierMariage;
+    private javax.swing.JMenu boutonMenuModifierVIP;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,12 +4,12 @@
   <NonVisualComponents>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="boutonMenuModifierVIP">
           <Properties>
             <Property name="text" type="java.lang.String" value="File"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAjoutVIP">
+            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAjouterVIP">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter un VIP"/>
               </Properties>
@@ -19,23 +19,23 @@
                 <Property name="text" type="java.lang.String" value="Modifier un VIP"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuModifierMariage">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter mariage"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonMenuModifierMariageActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
+            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAjouterDivorce">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter divorce"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem3ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonMenuAjouterDivorceActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem4">
+            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAjouterPhoto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter une photo"/>
               </Properties>
@@ -46,6 +46,21 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="A propos"/>
           </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAide">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Aide"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAPropos">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="A propos de voicela"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonMenuAProposActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
         </Menu>
       </SubComponents>
     </Menu>
