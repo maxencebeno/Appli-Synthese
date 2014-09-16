@@ -127,8 +127,9 @@ public class VIP {
     }
     
     // Méthodes
-    public void seMarier(VIP vip){
+    public void seMarier(VIP vip1, VIP vip2){
         
+        Mariage mariage = new Mariage();
     }
     
     public void divorcer(VIP vip){
