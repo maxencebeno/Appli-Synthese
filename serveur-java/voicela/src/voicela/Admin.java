@@ -105,7 +105,6 @@ public class Admin extends javax.swing.JFrame {
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
         String textLogin = login.getText();
         int i = 0;
-        String passwd;
         String correctPswd = "admin";
         String passText = new String(motDePasse.getPassword());
         if((textLogin.compareTo("admin") == 0) && correctPswd.compareTo(passText) == 0) {
