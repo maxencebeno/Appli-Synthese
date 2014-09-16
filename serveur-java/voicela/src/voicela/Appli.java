@@ -29,7 +29,7 @@ public class Appli {
     
     public static void main(String[] args) {
         Statement statement = null;
-        ResultSet resultat;
+        ResultSet resultat = null;
         Connection connexion = null;
         try {
             System.out.println( "Chargement du driver..." );
@@ -42,9 +42,9 @@ public class Appli {
         try{
 
             // parametres de connexion
-            String url="jdbc:mysql://iutdoua-webetu.univ-lyon1.fr/";
-            String login="p1201896";
-            String pass="169657";
+            String url="jdbc:mysql://iutdoua-webetu.univ-lyon1.fr/p1200270";
+            String login="p1200270";
+            String pass="168511";
 
             // connexion
             Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -59,18 +59,17 @@ public class Appli {
 	}
 	try {
             System.out.println( "Requête préparée créée !" );
-            resultat = statement.executeQuery( "SELECT * FROM photographie;" );
+            String requete = "SELECT * FROM images;";
+            resultat = statement.executeQuery(requete);
             System.out.println( "Requête \"SELECT * FROM photographie;\" effectuée !" );
 
             /* Récupération des données du résultat de la requête de lecture */
             while ( resultat.next() ) {
-                int num_photo = resultat.getInt( "num_photo" );
-                String chemin_photo = resultat.getString( "chemin_photo" );
                 /* Formatage des données pour affichage dans la JSP finale. */
-                System.out.println( "Données retournées par la requête : id = " + num_photo + ", nom = " + chemin_photo + "." );
-        }
-	} catch (Exception e) {
-            System.out.println("Erreur");
+                System.out.println( resultat.getInt("id_image") );
+            }
+	} catch (SQLException sqle) {
+            System.out.println("Erreur" + sqle);
         }
     }
 }
