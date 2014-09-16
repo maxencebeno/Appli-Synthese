@@ -36,16 +36,13 @@
                       <Component id="connexion" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Component id="test" min="-2" pref="137" max="-2" attributes="0"/>
-                      <EmptySpace pref="88" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="login" max="32767" attributes="0"/>
-                          <Component id="motDePasse" alignment="0" pref="173" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="login" max="32767" attributes="0"/>
+                      <Component id="motDePasse" alignment="0" pref="173" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

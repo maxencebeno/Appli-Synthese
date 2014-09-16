@@ -106,9 +106,9 @@ public class Admin extends javax.swing.JFrame {
         String textLogin = login.getText();
         int i = 0;
         String passwd;
-        char[] correctPswd = {'a', 'd', 'm', 'i', 'n'};
-        char[] textPswd = motDePasse.getPassword();
-        if((textLogin.compareTo("admin") == 0)) {
+        String correctPswd = "admin";
+        String passText = new String(motDePasse.getPassword());
+        if((textLogin.compareTo("admin") == 0) && correctPswd.compareTo(passText) == 0) {
             test.setText("Connexion Réussie");
         } 
         else {
