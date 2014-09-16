@@ -26,7 +26,7 @@ public class Appli extends javax.swing.JFrame {
      */
     public Appli() {
         initComponents();
-        setLocation(250, 150);
+        this.setLocationRelativeTo(null);
     }
 
     /**
