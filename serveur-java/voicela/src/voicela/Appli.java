@@ -19,15 +19,30 @@ import static voicela.Connexion.conn;
  *
  * @author Vincent
  */
-public class Appli {
+public class Appli extends javax.swing.JFrame{
 
     /**
      * @param args the command line arguments
      */
     
+    /**
+     * Creates new form Copier
+     */
+    public Appli() {
+        //initComponents();
+        setLocation(250, 150);
+    }
+    
+    // Connexion
     public static java.sql.Connection conn;
     
     public static void main(String[] args) {
         Connexion.Connecter(args);
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Appli().setVisible(true);
+            }
+        });
     }
 }
