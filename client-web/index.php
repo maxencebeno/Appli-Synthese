@@ -17,7 +17,7 @@
                 </div>
             </section>
             <section style="height: 800px;">
-
+                <p>Classe</p>
             </section>
             
 
@@ -26,7 +26,7 @@
         <script src="assets/js/parallax.js"></script>
         <script type="text/javascript"> 
             $(document).ready(function(){       
-                $('#section_one').parallax("center", 0, 0.1, true);
+                $('#section_one').parallax("center", 0, 0.4, true);
             });
         </script>
     </body>
