@@ -43,7 +43,7 @@ CREATE TABLE mariage (
 
 create table maries (
 	id_mariage number(10),
-	num_vip number(10)
+	num_vip number(10),
 	constraint pk_maries primary key (id_mariage, num_vip)
 );
 
@@ -53,4 +53,7 @@ ALTER TABLE photos add constraint fk_photos_vip foreign key (num_vip) references
 alter table maries add constraint fk_maries_num_vip foreign key (num_vip) references vip (num_vip);
 alter table maries add constraint fk_maries_id_mariage foreign key (id_mariage) rgyeferences mariage (id_mariage);
 
+
+insert into vip values ('','De Palmas', 'Gérard', 'Gérard fimon', 'Espagnole', 'homme', '16/09/75', 'Madrid', 'rien'); 
+insert into vip values ('','Luers', 'Fimon', 'fimon la pute', 'Coréene', 'homme', '1994-05-10', 'nul part', 'acteur'); 
 
