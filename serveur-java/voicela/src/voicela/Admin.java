@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package voicela;
-
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author maxencebeno
@@ -102,7 +104,37 @@ public class Admin extends javax.swing.JFrame {
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginActionPerformed
         
     }//GEN-LAST:event_loginActionPerformed
-
+    
+      public String verifIdentification(String id) throws Exception {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection connection = null;
+        String pass;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            ps = connection.prepareStatement("select password from admin where identifiant = ?");
+            ps.setString(1, id); // Affecter le paramètre
+            rs = ps.executeQuery(); // Exécuter la requête
+            if (rs.next()){            
+               pass = rs.getString("password");
+               return pass;
+            }else
+                pass = null;
+                return pass;         
+        }catch(Exception e){
+            throw e;
+        }finally{
+            try{
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(connection != null) connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
         try {
             String textLogin = login.getText();
