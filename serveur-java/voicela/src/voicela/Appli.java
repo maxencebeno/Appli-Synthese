@@ -26,7 +26,10 @@ public class Appli extends javax.swing.JFrame {
      */
     public Appli() {
         initComponents();
-        this.setLocationRelativeTo(null);
+        this.pack();
+        this.setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(this.MAXIMIZED_BOTH);
+        
     }
 
     /**
@@ -38,6 +41,25 @@ public class Appli extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ajoutVIP = new javax.swing.JPanel();
+        nomVIP = new javax.swing.JLabel();
+        prenomVIP = new javax.swing.JLabel();
+        prenomUsageVIP = new javax.swing.JLabel();
+        sexeVIP = new javax.swing.JLabel();
+        ageVIP = new javax.swing.JLabel();
+        statutVIP = new javax.swing.JLabel();
+        lieuNaissanceVip = new javax.swing.JLabel();
+        dateNaissanceVIP = new javax.swing.JLabel();
+        nbEnfantsVIP = new javax.swing.JLabel();
+        nom = new javax.swing.JTextField();
+        prenom = new javax.swing.JTextField();
+        prenomUsage = new javax.swing.JTextField();
+        sexe = new javax.swing.JTextField();
+        age = new javax.swing.JTextField();
+        statut = new javax.swing.JTextField();
+        lieuNaissance = new javax.swing.JTextField();
+        dateNaissance = new javax.swing.JTextField();
+        nbEnfants = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -52,9 +74,115 @@ public class Appli extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
 
+        ajoutVIP.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajout d'un VIP"));
+        ajoutVIP.setVisible(false);
+
+        nomVIP.setText("Nom :");
+
+        prenomVIP.setText("Prénom : ");
+
+        prenomUsageVIP.setText("Prénom d'usage :");
+
+        sexeVIP.setText("Sexe : ");
+
+        ageVIP.setText("Age : ");
+
+        statutVIP.setText("Statut :");
+
+        lieuNaissanceVip.setText("Lieu de naissance :");
+
+        dateNaissanceVIP.setText("Date de naissance : ");
+
+        nbEnfantsVIP.setText("Nombre d'enfants : ");
+
+        javax.swing.GroupLayout ajoutVIPLayout = new javax.swing.GroupLayout(ajoutVIP);
+        ajoutVIP.setLayout(ajoutVIPLayout);
+        ajoutVIPLayout.setHorizontalGroup(
+            ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(ajoutVIPLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(sexeVIP)
+                            .addComponent(ageVIP)
+                            .addComponent(statutVIP)
+                            .addComponent(lieuNaissanceVip)
+                            .addComponent(dateNaissanceVIP)
+                            .addComponent(nbEnfantsVIP))
+                        .addGap(189, 189, 189)
+                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nbEnfants, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                            .addComponent(dateNaissance)
+                            .addComponent(lieuNaissance)
+                            .addComponent(statut)
+                            .addComponent(age)
+                            .addComponent(sexe)))
+                    .addGroup(ajoutVIPLayout.createSequentialGroup()
+                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(prenomUsageVIP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(ajoutVIPLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nomVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(prenomVIP, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                            .addComponent(prenom)
+                            .addComponent(prenomUsage))))
+                .addGap(140, 140, 140))
+        );
+        ajoutVIPLayout.setVerticalGroup(
+            ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajoutVIPLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomVIP)
+                    .addComponent(nom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(prenomVIP)
+                    .addComponent(prenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(prenomUsageVIP)
+                    .addComponent(prenomUsage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sexeVIP)
+                    .addComponent(sexe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ageVIP)
+                    .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statutVIP)
+                    .addComponent(statut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lieuNaissanceVip)
+                    .addComponent(lieuNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dateNaissanceVIP)
+                    .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nbEnfantsVIP)
+                    .addComponent(nbEnfants, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
         boutonMenuModifierVIP.setText("File");
 
         boutonMenuAjouterVIP.setText("Ajouter un VIP");
+        boutonMenuAjouterVIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutVIP(evt);
+            }
+        });
         boutonMenuModifierVIP.add(boutonMenuAjouterVIP);
 
         jMenuItem1.setText("Modifier un VIP");
@@ -102,11 +230,17 @@ public class Appli extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 962, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(346, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 579, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,6 +257,10 @@ public class Appli extends javax.swing.JFrame {
     private void boutonMenuAProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAProposActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boutonMenuAProposActionPerformed
+
+    private void ajoutVIP(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutVIP
+        this.ajoutVIP.setVisible(true);
+    }//GEN-LAST:event_ajoutVIP
 
     // Connexion
     public static java.sql.Connection conn;
@@ -165,6 +303,9 @@ public class Appli extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField age;
+    private javax.swing.JLabel ageVIP;
+    private javax.swing.JPanel ajoutVIP;
     private javax.swing.JMenuItem boutonMenuAPropos;
     private javax.swing.JMenuItem boutonMenuAide;
     private javax.swing.JMenuItem boutonMenuAjouterDivorce;
@@ -172,8 +313,24 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JMenuItem boutonMenuAjouterVIP;
     private javax.swing.JMenuItem boutonMenuModifierMariage;
     private javax.swing.JMenu boutonMenuModifierVIP;
+    private javax.swing.JTextField dateNaissance;
+    private javax.swing.JLabel dateNaissanceVIP;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JTextField lieuNaissance;
+    private javax.swing.JLabel lieuNaissanceVip;
+    private javax.swing.JTextField nbEnfants;
+    private javax.swing.JLabel nbEnfantsVIP;
+    private javax.swing.JTextField nom;
+    private javax.swing.JLabel nomVIP;
+    private javax.swing.JTextField prenom;
+    private javax.swing.JTextField prenomUsage;
+    private javax.swing.JLabel prenomUsageVIP;
+    private javax.swing.JLabel prenomVIP;
+    private javax.swing.JTextField sexe;
+    private javax.swing.JLabel sexeVIP;
+    private javax.swing.JTextField statut;
+    private javax.swing.JLabel statutVIP;
     // End of variables declaration//GEN-END:variables
 }

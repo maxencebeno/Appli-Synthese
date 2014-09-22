@@ -13,6 +13,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter un VIP"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ajoutVIP"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
@@ -89,13 +92,203 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="962" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Component id="ajoutVIP" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="346" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="579" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Component id="ajoutVIP" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="92" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="ajoutVIP">
+      <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+            <TitledBorder title="Ajout d&apos;un VIP"/>
+          </Border>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel()"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="ajoutVIP.setVisible(false);"/>
+      </AuxValues>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="sexeVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ageVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="statutVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lieuNaissanceVip" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateNaissanceVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="nbEnfantsVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="nbEnfants" pref="84" max="32767" attributes="0"/>
+                              <Component id="dateNaissance" max="32767" attributes="0"/>
+                              <Component id="lieuNaissance" max="32767" attributes="0"/>
+                              <Component id="statut" max="32767" attributes="0"/>
+                              <Component id="age" max="32767" attributes="0"/>
+                              <Component id="sexe" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="prenomUsageVIP" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="nomVIP" max="32767" attributes="0"/>
+                                      <Component id="prenomVIP" pref="98" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="nom" pref="84" max="32767" attributes="0"/>
+                              <Component id="prenom" alignment="1" max="32767" attributes="0"/>
+                              <Component id="prenomUsage" alignment="1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nomVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nom" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="prenomVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="prenom" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="prenomUsageVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="prenomUsage" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="sexeVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sexe" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="ageVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="age" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="statutVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="statut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lieuNaissanceVip" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lieuNaissance" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="dateNaissanceVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="dateNaissance" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="nbEnfantsVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nbEnfants" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="23" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JLabel" name="nomVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nom :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="prenomVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pr&#xe9;nom : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="prenomUsageVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pr&#xe9;nom d&apos;usage :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="sexeVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sexe : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="ageVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Age : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="statutVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Statut :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lieuNaissanceVip">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Lieu de naissance :"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="dateNaissanceVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Date de naissance : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="nbEnfantsVIP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nombre d&apos;enfants : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="nom">
+        </Component>
+        <Component class="javax.swing.JTextField" name="prenom">
+        </Component>
+        <Component class="javax.swing.JTextField" name="prenomUsage">
+        </Component>
+        <Component class="javax.swing.JTextField" name="sexe">
+        </Component>
+        <Component class="javax.swing.JTextField" name="age">
+        </Component>
+        <Component class="javax.swing.JTextField" name="statut">
+        </Component>
+        <Component class="javax.swing.JTextField" name="lieuNaissance">
+        </Component>
+        <Component class="javax.swing.JTextField" name="dateNaissance">
+        </Component>
+        <Component class="javax.swing.JTextField" name="nbEnfants">
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
 </Form>
