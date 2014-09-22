@@ -3,3 +3,5 @@
 /client-web/nbproject/
 /serveur-java/voicela/dist/
 serveur-java/voicela/dist/voicela.jar
+
+serveur-java/voicela/nbproject/private/private.xml
