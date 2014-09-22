@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <header class="general_header">Voicela</header>
+        <header class="general_header"><img src="assets/images/index/voicela.png" alt="Voicela" /></header>
         <div class="full_wrapper">
             <section id="section_one">
                 <div class="section_content">

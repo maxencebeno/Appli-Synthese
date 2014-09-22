@@ -125,7 +125,7 @@ public class VIP {
     public void setEnfants(int enfants) {
         this.enfants = enfants;
     }
-    
+     
     // Méthodes
     public void seMarier(VIP vip1, VIP vip2){
         
