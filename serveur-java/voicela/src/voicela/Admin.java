@@ -54,11 +54,6 @@ public class Admin extends javax.swing.JFrame {
                 login(evt);
             }
         });
-        connexion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                keyTypedAdmin(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,10 +113,6 @@ public class Admin extends javax.swing.JFrame {
             test.setText("Connexion refusée");
         }
     }//GEN-LAST:event_login
-
-    private void keyTypedAdmin(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_keyTypedAdmin
-        login();
-    }//GEN-LAST:event_keyTypedAdmin
 
     
 
