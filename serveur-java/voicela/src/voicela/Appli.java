@@ -153,13 +153,13 @@ public class Appli extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Appli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        Admin.main(args);
-        Connexion.Connecter(args);
+        new Admin().setVisible(true);
+        new Connexion();
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Appli().setVisible(true);
+                new Appli().setVisible(false);
             }
         });
     }
