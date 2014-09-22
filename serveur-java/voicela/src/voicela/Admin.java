@@ -157,7 +157,6 @@ public class Admin extends javax.swing.JFrame {
                     test.setText("Connexion refusée");
                 }
             }
-
         } catch (Exception ex) {
             Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
