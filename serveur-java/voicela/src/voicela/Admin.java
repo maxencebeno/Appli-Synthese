@@ -5,12 +5,6 @@
  */
 package voicela;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author maxencebeno
@@ -75,11 +69,13 @@ public class Admin extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(connexion)
                         .addGap(52, 52, 52)
-                        .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(login)
-                        .addComponent(motDePasse, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(test, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(88, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(login)
+                            .addComponent(motDePasse, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,37 +102,6 @@ public class Admin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_loginActionPerformed
 
-        public String verifIdentification(String id) throws Exception {
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-        Connection connection = null;
-        String pass;
-        try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
-            ps = connection.prepareStatement("select password from admin where identifiant = ?");
-            ps.setString(1, id); // Affecter le paramètre
-            rs = ps.executeQuery(); // Exécuter la requête
-            if (rs.next()){            
-               pass = rs.getString("password");
-               return pass;
-            }else
-                pass = null;
-                return pass;         
-        }catch(Exception e){
-            throw e;
-        }finally{
-            try{
-                if(rs != null) rs.close();
-                if(ps != null) ps.close();
-                if(connection != null) connection.close();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-    }
-    
-    
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
         try {
             String textLogin = login.getText();
@@ -162,6 +127,7 @@ public class Admin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_login
 
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connexion;
