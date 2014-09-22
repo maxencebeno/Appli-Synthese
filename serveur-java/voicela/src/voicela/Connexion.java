@@ -9,7 +9,7 @@ public class Connexion {
 
 public static java.sql.Connection conn;
 
-    public static void Connecter(String [] args) {
+    public Connection Connecter() {
         try{
             
         // parametres de connexion
@@ -21,12 +21,14 @@ public static java.sql.Connection conn;
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         conn = java.sql.DriverManager.getConnection(url+"?user="+login+"&password="+pass);
         System.out.println("\n connection reussie \n");
-
+        
         }
 
         catch(Exception e){
                 System.out.println("\n Connection ratee: "+ e);
                 System.exit(-1);
-        }  
+        }
+        return conn;
     }
+
 }

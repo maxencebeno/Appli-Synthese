@@ -5,6 +5,12 @@
  */
 package voicela;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author maxencebeno
@@ -102,21 +108,63 @@ public class Admin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_loginActionPerformed
 
+        public String verifIdentification(String id) throws Exception {
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection connection = null;
+        String pass;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            ps = connection.prepareStatement("select password from admin where identifiant = ?");
+            ps.setString(1, id); // Affecter le paramètre
+            rs = ps.executeQuery(); // Exécuter la requête
+            if (rs.next()){            
+               pass = rs.getString("password");
+               return pass;
+            }else
+                pass = null;
+                return pass;         
+        }catch(Exception e){
+            throw e;
+        }finally{
+            try{
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(connection != null) connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
-        String textLogin = login.getText();
-        int i = 0;
-        String correctPswd = "admin";
-        String passText = new String(motDePasse.getPassword());
-        if((textLogin.compareTo("admin") == 0) && correctPswd.compareTo(passText) == 0) {
-            test.setText("Connexion Réussie");
-            new Appli().setVisible(true);
-        } 
-        else {
-            test.setText("Connexion refusée");
+        try {
+            String textLogin = login.getText();
+            String correctPswd = "admin";
+            String passText = new String(motDePasse.getPassword());
+            
+            String retour = verifIdentification(textLogin);
+            
+            if(retour == null){
+                test.setText("Connexion refusée");
+            }
+            else {
+                if(retour.compareTo(passText) == 0){
+                    test.setText("Connexion Réussie");
+                    new Appli().setVisible(true);
+                }
+                else{
+                    test.setText("Connexion refusée");
+                }
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_login
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connexion;
