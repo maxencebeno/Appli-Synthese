@@ -110,6 +110,7 @@ public class Admin extends javax.swing.JFrame {
         if((textLogin.compareTo("admin") == 0) && correctPswd.compareTo(passText) == 0) {
             test.setText("Connexion Réussie");
             new Appli().setVisible(true);
+            this.setVisible(false);
         } 
         else {
             test.setText("Connexion refusée");
