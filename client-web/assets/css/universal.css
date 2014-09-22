@@ -17,7 +17,7 @@ h1{
     margin: 0;
 }
 
-header.general_header{
+.general_header{
     position: fixed;
     top: 0;
     left: 0;
@@ -26,10 +26,9 @@ header.general_header{
     background: rgba(0, 0, 0, 0.75);
     color: #ffffff;
     z-index: 100;
-    line-height: 65px;
     font-size: 25px;
-    box-sizing: border-box;
     padding-left: 30px;
+    padding-top: 15px;
 }
 
 
