@@ -153,6 +153,7 @@ public class Appli extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Appli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        Admin.main(args);
         Connexion.Connecter(args);
         
         /* Create and display the form */
