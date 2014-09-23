@@ -40,9 +40,9 @@ public class Admin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Authentification");
 
-        jLabel1.setText("Login :");
+        jLabel1.setText("Identifiant :");
 
         jLabel2.setText("Mot de passe :");
 
