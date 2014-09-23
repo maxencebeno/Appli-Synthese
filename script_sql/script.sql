@@ -34,6 +34,8 @@ CREATE TABLE films (
 
 CREATE TABLE mariage (
 	id_mariage number(10),
+	num_vip1 number(10),
+	num_vip2 number(10),
 	lieu_mariage varchar2(255),
 	date_mariage date,
 	divorce boolean,
@@ -50,8 +52,10 @@ create table maries (
 
 ALTER TABLE photos add constraint fk_photos_vip foreign key (num_vip) references vip (num_vip); 
 
-alter table maries add constraint fk_maries_num_vip foreign key (num_vip) references vip (num_vip);
-alter table maries add constraint fk_maries_id_mariage foreign key (id_mariage) rgyeferences mariage (id_mariage);
+
+alter table mariage add constraint fk_maruage_num_vip1 foreign key (num_vip1) references vip (num_vip);
+alter table mariage add constraint fk_maruage_num_vip2 foreign key (num_vip2) references vip (num_vip);
+
 
 
 insert into vip values ('','De Palmas', 'Gérard', 'Gérard fimon', 'Espagnole', 'homme', '16/09/75', 'Madrid', 'rien'); 
