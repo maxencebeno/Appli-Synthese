@@ -138,7 +138,6 @@ public class Admin extends javax.swing.JFrame {
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
         try {
             String textLogin = login.getText();
-            String correctPswd = "admin";
             String passText = new String(motDePasse.getPassword());
             
             String retour = verifIdentification(textLogin);
@@ -150,6 +149,7 @@ public class Admin extends javax.swing.JFrame {
                 if(retour.compareTo(passText) == 0){
                     test.setText("Connexion Réussie");
                     new Appli().setVisible(true);
+                    dispose();
                 }
                 else{
                     test.setText("Connexion refusée");
