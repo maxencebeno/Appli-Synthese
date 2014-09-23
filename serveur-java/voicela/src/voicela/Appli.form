@@ -95,7 +95,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Component id="ajoutVIP" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="362" max="32767" attributes="0"/>
+              <EmptySpace pref="385" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,7 +104,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="ajoutVIP" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="90" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,27 +127,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="sexeVIP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="ageVIP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="statutVIP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lieuNaissanceVip" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="dateNaissanceVIP" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="nbEnfantsVIP" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="189" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nbEnfants" pref="84" max="32767" attributes="0"/>
-                              <Component id="dateNaissance" max="32767" attributes="0"/>
-                              <Component id="lieuNaissance" max="32767" attributes="0"/>
-                              <Component id="statut" max="32767" attributes="0"/>
-                              <Component id="age" max="32767" attributes="0"/>
-                              <Component id="sexe" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -168,11 +148,54 @@
                               <Component id="prenom" alignment="1" max="32767" attributes="0"/>
                               <Component id="prenomUsage" alignment="1" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="dateNaissanceVIP" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="validerVIP" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="sexeVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="ageVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lieuNaissanceVip" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="nbEnfantsVIP" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="sexeHomme" min="-2" pref="96" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="sexeFemme" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="civilité" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="nbEnfants" alignment="0" pref="84" max="32767" attributes="0"/>
+                                      <Component id="dateNaissance" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="lieuNaissance" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="statut" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="age" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="statutVIP" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
           </Group>
         </DimensionLayout>
@@ -197,35 +220,48 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="sexeVIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sexe" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sexeHomme" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sexeFemme" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="civilité" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="ageVIP" min="-2" max="-2" attributes="0"/>
+                      <Component id="age" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="statutVIP" min="-2" max="-2" attributes="0"/>
+                      <Component id="statut" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="ageVIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="age" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lieuNaissanceVip" min="-2" max="-2" attributes="0"/>
+                      <Component id="lieuNaissance" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="statutVIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="statut" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="validerVIP" min="-2" max="-2" attributes="0"/>
+                              <Component id="dateNaissanceVIP" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="nbEnfantsVIP" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="nbEnfants" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="dateNaissance" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lieuNaissanceVip" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lieuNaissance" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="dateNaissanceVIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="dateNaissance" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="nbEnfantsVIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="nbEnfants" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="validerVIP" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <EmptySpace pref="88" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -282,8 +318,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="prenomUsage">
         </Component>
-        <Component class="javax.swing.JTextField" name="sexe">
-        </Component>
         <Component class="javax.swing.JTextField" name="age">
         </Component>
         <Component class="javax.swing.JTextField" name="statut">
@@ -301,6 +335,23 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="valider"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="sexeHomme">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Homme"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="sexeFemme">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Femme"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Civitilit&#xe9;"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="civilit&#xe9;">
         </Component>
       </SubComponents>
     </Container>
