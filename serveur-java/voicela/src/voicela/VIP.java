@@ -127,9 +127,14 @@ public class VIP {
     }
      
     // Méthodes
-    public void seMarier(VIP vip1, VIP vip2){
-        
+    public void seMarier(VIP vip1, String lieuMariage, Date dateMariage){
         Mariage mariage = new Mariage();
+        mariage.setNumMariage(1);
+        mariage.setMarie1(vip1.getNom());
+        mariage.setMarie2(this.nom);
+        mariage.setLieuMariage(lieuMariage);
+        mariage.setDivorce(false);
+        mariage.setDateMariage(dateMariage);
     }
     
     public void divorcer(VIP vip){
