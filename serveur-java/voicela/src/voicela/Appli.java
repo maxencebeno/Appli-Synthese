@@ -7,6 +7,7 @@
 package voicela;
 
 import java.util.*;
+import java.util.Date;
 import java.io.*;
 import voicela.VIP;
 
@@ -41,6 +42,7 @@ public class Appli extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         ajoutVIP = new javax.swing.JPanel();
         nomVIP = new javax.swing.JLabel();
         prenomVIP = new javax.swing.JLabel();
@@ -106,8 +108,10 @@ public class Appli extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(sexeHomme);
         sexeHomme.setText("Homme");
 
+        buttonGroup1.add(sexeFemme);
         sexeFemme.setText("Femme");
 
         jLabel1.setText("Civitilité");
@@ -116,33 +120,32 @@ public class Appli extends javax.swing.JFrame {
         ajoutVIP.setLayout(ajoutVIPLayout);
         ajoutVIPLayout.setHorizontalGroup(
             ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
+            .addGroup(ajoutVIPLayout.createSequentialGroup()
                 .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ajoutVIPLayout.createSequentialGroup()
-                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ajoutVIPLayout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nomVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(prenomVIP, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
-                            .addGroup(ajoutVIPLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(prenomUsageVIP)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(prenom)
-                            .addComponent(prenomUsage))
-                        .addGap(18, 18, 18))
+                        .addGap(9, 9, 9)
+                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nomVIP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(prenomVIP, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)))
                     .addGroup(ajoutVIPLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(dateNaissanceVIP)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(prenomUsageVIP)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(nom, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                    .addComponent(prenom)
+                    .addComponent(prenomUsage))
+                .addGap(130, 130, 130))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(validerVIP)
-                .addGap(25, 25, 25))
+                .addGap(48, 48, 48))
             .addGroup(ajoutVIPLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ajoutVIPLayout.createSequentialGroup()
+                        .addComponent(dateNaissanceVIP)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(ajoutVIPLayout.createSequentialGroup()
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sexeVIP)
@@ -206,12 +209,10 @@ public class Appli extends javax.swing.JFrame {
                 .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lieuNaissanceVip)
                     .addComponent(lieuNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
                 .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
-                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(validerVIP)
-                            .addComponent(dateNaissanceVIP))
+                        .addComponent(dateNaissanceVIP)
                         .addGap(18, 18, 18)
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(nbEnfantsVIP)
@@ -219,7 +220,9 @@ public class Appli extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
                         .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(validerVIP)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         boutonMenuModifierVIP.setText("File");
@@ -310,8 +313,9 @@ public class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_ajoutVIP
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
-        VIP vip = new VIP();
-        
+        String prenoms, prenomUsage, nom, civilite, statut, lieuNaissance;
+        int age, nbEnfants;
+        Date date;
     }//GEN-LAST:event_valider
 
     // Connexion
@@ -344,7 +348,6 @@ public class Appli extends javax.swing.JFrame {
         }
         //</editor-fold>
         new Admin().setVisible(true);
-        new Connexion();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -364,6 +367,7 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JMenuItem boutonMenuAjouterVIP;
     private javax.swing.JMenuItem boutonMenuModifierMariage;
     private javax.swing.JMenu boutonMenuModifierVIP;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField civilité;
     private javax.swing.JTextField dateNaissance;
     private javax.swing.JLabel dateNaissanceVIP;

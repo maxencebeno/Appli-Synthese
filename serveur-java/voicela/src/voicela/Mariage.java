@@ -18,14 +18,16 @@ public class Mariage {
     // Attributs
     protected int numMariage;
     protected String marie1;
+    protected String marie2;
     protected String lieuMariage;
     protected boolean divorce;
     protected Date dateMariage;
     
     // Constructeur
-    public Mariage(int numMariage, String marie1, String lieuMariage, boolean divorce, Date dateMariage) {
+    public Mariage(int numMariage, String marie1, String marie2, String lieuMariage, boolean divorce, Date dateMariage) {
         this.numMariage = numMariage;
         this.marie1 = marie1;
+        this.marie2 = marie2;
         this.lieuMariage = lieuMariage;
         this.divorce = divorce;
         this.dateMariage = dateMariage;
@@ -55,6 +57,11 @@ public class Mariage {
     public Date getDateMariage() {
         return dateMariage;
     }
+
+    public String getMarie2() {
+        return marie2;
+    }
+    
     
     // Setters
     public void setNumMariage(int numMariage) {
@@ -76,6 +83,9 @@ public class Mariage {
     public void setDateMariage(Date dateMariage) {
         this.dateMariage = dateMariage;
     }
+
+    public void setMarie2(String marie2) {
+        this.marie2 = marie2;
+    }
     
-    // Méthodes
 }
