@@ -149,6 +149,7 @@ public class Admin extends javax.swing.JFrame {
                 if(retour.compareTo(passText) == 0){
                     test.setText("Connexion Réussie");
                     new Appli().setVisible(true);
+                    dispose();
                 }
                 else{
                     test.setText("Connexion refusée");

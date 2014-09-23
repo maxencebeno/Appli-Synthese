@@ -219,7 +219,7 @@ public class Appli extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
                         .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(46, 46, 46)))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(83, Short.MAX_VALUE))
         );
 
         boutonMenuModifierVIP.setText("File");
@@ -345,7 +345,6 @@ public class Appli extends javax.swing.JFrame {
         //</editor-fold>
         new Admin().setVisible(true);
         new Connexion();
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
