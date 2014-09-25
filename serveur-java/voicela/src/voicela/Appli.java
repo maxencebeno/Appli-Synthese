@@ -503,8 +503,8 @@ public class Appli extends javax.swing.JFrame {
             }
         });
         // Test insertion mariage
-        VIP vip = new VIP("Federer", "Roger", "XXXXX", "Homme", "Monsieur", 33, "Marié", "Bâle", new java.util.Date().getTime(), 3);
-        VIP.seMarier(this, "Kaboul", new java.util.Date().getTime());
+        /*VIP vip = new VIP("Federer", "Roger", "XXXXX", "Homme", "Monsieur", 33, "Marié", "Bâle", new java.util.Date().getTime(), 3);
+        VIP.seMarier(this, "Kaboul", new java.util.Date().getTime());*/
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
