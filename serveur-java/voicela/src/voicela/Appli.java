@@ -113,6 +113,7 @@ public class Appli extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(sexeHomme);
+        sexeHomme.setSelected(true);
         sexeHomme.setText("Homme");
 
         buttonGroup1.add(sexeFemme);
@@ -371,17 +372,55 @@ public class Appli extends javax.swing.JFrame {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String ageVIP, nbEnfantsVIP;
+        String ageVIP, nbEnfantsVIP, testChaine;
         Date date;
         
+        // Début vérification des champs bien remplis
+        
         prenoms = prenom.getText();
+        if(prenoms.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Vous n'avez pas rentré de prénom",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
         prenomsUsage = prenomUsage.getText();
+        if(prenomsUsage.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Vous n'avez pas rentré de prénom d'usage",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
         nomVIP = nom.getText();
+        if(nomVIP.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Vous n'avez pas rentré de nom",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
         lieuNaissanceVIP = lieuNaissance.getText();
+        if(lieuNaissanceVIP.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Vous n'avez pas rentré de lieu de naissance",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
+        // Fin vérification des champs bien remplis
+        
         civiliteVIP = civilite.getSelectedItem().toString();
-        lieuNaissanceVIP = lieuNaissance.getText();
         ageVIP = ageAffiche.getText();
         nbEnfantsVIP = nbEnfantsAffiche.getText();
+        
+        // Assignation dans la varible civilité l'item sélectionné
         
         if(acteur.isSelected()) {
             statutVIP = acteur.getText();
