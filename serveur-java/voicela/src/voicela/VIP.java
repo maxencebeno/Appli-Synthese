@@ -9,6 +9,7 @@ package voicela;
 import java.util.Date;
 import java.util.*;
 import java.io.*;
+import java.sql.*;
 
 /**
  *
@@ -21,6 +22,7 @@ public class VIP {
     protected String prenomUsage;
     protected String prenoms;
     protected String sexe;
+    protected String civilité;
     protected int age;
     protected String statut;
     protected String lieuNaissance;
@@ -81,6 +83,10 @@ public class VIP {
         return dateNaissance;
     }
 
+    public String getCivilité() {
+        return civilité;
+    }
+    
     public int getEnfants() {
         return enfants;
     }
@@ -125,16 +131,65 @@ public class VIP {
     public void setEnfants(int enfants) {
         this.enfants = enfants;
     }
+
+    public void setCivilité(String civilité) {
+        this.civilité = civilité;
+    }
+    
      
     // Méthodes
-    public void seMarier(VIP vip1, String lieuMariage, Date dateMariage){
-        Mariage mariage = new Mariage();
+    public void seMarier(VIP vip, String lieuMariage, Date dateMariage){
+        // Instanciation du mariage
+        /*Mariage mariage = new Mariage();
         mariage.setNumMariage(1);
-        mariage.setMarie1(vip1.getNom());
-        mariage.setMarie2(this.nom);
+        mariage.setMarie1(this.nom);
+        mariage.setMarie2(vip.getNom());
         mariage.setLieuMariage(lieuMariage);
         mariage.setDivorce(false);
-        mariage.setDateMariage(dateMariage);
+        mariage.setDateMariage(dateMariage);*/
+        
+        // Insertion du mariage en base de données
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            
+            //----------------------------------------------------------------
+            // PREMIERE INSERTION
+            //----------------------------------------------------------------
+            // Préparation de la date pour conversion date java -> date SQL
+            java.util.Date utilDate = dateMariage;
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            // Requête d'insertion
+            ps = connection.prepareStatement("INSERT INTO mariage (lieu_mariage, date_mariage, divorce, date_divorce) VALUES (?, ?, ?, ?)");         
+            ps.setString(1, lieuMariage);
+            ps.setDate(2, sqlDate);
+            ps.setBoolean(3, false);
+            ps.setDate(4, null);
+            // On valide la première insertion
+            ps.executeUpdate();
+            
+            //----------------------------------------------------------------
+            // DEUXIEME INSERTION
+            //----------------------------------------------------------------
+            ps = connection.prepareStatement("INSERT INTO maries (id_mariage, num_vip) VALUES (?, ?)");       
+            ps.setInt(1, 1);
+            ps.setInt(2, vip.getId());
+            // On valide la deuxième insertion
+            ps.executeUpdate();
+        }catch(Exception e){
+            //throw e;
+        }finally{
+            try{
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(connection != null) connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
     }
     
     public void divorcer(VIP vip){
