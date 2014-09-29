@@ -370,7 +370,6 @@ public class Appli extends javax.swing.JFrame {
         int ageVIP, nbEnfantsVIP;
         statutVIP = "";
         ageVIP = 10;
-        dateNaissance = "1990-08-15";
         // Début vérification des champs bien remplis
         nationaliteVIP = nationalite.getText();
         if(nationaliteVIP.isEmpty()) {
