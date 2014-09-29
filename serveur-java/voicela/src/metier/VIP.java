@@ -27,11 +27,12 @@ public class VIP {
     protected int age;
     protected String statut;
     protected String lieuNaissance;
-    protected long dateNaissance;
+    protected String dateNaissance;
     protected int enfants;
+    protected String nationalite;
     
     // Constructeurs
-    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, long dateNaissance, int enfants) {
+    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite) {
         this.nom = nom;
         this.prenomUsage = prenomUsage;
         this.prenoms = prenoms;
@@ -42,6 +43,7 @@ public class VIP {
         this.lieuNaissance = lieuNaissance;
         this.dateNaissance = dateNaissance;
         this.enfants = enfants;
+        this.nationalite = nationalite;
     }
     
     
@@ -82,7 +84,7 @@ public class VIP {
         return lieuNaissance;
     }
 
-    public long getDateNaissance() {
+    public String getDateNaissance() {
         return dateNaissance;
     }
 
@@ -93,6 +95,12 @@ public class VIP {
     public int getEnfants() {
         return enfants;
     }
+
+    public String getNationalite() {
+        return nationalite;
+    }
+    
+    
 
     // Setters
     public void setId(int id) {
@@ -127,7 +135,7 @@ public class VIP {
         this.lieuNaissance = lieuNaissance;
     }
 
-    public void setDateNaissance(long dateNaissance) {
+    public void setDateNaissance(String dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 
@@ -138,6 +146,11 @@ public class VIP {
     public void setCivilité(String civilité) {
         this.civilité = civilité;
     }
+
+    public void setNationalite(String nationalite) {
+        this.nationalite = nationalite;
+    }
+    
     
      
     // Méthodes
