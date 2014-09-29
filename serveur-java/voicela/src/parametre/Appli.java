@@ -508,9 +508,6 @@ public class Appli extends javax.swing.JFrame {
                 new Appli().setVisible(false);
             }
         });
-        // Test insertion mariage
-        /*VIP vip = new VIP("Federer", "Roger", "XXXXX", "Homme", "Monsieur", 33, "Marié", "Bâle", new java.util.Date().getTime(), 3);
-        VIP.seMarier(this, "Kaboul", new java.util.Date().getTime());*/
     }
     
     public void insererUnVip(VIP vip) throws SQLException {
