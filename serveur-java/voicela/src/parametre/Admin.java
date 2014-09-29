@@ -160,7 +160,8 @@ public class Admin extends javax.swing.JFrame {
             String retour = verifIdentification(textLogin);
             
             if(retour == null){
-                javax.swing.JOptionPane.showMessageDialog(this,
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
                         "Mauvais identifiant ou mot de passe",
                         "Connexion refusée",
                         javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -172,7 +173,11 @@ public class Admin extends javax.swing.JFrame {
                     dispose();
                 }
                 else{
-                    test.setText("Connexion refusée");
+                    javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Mauvais identifiant ou mot de passe",
+                        "Connexion refusée",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
                 }
             }
         } catch (Exception ex) {
