@@ -103,6 +103,12 @@ public class Appli extends javax.swing.JFrame {
 
         nbEnfantsVIP.setText("Nombre d'enfants : ");
 
+        dateNaissance.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                date(evt);
+            }
+        });
+
         validerVIP.setText("Valider");
         validerVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,7 +428,7 @@ public class Appli extends javax.swing.JFrame {
         
         civiliteVIP = civilite.getSelectedItem().toString();
         nbEnfantsRecup = nbEnfantsAffiche.getText();
-        nbEnfantsVIP = 10;
+        nbEnfantsVIP = Integer.parseInt(nbEnfantsRecup);
         
         // Assignation dans la varible civilité l'item sélectionné
         
@@ -472,6 +478,24 @@ public class Appli extends javax.swing.JFrame {
         nbEnfantsSlider.setMinimum(NB_ENFANTS_MIN);
     }//GEN-LAST:event_nbEnfantsSlide
 
+    private void date(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_date
+        char c = evt.getKeyChar();
+        
+        if(!Character.isDigit(c)) {
+            evt.consume();
+        }
+        if(dateNaissance.getDocument().getLength() == 2) {
+            evt.setKeyChar('-');
+        }
+        if(dateNaissance.getDocument().getLength() == 5) {
+            evt.setKeyChar('-');
+        }
+        if(dateNaissance.getDocument().getLength() == 10) {
+            evt.consume();
+        }
+        
+    }//GEN-LAST:event_date
+
     // Connexion
     //public static java.sql.Connection conn;
     
@@ -515,7 +539,7 @@ public class Appli extends javax.swing.JFrame {
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, lieu_naissance_vip, statut_vip) values(?, ?, ?, ?, ?, ?, ?, ?)";
+            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, lieu_naissance_vip, statut_vip, nb_enfants) values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(requete);
             pstmt.setString(1, vip.getNom());
             pstmt.setString(2, vip.getPrenomUsage());
@@ -525,6 +549,7 @@ public class Appli extends javax.swing.JFrame {
             pstmt.setString(6, vip.getDateNaissance());
             pstmt.setString(7, vip.getLieuNaissance());
             pstmt.setString(8, vip.getStatut());
+            pstmt.setInt(9, vip.getEnfants());
             // exécution de l'ordre SQL
             pstmt.executeUpdate();
             // validation
