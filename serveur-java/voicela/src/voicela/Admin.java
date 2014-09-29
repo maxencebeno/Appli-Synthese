@@ -128,7 +128,6 @@ public class Admin extends javax.swing.JFrame {
         String pass;
         try {
             Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             ps = connection.prepareStatement("select password from admin where identifiant = ?");
             ps.setString(1, id); // Affecter le paramètre
             rs = ps.executeQuery(); // Exécuter la requête
