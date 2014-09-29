@@ -8,10 +8,10 @@ package parametre;
 
 import java.util.*;
 import java.util.Date;
+import java.time.LocalDate;
+import java.lang.*;
 import java.io.*;
 import metier.VIP;
-
-import java.util.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +21,7 @@ import static parametre.Connexion.conn;
  * @author Vincent
  */
 public class Appli extends javax.swing.JFrame {
-
+    private Connection laConnexion;
     /**
      * Creates new form Appli
      */
@@ -352,10 +352,10 @@ public class Appli extends javax.swing.JFrame {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP;
+        String sexeVIP, nbEnfantsRecup;
         int ageVIP, nbEnfantsVIP;
-        Date date;
-        
+        statutVIP = "";
+        ageVIP = 10;
         // Début vérification des champs bien remplis
         
         prenoms = prenom.getText();
@@ -398,7 +398,8 @@ public class Appli extends javax.swing.JFrame {
         // Fin vérification des champs bien remplis
         
         civiliteVIP = civilite.getSelectedItem().toString();
-        nbEnfantsVIP = nbEnfantsAffiche.getText();
+        nbEnfantsRecup = nbEnfantsAffiche.getText();
+        nbEnfantsVIP = Integer.getInteger(nbEnfantsRecup);
         
         // Assignation dans la varible civilité l'item sélectionné
         
@@ -429,7 +430,9 @@ public class Appli extends javax.swing.JFrame {
             sexeVIP = sexeFemme.getText();
         }
         
-        VIP vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, date, nbEnfantsVIP);
+        VIP vip;
+        vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, new java.util.Date().getTime(), nbEnfantsVIP);
+        
     }//GEN-LAST:event_valider
 
     private void nbEnfantsSlide(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nbEnfantsSlide
@@ -482,6 +485,25 @@ public class Appli extends javax.swing.JFrame {
         /*VIP vip = new VIP("Federer", "Roger", "XXXXX", "Homme", "Monsieur", 33, "Marié", "Bâle", new java.util.Date().getTime(), 3);
         VIP.seMarier(this, "Kaboul", new java.util.Date().getTime());*/
     }
+    
+    public void insererEtudiant(Etudiant etu) throws SQLException {
+        String requete = "insert into etudiant (numetu, nometu, moyenne, groupe) values(?,?,?,?)";
+        PreparedStatement pstmt = laConnexion.prepareStatement(requete);
+        pstmt.setString(1, etu.getNumEtudiant());
+        pstmt.setString(2, etu.getNomEtudiant());
+        pstmt.setFloat(3, etu.getMoyenneEtudiant());
+        pstmt.setString(4, etu.getGroupeEtudiant());
+        // pour gérer manuellement la transaction
+        connection.setAutoCommit(false);
+        // exécution de l'ordre SQL
+        pstmt.executeUpdate();
+        // validation
+        laConnexion.commit();
+        // on repasse en mode de validation automatique
+        laConnexion.setAutoCommit(true);
+        pstmt.close();
+
+    } // insererEtudiant
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox acteur;
@@ -521,9 +543,6 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JLabel statutVIP;
     private javax.swing.JButton validerVIP;
     // End of variables declaration//GEN-END:variables
-    static final int AGE_MIN = 1;
-    static final int AGE_MAX = 120;
-    
     static final int NB_ENFANTS_MIN = 0;
     static final int NB_ENFANTS_MAX = 10;
 }
