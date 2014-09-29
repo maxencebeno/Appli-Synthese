@@ -164,7 +164,7 @@ public class VIP {
             java.util.Date utilDate = dateMariage;
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             // Requête d'insertion
-            ps = connection.prepareStatement("INSERT INTO mariage (lieu_mariage, date_mariage, divorce, date_divorce) VALUES (?, ?, ?, ?)");         
+            ps = connection.prepareStatement("INSERT INTO mariage (num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) VALUES (?, ?, ?, ?, ? , ?)");         
             ps.setString(1, lieuMariage);
             ps.setDate(2, sqlDate);
             ps.setBoolean(3, false);
