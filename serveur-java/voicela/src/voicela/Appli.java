@@ -27,10 +27,11 @@ public class Appli extends javax.swing.JFrame {
      */
     public Appli() {
         initComponents();
-        this.pack();
-        this.setDefaultLookAndFeelDecorated(true);
-        this.setExtendedState(this.MAXIMIZED_BOTH);
         
+        // Les 3 prochaines lignes permettent de mettre l'application en plein écran
+        this.pack();
+        setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

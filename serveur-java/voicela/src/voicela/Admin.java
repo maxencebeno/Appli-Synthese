@@ -18,7 +18,11 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
+        
+        // Centre la fenêtre de login
         this.setLocationRelativeTo(null);
+        
+        // Permet de se connecter avec la touche "Entrée"
         this.getRootPane().setDefaultButton(connexion);
     }
 
