@@ -128,6 +128,7 @@ public class Admin extends javax.swing.JFrame {
         String pass;
         try {
             Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
             ps = connection.prepareStatement("select password from admin where identifiant = ?");
             ps.setString(1, id); // Affecter le paramètre
             rs = ps.executeQuery(); // Exécuter la requête
@@ -158,7 +159,10 @@ public class Admin extends javax.swing.JFrame {
             String retour = verifIdentification(textLogin);
             
             if(retour == null){
-                test.setText("Connexion refusée");
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Mauvais identifiant ou mot de passe",
+                        "Connexion refusée",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
             }
             else {
                 if(retour.compareTo(passText) == 0){
