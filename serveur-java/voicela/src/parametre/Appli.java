@@ -49,7 +49,6 @@ public class Appli extends javax.swing.JFrame {
         prenomVIP = new javax.swing.JLabel();
         prenomUsageVIP = new javax.swing.JLabel();
         sexeVIP = new javax.swing.JLabel();
-        ageVIP = new javax.swing.JLabel();
         statutVIP = new javax.swing.JLabel();
         lieuNaissanceVip = new javax.swing.JLabel();
         dateNaissanceVIP = new javax.swing.JLabel();
@@ -67,7 +66,6 @@ public class Appli extends javax.swing.JFrame {
         acteur = new javax.swing.JCheckBox();
         realisateur = new javax.swing.JCheckBox();
         rien = new javax.swing.JCheckBox();
-        age = new javax.swing.JSlider();
         ageAffiche = new javax.swing.JLabel();
         nbEnfantsSlider = new javax.swing.JSlider();
         nbEnfantsAffiche = new javax.swing.JLabel();
@@ -95,8 +93,6 @@ public class Appli extends javax.swing.JFrame {
         prenomUsageVIP.setText("Prénom d'usage :");
 
         sexeVIP.setText("Sexe : ");
-
-        ageVIP.setText("Age : ");
 
         statutVIP.setText("Statut :");
 
@@ -130,12 +126,6 @@ public class Appli extends javax.swing.JFrame {
 
         rien.setText("Rien");
 
-        age.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                changerAge(evt);
-            }
-        });
-
         nbEnfantsSlider.setMaximum(10);
         nbEnfantsSlider.setValue(0);
         nbEnfantsSlider.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -160,16 +150,13 @@ public class Appli extends javax.swing.JFrame {
                     .addGroup(ajoutVIPLayout.createSequentialGroup()
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(sexeVIP)
-                            .addComponent(ageVIP)
                             .addComponent(lieuNaissanceVip)
                             .addComponent(jLabel1)
                             .addComponent(nbEnfantsVIP))
                         .addGap(152, 152, 152)
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(ajoutVIPLayout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(age, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(214, 214, 214)
                                 .addComponent(ageAffiche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
@@ -245,17 +232,9 @@ public class Appli extends javax.swing.JFrame {
                 .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(civilite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ajoutVIPLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(ageVIP)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajoutVIPLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(ageAffiche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(age, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGap(13, 13, 13)
+                .addComponent(ageAffiche, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(acteur, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -373,7 +352,8 @@ public class Appli extends javax.swing.JFrame {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String ageVIP, nbEnfantsVIP, testChaine;
+        String sexeVIP;
+        int ageVIP, nbEnfantsVIP;
         Date date;
         
         // Début vérification des champs bien remplis
@@ -418,7 +398,6 @@ public class Appli extends javax.swing.JFrame {
         // Fin vérification des champs bien remplis
         
         civiliteVIP = civilite.getSelectedItem().toString();
-        ageVIP = ageAffiche.getText();
         nbEnfantsVIP = nbEnfantsAffiche.getText();
         
         // Assignation dans la varible civilité l'item sélectionné
@@ -443,19 +422,15 @@ public class Appli extends javax.swing.JFrame {
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
         }
+        if(sexeHomme.isSelected()) {
+            sexeVIP = sexeHomme.getText();
+        }
+        else {
+            sexeVIP = sexeFemme.getText();
+        }
         
-        
+        VIP vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, date, nbEnfantsVIP);
     }//GEN-LAST:event_valider
-
-    private void changerAge(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_changerAge
-        int ageSlider = age.getValue();
-        String ageConverti;
-        ageConverti = String.valueOf(ageSlider);
-        
-        ageAffiche.setText(ageConverti);
-        age.setMaximum(AGE_MAX);
-        age.setMinimum(AGE_MIN);
-    }//GEN-LAST:event_changerAge
 
     private void nbEnfantsSlide(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nbEnfantsSlide
         int nbEnfantsValeur = nbEnfantsSlider.getValue();
@@ -510,9 +485,7 @@ public class Appli extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox acteur;
-    private javax.swing.JSlider age;
     private javax.swing.JLabel ageAffiche;
-    private javax.swing.JLabel ageVIP;
     private javax.swing.JPanel ajoutVIP;
     private javax.swing.JMenuItem boutonMenuAPropos;
     private javax.swing.JMenuItem boutonMenuAide;

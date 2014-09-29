@@ -31,13 +31,15 @@ public class VIP {
     protected int enfants;
     
     // Constructeurs
-    public VIP(String nom, String prenomUsage, String prenoms, String sexe, int age, String statut, Date dateNaissance, int enfants) {
+    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, Date dateNaissance, int enfants) {
         this.nom = nom;
         this.prenomUsage = prenomUsage;
         this.prenoms = prenoms;
         this.sexe = sexe;
+        this.civilité = civilite;
         this.age = age;
         this.statut = statut;
+        this.lieuNaissance = lieuNaissance;
         this.dateNaissance = dateNaissance;
         this.enfants = enfants;
     }
