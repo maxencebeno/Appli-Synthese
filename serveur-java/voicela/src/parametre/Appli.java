@@ -4,18 +4,18 @@
  * and open the template in the editor.
  */
 
-package voicela;
+package parametre;
 
 import java.util.*;
 import java.util.Date;
 import java.io.*;
-import voicela.VIP;
+import metier.VIP;
 
 import java.util.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static voicela.Connexion.conn;
+import static parametre.Connexion.conn;
 /**
  *
  * @author Vincent

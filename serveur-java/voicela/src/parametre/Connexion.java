@@ -1,9 +1,9 @@
-package voicela;
+package parametre;
 
 import java.sql.*;
 import java.io.*;
 import java.util.*;
-import static voicela.Appli.conn;
+import static parametre.Appli.conn;
 
 public class Connexion {
 

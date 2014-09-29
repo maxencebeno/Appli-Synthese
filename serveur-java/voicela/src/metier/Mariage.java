@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package voicela;
+package metier;
 
 import java.util.Date;
 import java.util.*;

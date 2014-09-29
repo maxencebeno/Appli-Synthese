@@ -4,24 +4,24 @@
  * and open the template in the editor.
  */
 
-package voicela;
+package metier;
 
 /**
  *
  * @author Vincent
  */
-public class Acteur {
+public class Realisateur{
     // Attributs
     protected int numFilm;
     protected int numVIP;
     
     // Constructeurs
-    public Acteur(int numFilm, int numVIP) {
+    public Realisateur(int numFilm, int numVIP) {
         this.numFilm = numFilm;
         this.numVIP = numVIP;
     }
     
-    public Acteur(){
+    public Realisateur(){
         
     }
     
