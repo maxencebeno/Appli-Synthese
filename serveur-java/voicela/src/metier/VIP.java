@@ -171,15 +171,6 @@ public class VIP {
             ps.setDate(4, null);
             // On valide la première insertion
             ps.executeUpdate();
-            
-            //----------------------------------------------------------------
-            // DEUXIEME INSERTION
-            //----------------------------------------------------------------
-            ps = connection.prepareStatement("INSERT INTO maries (id_mariage, num_vip) VALUES (?, ?)");       
-            ps.setInt(1, 1);
-            ps.setInt(2, vip.getId());
-            // On valide la deuxième insertion
-            ps.executeUpdate();
         }catch(Exception e){
             //throw e;
         }finally{
