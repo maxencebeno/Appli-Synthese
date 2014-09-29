@@ -278,6 +278,11 @@ public class Appli extends javax.swing.JFrame {
         );
 
         boutonMenuModifierVIP.setText("File");
+        boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonMenuModifierVIPActionPerformed(evt);
+            }
+        });
 
         boutonMenuAjouterVIP.setText("Ajouter un VIP");
         boutonMenuAjouterVIP.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +476,10 @@ public class Appli extends javax.swing.JFrame {
         nbEnfantsSlider.setMaximum(NB_ENFANTS_MAX);
         nbEnfantsSlider.setMinimum(NB_ENFANTS_MIN);
     }//GEN-LAST:event_nbEnfantsSlide
+
+    private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
+        
+    }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
 
     // Connexion
     //public static java.sql.Connection conn;
