@@ -197,9 +197,8 @@ public class VIP {
             
             // Requête d'update pour passer à divorcé et mettre la date de divorce
             ps = connection.prepareStatement("UPDATE mariage SET divorce = 1 AND date_divorce = ? WHERE id_mariage = ? ");         
-            ps.setInt(1, mariage.getNumMariage());
-            ps.setDate(2, sqlDate);
-            
+            ps.setDate(1, sqlDate);
+            ps.setInt(2, mariage.getNumMariage());
             // On valide le divorce
             ps.executeUpdate();
         }catch(Exception e){
