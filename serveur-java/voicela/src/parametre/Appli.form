@@ -372,7 +372,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="dateNaissance">
           <Events>
-            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="date"/>
+            <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="gestionDate"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="validerVIP">
