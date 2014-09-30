@@ -1,0 +1,23 @@
+
+#section_one{
+    position: relative;
+    height: 600px;
+    background-size: cover;
+    background-image: url(../../assets/images/index/test-bg.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position-y: -60px
+}
+
+.section_content{
+    width: 1000px;
+    margin: 0 auto;
+    padding-top: 50px;
+}
+
+#section_one h1 {
+    font-size: 50px;
+    color: #ffffff;
+    font-weight: normal;
+    margin-top: 400px;
+}
