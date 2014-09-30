@@ -1,0 +1,1 @@
+<header class="general_header"><img src="assets/images/index/voicela.png" alt="Voicela" /></header>

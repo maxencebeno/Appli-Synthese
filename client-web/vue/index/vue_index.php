@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <header class="general_header"><img src="assets/images/index/voicela.png" alt="Voicela" /></header>
+        <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
             <section id="section_one">
                 <div class="section_content">
