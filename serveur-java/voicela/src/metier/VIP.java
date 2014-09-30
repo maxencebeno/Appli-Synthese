@@ -27,12 +27,12 @@ public class VIP {
     protected int age;
     protected String statut;
     protected String lieuNaissance;
-    protected String dateNaissance;
+    protected java.util.Date dateNaissance;
     protected int enfants;
     protected String nationalite;
     
     // Constructeurs
-    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite) {
+    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, java.util.Date dateNaissance, int enfants, String nationalite) {
         this.nom = nom;
         this.prenomUsage = prenomUsage;
         this.prenoms = prenoms;
@@ -84,7 +84,7 @@ public class VIP {
         return lieuNaissance;
     }
 
-    public String getDateNaissance() {
+    public java.util.Date getDateNaissance() {
         return dateNaissance;
     }
 
@@ -135,7 +135,7 @@ public class VIP {
         this.lieuNaissance = lieuNaissance;
     }
 
-    public void setDateNaissance(String dateNaissance) {
+    public void setDateNaissance(java.util.Date dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
 

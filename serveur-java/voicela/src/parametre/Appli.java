@@ -12,6 +12,8 @@ import java.lang.*;
 import java.io.*;
 import metier.VIP;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static parametre.Connexion.conn;
@@ -411,14 +413,19 @@ public class Appli extends javax.swing.JFrame {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP;
+        String sexeVIP, nbEnfantsRecup, nationaliteVIP; 
+        java.util.Date dateNaissanceVIP = null;
+        SimpleDateFormat sdf = new SimpleDateFormat ("dd-mm-yyyy");
         int ageVIP, nbEnfantsVIP;
         statutVIP = "";
         ageVIP = 10;
-        // Début vérification des champs bien remplis
-        
-        dateNaissanceVIP = dateNaissance.getText();
-        if(dateNaissanceVIP.isEmpty()) {
+        try {
+            // Début vérification des champs bien remplis
+            dateNaissanceVIP = sdf.parse(dateNaissance.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(dateNaissanceVIP == null) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Vous n'avez pas rentré de date de naissance",
@@ -582,7 +589,7 @@ public class Appli extends javax.swing.JFrame {
             pstmt.setString(3, vip.getPrenoms());
             pstmt.setString(4, vip.getNationalite());
             pstmt.setString(5, vip.getCivilité());
-            pstmt.setString(6, vip.getDateNaissance());
+            pstmt.setDate(6, vip.getDateNaissance());
             pstmt.setString(7, vip.getLieuNaissance());
             pstmt.setString(8, vip.getStatut());
             // exécution de l'ordre SQL
