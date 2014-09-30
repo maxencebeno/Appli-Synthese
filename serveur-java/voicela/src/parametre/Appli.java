@@ -75,6 +75,7 @@ public class Appli extends javax.swing.JFrame {
         nbEnfantsAffiche = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nationalite = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         ajoutMariage = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
@@ -150,6 +151,8 @@ public class Appli extends javax.swing.JFrame {
 
         jLabel2.setText("Nationalite : ");
 
+        jLabel3.setText("JJ-MM-AAAA");
+
         javax.swing.GroupLayout ajoutVIPLayout = new javax.swing.GroupLayout(ajoutVIP);
         ajoutVIP.setLayout(ajoutVIPLayout);
         ajoutVIPLayout.setHorizontalGroup(
@@ -202,7 +205,9 @@ public class Appli extends javax.swing.JFrame {
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(dateNaissance, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lieuNaissance, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(130, 130, 130))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addGap(79, 79, 79))
                     .addGroup(ajoutVIPLayout.createSequentialGroup()
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(ajoutVIPLayout.createSequentialGroup()
@@ -281,7 +286,9 @@ public class Appli extends javax.swing.JFrame {
                         .addComponent(nbEnfantsVIP)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(ajoutVIPLayout.createSequentialGroup()
-                        .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(ajoutVIPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nbEnfantsSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -404,13 +411,13 @@ public class Appli extends javax.swing.JFrame {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP, nbEnfantsRecup, nationaliteVIP; 
-        java.sql.Date dateNaissanceVIP = null;
+        String sexeVIP, nbEnfantsRecup, nationaliteVIP;
+        Date dateNaissanceVIP = null; 
         int ageVIP, nbEnfantsVIP;
         statutVIP = "";
         ageVIP = 10;
             // Début vérification des champs bien remplis
-        dateNaissanceVIP = dateNaissance.getText();
+        //dateNaissanceVIP = dateNaissance.getText();
         if(dateNaissanceVIP == null) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -527,7 +534,6 @@ public class Appli extends javax.swing.JFrame {
 
     private void gestionDate(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gestionDate
         char c = evt.getKeyChar();
-        int i = 0;
         
         if(!Character.isDigit(c)) {
             evt.consume();
@@ -626,6 +632,7 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JLabel dateNaissanceVIP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
