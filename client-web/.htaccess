@@ -1,4 +1,4 @@
 RewriteEngine on
 RewriteBase /
 
-RewriteRule ^(test)$ $1.php [L]
+RewriteRule ^(bio)$ $1.php [L]
