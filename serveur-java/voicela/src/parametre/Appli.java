@@ -31,6 +31,8 @@ public class Appli extends javax.swing.JFrame {
         this.pack();
         setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(MAXIMIZED_BOTH);
+        ajoutMariage.setVisible(false);
+        ajoutVIP.setVisible(false);
     }
 
     /**
@@ -70,6 +72,10 @@ public class Appli extends javax.swing.JFrame {
         nbEnfantsAffiche = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nationalite = new javax.swing.JTextField();
+<<<<<<< HEAD
+=======
+        ajoutMariage = new javax.swing.JPanel();
+>>>>>>> e45737358bb5449270f3e7f0bbcbd1fee6606c36
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -277,6 +283,22 @@ public class Appli extends javax.swing.JFrame {
                         .addContainerGap())))
         );
 
+<<<<<<< HEAD
+=======
+        ajoutMariage.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajout d'un mariage"));
+
+        javax.swing.GroupLayout ajoutMariageLayout = new javax.swing.GroupLayout(ajoutMariage);
+        ajoutMariage.setLayout(ajoutMariageLayout);
+        ajoutMariageLayout.setHorizontalGroup(
+            ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 651, Short.MAX_VALUE)
+        );
+        ajoutMariageLayout.setVerticalGroup(
+            ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
+        );
+
+>>>>>>> e45737358bb5449270f3e7f0bbcbd1fee6606c36
         boutonMenuModifierVIP.setText("File");
         boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -338,23 +360,40 @@ public class Appli extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(92, 92, 92)
                 .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(202, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ajoutMariage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+>>>>>>> e45737358bb5449270f3e7f0bbcbd1fee6606c36
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGap(36, 36, 36)
                 .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ajoutMariage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE))
+>>>>>>> e45737358bb5449270f3e7f0bbcbd1fee6606c36
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonMenuModifierMariageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierMariageActionPerformed
-        // TODO add your handling code here:
+        this.ajoutVIP.setVisible(false);
+        this.ajoutMariage.setVisible(true);
     }//GEN-LAST:event_boutonMenuModifierMariageActionPerformed
 
     private void boutonMenuAjouterDivorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAjouterDivorceActionPerformed
@@ -366,16 +405,28 @@ public class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonMenuAProposActionPerformed
 
     private void ajoutVIP(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutVIP
+        this.ajoutMariage.setVisible(false);
         this.ajoutVIP.setVisible(true);
     }//GEN-LAST:event_ajoutVIP
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissance;
+        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP;
         int ageVIP, nbEnfantsVIP;
         statutVIP = "";
         ageVIP = 10;
         // Début vérification des champs bien remplis
+        
+        dateNaissanceVIP = dateNaissance.getText();
+        if(dateNaissanceVIP.isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Vous n'avez pas rentré de date de naissance",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
         nationaliteVIP = nationalite.getText();
         if(nationaliteVIP.isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(
@@ -459,7 +510,7 @@ public class Appli extends javax.swing.JFrame {
         }
         
         VIP vip;
-        vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissance, nbEnfantsVIP, nationaliteVIP);
+        vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP);
         try {
             insererUnVip(vip);
         } catch (SQLException ex) {
@@ -549,6 +600,7 @@ public class Appli extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox acteur;
     private javax.swing.JLabel ageAffiche;
+    private javax.swing.JPanel ajoutMariage;
     private javax.swing.JPanel ajoutVIP;
     private javax.swing.JMenuItem boutonMenuAPropos;
     private javax.swing.JMenuItem boutonMenuAide;
