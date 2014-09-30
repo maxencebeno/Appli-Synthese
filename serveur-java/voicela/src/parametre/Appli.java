@@ -12,6 +12,8 @@ import java.lang.*;
 import java.io.*;
 import metier.VIP;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static parametre.Connexion.conn;
@@ -81,6 +83,7 @@ public class Appli extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -297,6 +300,7 @@ public class Appli extends javax.swing.JFrame {
         );
 
         ajoutMariage.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajout d'un mariage"));
+        ajoutMariage.setPreferredSize(new java.awt.Dimension(1000, 505));
 
         jLabel3.setText("People 1");
 
@@ -306,26 +310,36 @@ public class Appli extends javax.swing.JFrame {
 
         jLabel6.setText("Date du mariage");
 
-        jTextField4.setText("jTextField4");
+        jButton1.setText("Ajouter le mariage");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ajoutMariageLayout = new javax.swing.GroupLayout(ajoutMariage);
         ajoutMariage.setLayout(ajoutMariageLayout);
         ajoutMariageLayout.setHorizontalGroup(
             ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ajoutMariageLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(61, 61, 61)
-                .addGroup(ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE))
-                .addContainerGap(251, Short.MAX_VALUE))
+                    .addGroup(ajoutMariageLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(61, 61, 61)
+                        .addGroup(ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField3)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)))
+                    .addGroup(ajoutMariageLayout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         ajoutMariageLayout.setVerticalGroup(
             ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -339,15 +353,17 @@ public class Appli extends javax.swing.JFrame {
                         .addGap(60, 60, 60)
                         .addComponent(jLabel4))
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
+                .addGap(49, 49, 49)
                 .addGroup(ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(51, 51, 51)
                 .addGroup(ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jButton1)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
         boutonMenuModifierVIP.setText("File");
@@ -413,9 +429,9 @@ public class Appli extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ajoutVIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(ajoutMariage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ajoutMariage, javax.swing.GroupLayout.DEFAULT_SIZE, 690, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -450,14 +466,19 @@ public class Appli extends javax.swing.JFrame {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP;
+        String sexeVIP, nbEnfantsRecup, nationaliteVIP; 
+        java.util.Date dateNaissanceVIP = null;
+        SimpleDateFormat sdf = new SimpleDateFormat ("dd-mm-yyyy");
         int ageVIP, nbEnfantsVIP;
         statutVIP = "";
         ageVIP = 10;
-        // Début vérification des champs bien remplis
-        
-        dateNaissanceVIP = dateNaissance.getText();
-        if(dateNaissanceVIP.isEmpty()) {
+        try {
+            // Début vérification des champs bien remplis
+            dateNaissanceVIP = sdf.parse(dateNaissance.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(dateNaissanceVIP == null) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Vous n'avez pas rentré de date de naissance",
@@ -571,6 +592,10 @@ public class Appli extends javax.swing.JFrame {
         
     }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int idVIP1 = 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Connexion
     //public static java.sql.Connection conn;
     
@@ -621,7 +646,7 @@ public class Appli extends javax.swing.JFrame {
             pstmt.setString(3, vip.getPrenoms());
             pstmt.setString(4, vip.getNationalite());
             pstmt.setString(5, vip.getCivilité());
-            pstmt.setString(6, vip.getDateNaissance());
+            pstmt.setDate(6, vip.getDateNaissance());
             pstmt.setString(7, vip.getLieuNaissance());
             pstmt.setString(8, vip.getStatut());
             // exécution de l'ordre SQL
@@ -652,6 +677,7 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JComboBox civilite;
     private javax.swing.JTextField dateNaissance;
     private javax.swing.JLabel dateNaissanceVIP;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
