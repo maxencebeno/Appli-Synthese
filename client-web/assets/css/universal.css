@@ -17,20 +17,76 @@ h1{
     margin: 0;
 }
 
+a:visited{
+    color: inherit;
+}
+
 .general_header{
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 65px;
-    background: rgba(0, 0, 0, 0.75);
-    color: #ffffff;
+    height: 50px;
+    background: rgba(255, 255, 255, 1);
+    color: black;
     z-index: 100;
-    font-size: 25px;
-    padding-left: 30px;
-    padding-top: 15px;
+    font-size: 17px;
+    border-bottom: 1px solid #cfd2d3;
 }
 
+#header_container{
+  width: 1190px;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+  margin: auto;
+  border: 0;
+}
+
+#header_container ul{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  border: 0;
+  width: auto;
+  cursor: pointer;
+}
+
+#header_container ul li{
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  height: 50px;
+  line-height: 50px;
+  border: 0;
+  font-size: 14px;
+  color: #66757f;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+#header_container ul li a{
+  margin: 0;
+  padding: 0;
+  display: block;
+  height: 50px;
+  width: 100%;
+  line-height: 50px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+#header_container ul li a:hover{
+    color: #0084b4;
+}
 
 *{
     box-sizing: border-box;

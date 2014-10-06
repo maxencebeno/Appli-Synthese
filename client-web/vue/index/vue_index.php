@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/style_index.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/index/style_index.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
         <title>Voicela</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
     </head>
