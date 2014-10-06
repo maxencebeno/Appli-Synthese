@@ -19,4 +19,4 @@ function connexion(){
 
 		return $bdd;
 }
-	?>
+?>
