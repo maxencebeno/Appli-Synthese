@@ -221,7 +221,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Civilit&#xe9; : "/>
+        <Property name="text" type="java.lang.String" value="Etat civile : "/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">

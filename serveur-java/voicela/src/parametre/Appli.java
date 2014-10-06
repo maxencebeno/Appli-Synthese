@@ -5,30 +5,24 @@
  */
 package parametre;
 
-import java.awt.event.KeyEvent;
-import java.util.*;
-import java.util.Date;
-import java.lang.*;
-import java.io.*;
 import metier.VIP;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modele.MonModele;
-import static parametre.Connexion.conn;
+import vue.MonModele;
 
 /**
  *
  * @author Vincent
  */
-public class Appli extends javax.swing.JFrame {
+public final class Appli extends javax.swing.JFrame {
 
     public static java.sql.Connection conn;
 
     /**
      * Creates new form Appli
+     * @throws java.lang.Exception
      */
     public Appli() throws Exception {
         vVIP = new java.util.ArrayList<>();
@@ -39,8 +33,9 @@ public class Appli extends javax.swing.JFrame {
         setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         monModele = (MonModele) table.getModel();
-        
+        lireLesVIP();
         setLocation(250, 150);
+        
     }
 
     /**
@@ -172,34 +167,50 @@ public class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_ajoutVIP
 
     private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
-
+        
     }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
 
-    public void lireLesVIP() throws Exception {
+    public ArrayList<VIP> lireLesVIP() throws Exception {
         // Affichage de tous les vip
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
+        
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
             String requete = "SELECT * FROM vip";
             pstmt = connection.prepareStatement(requete);
             rs = pstmt.executeQuery(); // Exécuter la requête
+            
             while (rs.next()) {
-                vVIP.add(new VIP(
-                        rs.getString(2), // nom
-                        rs.getString(3), // prenom usage
-                        rs.getString(4), // prenom
-                        rs.getString(12),// sexe 
-                        rs.getString(6), // civilité
-                        rs.getInt(8),    // age
-                        rs.getString(10),// statut
-                        rs.getString(9), // lieu de naissance
-                        rs.getString(7), // date de naissance
-                        rs.getInt(11),   // nombre d'enfants
-                        rs.getString(5) // nationalité
-                ));
+                VIP v;
+                v = new VIP();
+                
+                String nom = rs.getString(2); // nom
+                String prenomUsage = rs.getString(3); // prenom usage
+                String prenom = rs.getString(4); // prenom
+                String sexe = rs.getString(12);// sexe 
+                String civilite = rs.getString(6); // civilité
+                int age = rs.getInt(8);    // age
+                String statut = rs.getString(10);// statut
+                String lieuNaissance = rs.getString(9); // lieu de naissance
+                String dateNaissance = rs.getString(7); // date de naissance
+                int nbEnfants = rs.getInt(11);   // nombre d'enfants
+                String nationalite = rs.getString(5); // nationalité
+                
+                v.setNom(nom);
+                v.setPrenomUsage(prenomUsage);
+                v.setPrenoms(prenom);
+                v.setSexe(sexe);
+                v.setCivilité(civilite);
+                v.setAge(age);
+                v.setStatut(statut);
+                v.setLieuNaissance(lieuNaissance);
+                v.setDateNaissance(dateNaissance);
+                v.setEnfants(nbEnfants);
+                v.setNationalite(nationalite);
+                vVIP.add(v);
                 pstmt.close();
             }
         } catch (Exception e) {
@@ -220,6 +231,7 @@ public class Appli extends javax.swing.JFrame {
             }
 
         }
+        return vVIP;
     }
     // Connexion
     //public static java.sql.Connection conn;
@@ -253,6 +265,7 @@ public class Appli extends javax.swing.JFrame {
         new Admin().setVisible(true);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new Appli().setVisible(false);
@@ -278,6 +291,6 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    private MonModele monModele;
-    private java.util.ArrayList<VIP> vVIP;
+    private final MonModele monModele;
+    private final java.util.ArrayList<VIP> vVIP;
 }

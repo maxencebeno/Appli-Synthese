@@ -76,7 +76,7 @@ public class AjoutVip extends javax.swing.JDialog {
 
         jLabel4.setText("Sexe : ");
 
-        jLabel5.setText("Civilité : ");
+        jLabel5.setText("Etat civile : ");
 
         jLabel6.setText("Nationalité : ");
 
