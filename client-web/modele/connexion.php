@@ -14,7 +14,7 @@ function connexion(){
 	{
         // En cas d'erreur, on affiche un message et on arrête tout
         //die('Erreur : '.$e->getMessage());
-		echo"erreur";
+		echo"Erreur de connexion à la base de données en ligne.";
 	}
 
 	return $bdd;
