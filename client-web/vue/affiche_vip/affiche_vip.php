@@ -3,7 +3,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>Voicela</title>
-	<link href="" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
+    <link rel="stylesheet" type="text/css" href="assets/css/style_bio.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/affiche_vip/style_affiche.css" />
 
 	<!-- Beginning of JavasScript-->
 	<script src="./media/jquery-1.9.1.js"></script>
@@ -26,6 +28,7 @@
 		</tr>
 
 	<?php
+	$req=allVip();
 	while($donnee = $req->fetch()){
 		echo "<tr>";
 		echo "<td>".$donnee["nom_vip"]."</td>";

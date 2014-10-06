@@ -1,5 +1,8 @@
 <?php
+function allVip() {
+	$bdd = connexion();
+	$req = $bdd->query("SELECT * from vip");
 
-$bdd = connexion();
-$req = $bdd->query("SELECT * from vip");
+	return $req;
+}
 ?>

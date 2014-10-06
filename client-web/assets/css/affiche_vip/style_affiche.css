@@ -1,0 +1,60 @@
+body{
+    width: 100%;
+    min-height: 100%;
+    background-color: white;
+    font-family: Tahoma;
+    color: grey;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    width: 95%;
+    height: 50px;   line-height: 50px;  
+    background-color: grey;
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding-left: 5%;
+    font-size: 20px;
+}
+
+h1{
+    font-size: 20px;
+    color: #cdyu8f;
+}
+
+#table-ip{
+    width: 1000px;
+    border: 1px solid black;   
+    border-collapse: collapse;
+}
+
+#table-ip caption{
+    border: 1px solid silver;
+    padding-bottom: 20px !important;
+    padding: 4px;
+    font-weight: bold;
+    color: #d12b00;
+}
+#table-ip td, #table-ip th{   
+    border: 1px solid silver;
+    padding: 4px;
+    text-align: center;
+    height: 80px;
+}
+#table-ip th{   background-color: #b2b2b2;  color: #ffffff; height: 20px !important}#table-ip tr:hover{ background-color: #f6f6f6}
+.icone-navigateur, .icone-OS{
+    width: 60px;
+}
+
+
+
+
+
+
+
+
