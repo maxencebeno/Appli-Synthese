@@ -1,6 +1,6 @@
 <?php 
 function connexion(){	
-		$host='iutdoua-webetu.univ-lyon1.fr/p1201896';
+		$host='iutdoua-webetu.univ-lyon1.fr';
 		$user='p1201896';
 		$password='169657';
 		$basename='p1201896';
