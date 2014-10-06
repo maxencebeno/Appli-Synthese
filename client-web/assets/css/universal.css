@@ -88,9 +88,53 @@ a:visited{
     color: #0084b4;
 }
 
+#general_search_form{
+  display: inline-block;
+  border: 0;
+  border-radius: 21px;
+  height: 32px;
+  line-height: 32px;
+  width: 236px;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  background-color: #a3acb2;
+  color: white;
+}
+
+#q::-webkit-input-placeholder {
+    color: white;
+}
+
+#q:-moz-placeholder {
+    color: white;
+}
+
+#q{
+  margin-left: 20px;
+  width: 170x;
+  height: 20px;
+  border: 0;
+  color: white;
+  background-color: #a3acb2;
+  border: 1px solid white;
+}
+
+#general_search_submit{
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  border: 0;
+  background-color: none;
+  background-image: url(../images/general/search_background.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
 *{
     box-sizing: border-box;
     font-family: Open Sans, Verdana, Arial;
+    outline: none;
 }
 
 /* FONTS */

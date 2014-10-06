@@ -18,7 +18,7 @@
                 
                 // On affiche tous les VIP trouvés enfin !
                 while($donnees = $req->fetch()){
-                    echo '<div class="search_films">'.$donnees['nom_vip'].
+                    echo '<div class="search_films">'.$donnees['prenom_usuel_vip'].' '.$donnees['nom_vip'].
                     
                     '</div>';
                     $resultat_vide = false; // On passe la variable à false pour ne pas afficher de message d'erreur car on a des résultats !

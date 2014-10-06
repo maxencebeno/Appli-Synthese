@@ -6,5 +6,10 @@
             <li><a href="picture.php" class="glyphicon glyphicon-picture"><span style="margin-left: 10px">Photos</span></a></li>
             <li><a href="other.php" class="glyphicon glyphicon-asterisk"><span style="margin-left: 10px">Autre</span></a></li>
         </ul>
+
+        <form action="profile.php" method="GET" id="general_search_form">
+            <input type="text" name="q" id="q" spellcheck="false" autocomplete="off" placeholder="Recherchez sur Voicela" />
+            <input type="submit" value="" id="general_search_submit" />
+        </form>
     </div>
 </header>
