@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package parametre;
 
 import java.awt.event.KeyEvent;
@@ -17,23 +16,31 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import modele.MonModele;
 import static parametre.Connexion.conn;
+
 /**
  *
  * @author Vincent
  */
 public class Appli extends javax.swing.JFrame {
+
     public static java.sql.Connection conn;
+
     /**
      * Creates new form Appli
      */
-    public Appli() {
+    public Appli() throws Exception {
+        vVIP = new java.util.ArrayList<>();
         initComponents();
-        
+
         // Les 3 prochaines lignes permettent de mettre l'application en plein écran
         this.pack();
         setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(MAXIMIZED_BOTH);
+        monModele = (MonModele) table.getModel();
+        
+        setLocation(250, 150);
     }
 
     /**
@@ -46,6 +53,8 @@ public class Appli extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -59,6 +68,9 @@ public class Appli extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
+
+        table.setModel(new MonModele(vVIP));
+        jScrollPane1.setViewportView(table);
 
         boutonMenuModifierVIP.setText("File");
         boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
@@ -120,11 +132,17 @@ public class Appli extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1217, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 594, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -150,16 +168,62 @@ public class Appli extends javax.swing.JFrame {
         BddVip = new AjoutVip(this, true);
         BddVip.setLocation(250, 150);
         BddVip.setVisible(true);
-        
+
     }//GEN-LAST:event_ajoutVIP
 
     private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
-        
+
     }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
 
+    public void lireLesVIP() throws Exception {
+        // Affichage de tous les vip
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete = "SELECT * FROM vip";
+            pstmt = connection.prepareStatement(requete);
+            rs = pstmt.executeQuery(); // Exécuter la requête
+            while (rs.next()) {
+                vVIP.add(new VIP(
+                        rs.getString(2), // nom
+                        rs.getString(3), // prenom usage
+                        rs.getString(4), // prenom
+                        rs.getString(12),// sexe 
+                        rs.getString(6), // civilité
+                        rs.getInt(8),    // age
+                        rs.getString(10),// statut
+                        rs.getString(9), // lieu de naissance
+                        rs.getString(7), // date de naissance
+                        rs.getInt(11),   // nombre d'enfants
+                        rs.getString(5) // nationalité
+                ));
+                pstmt.close();
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
     // Connexion
     //public static java.sql.Connection conn;
-    
+
     /**
      * @param args the command line arguments
      */
@@ -190,7 +254,11 @@ public class Appli extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Appli().setVisible(false);
+                try {
+                    new Appli().setVisible(false);
+                } catch (Exception ex) {
+                    Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -207,5 +275,9 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
+    private MonModele monModele;
+    private java.util.ArrayList<VIP> vVIP;
 }
