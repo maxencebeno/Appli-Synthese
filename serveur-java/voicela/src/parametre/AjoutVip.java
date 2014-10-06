@@ -228,72 +228,18 @@ public class AjoutVip extends javax.swing.JDialog {
         String sexeVIP, nbEnfantsRecup, nationaliteVIP;
         int ageVIP, nbEnfantsVIP;
         statutVIP = "";
-        ageVIP = 10;
-        // Début vérification des champs bien remplis
-
+        
         String testDate = dateNaissance.getText();
-        if (testDate == null) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez pas rentré de date de naissance",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
-
         nationaliteVIP = nationalite.getText();
-        if (nationaliteVIP.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez pas rentré de nationalite",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
-
         prenoms = prenom.getText();
-        if (prenoms.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez pas rentré de prénom",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
         prenomsUsage = prenomUsage.getText();
-        if (prenomsUsage.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez pas rentré de prénom d'usage",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
         nomVIP = nom.getText();
-        if (nomVIP.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez pas rentré de nom",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
         lieuNaissanceVIP = lieuNaissance.getText();
-        if (lieuNaissanceVIP.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez pas rentré de lieu de naissance",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
-
-        // Fin vérification des champs bien remplis
         civiliteVIP = civilite.getSelectedItem().toString();
         nbEnfantsRecup = nbEnfantsAffiche.getText();
-        nbEnfantsVIP = 10;
-
-        // Assignation dans la varible civilité l'item sélectionné
+        nbEnfantsVIP = Integer.parseInt(nbEnfantsRecup);
+        
+         // Assignation dans la varible civilité l'item sélectionné
         if (acteur.isSelected()) {
             statutVIP = acteur.getText();
         } else if (realisateur.isSelected()) {
@@ -315,13 +261,103 @@ public class AjoutVip extends javax.swing.JDialog {
         } else {
             sexeVIP = sexeFemme.getText();
         }
+        
+        // Début vérification des champs bien remplis
+        if(testDate == null && nationaliteVIP == null && prenoms == null && prenomsUsage == null && nomVIP == null && lieuNaissanceVIP == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this, 
+                    "Erreur", 
+                    "Vous n'avez pas rempli tous les champs",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+        else {
+            if (testDate == null) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Vous n'avez pas rentré de date de naissance",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
 
-        VIP vip;
-        vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, testDate, nbEnfantsVIP, nationaliteVIP);
-        try {
-            insererUnVip(vip);
-        } catch (SQLException ex) {
-            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+
+            if (nationaliteVIP.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Vous n'avez pas rentré de nationalite",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+
+            if (prenoms.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Vous n'avez pas rentré de prénom",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            if (prenomsUsage.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Vous n'avez pas rentré de prénom d'usage",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            if (nomVIP.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Vous n'avez pas rentré de nom",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            if (lieuNaissanceVIP.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Vous n'avez pas rentré de lieu de naissance",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
+
+            // Fin vérification des champs bien remplis
+        }
+
+       
+        
+        int result = javax.swing.JOptionPane.showConfirmDialog(
+                this, 
+                "Voici le vip que vous êtes sur le point d'insérer : \n"
+                        + "Nom : " + nomVIP + "\n"
+                        + "Prénoms : " + prenoms + "\n"
+                        + "Prénom usage : " + prenomsUsage + "\n"
+                        + "Sexe : " + sexeVIP + "\n"
+                        + "Civilité : " + civiliteVIP + "\n"
+                        + "Age : " + ageVIP + "\n"
+                        + "Statut : " + statutVIP + "\n"
+                        + "Lieu de naissance : " + lieuNaissanceVIP + "\n"
+                        + "Date de naissance : " + testDate + "\n"
+                        + "Nationalité : " + nationaliteVIP + "\n"
+                        + "Nombre d'enfants : " + nbEnfantsVIP + "\n",
+                "Confirmation VIP",
+                javax.swing.JOptionPane.OK_CANCEL_OPTION
+        );
+        if(result == javax.swing.JOptionPane.OK_OPTION) {
+            VIP vip;
+            vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, testDate, nbEnfantsVIP, nationaliteVIP);
+            try {
+                insererUnVip(vip);
+            } catch (SQLException ex) {
+                Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_valider
 

@@ -34,7 +34,6 @@ public class Appli extends javax.swing.JFrame {
         this.pack();
         setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(MAXIMIZED_BOTH);
-        ajoutMariage.setVisible(false);
     }
 
     /**
@@ -47,7 +46,6 @@ public class Appli extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        ajoutMariage = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -61,19 +59,6 @@ public class Appli extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
-
-        ajoutMariage.setBorder(javax.swing.BorderFactory.createTitledBorder("Ajout d'un mariage"));
-
-        javax.swing.GroupLayout ajoutMariageLayout = new javax.swing.GroupLayout(ajoutMariage);
-        ajoutMariage.setLayout(ajoutMariageLayout);
-        ajoutMariageLayout.setHorizontalGroup(
-            ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
-        );
-        ajoutMariageLayout.setVerticalGroup(
-            ajoutMariageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
-        );
 
         boutonMenuModifierVIP.setText("File");
         boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
@@ -135,24 +120,21 @@ public class Appli extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(548, 548, 548)
-                .addComponent(ajoutMariage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 1217, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(ajoutMariage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+            .addGap(0, 594, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonMenuModifierMariageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierMariageActionPerformed
-        this.ajoutMariage.setVisible(true);
+        AjouterMariage BddAjouterMariage;
+        BddAjouterMariage = new AjouterMariage(this, true);
+        BddAjouterMariage.setLocation(250, 150);
+        BddAjouterMariage.setVisible(true);
     }//GEN-LAST:event_boutonMenuModifierMariageActionPerformed
 
     private void boutonMenuAjouterDivorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAjouterDivorceActionPerformed
@@ -164,7 +146,6 @@ public class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonMenuAProposActionPerformed
 
     private void ajoutVIP(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutVIP
-        this.ajoutMariage.setVisible(false);
         AjoutVip BddVip;
         BddVip = new AjoutVip(this, true);
         BddVip.setLocation(250, 150);
@@ -215,7 +196,6 @@ public class Appli extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ajoutMariage;
     private javax.swing.JMenuItem boutonMenuAPropos;
     private javax.swing.JMenuItem boutonMenuAide;
     private javax.swing.JMenuItem boutonMenuAjouterDivorce;
