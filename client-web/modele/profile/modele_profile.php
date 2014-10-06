@@ -1,7 +1,11 @@
 <?php
-$bdd = connexion();
+
 
 function searchVIP($q){
+    // BDD !
+    $bdd = connexion();
+
+    // Fonction en elle-même
     $query = htmlspecialchars($q);
     $query = trim($query, " \t.");
 
@@ -13,13 +17,14 @@ function searchVIP($q){
         $nb_elem=count($tableau_mots_cles); 
 
         // On va incrémenter une requête sous forme de chaine de caractère pour incrémenter avec tous les mots clés
-        $requete = 'SELECT * FROM vip WHERE nom_vip LIKE "%'.$tableau_mots_cles[0].'%" ';
+        $requete = 'SELECT * FROM vip WHERE nom_vip OR prenom_usuel_vip LIKE "%'.$tableau_mots_cles[0].'%" ';
         for($i=1 ; $i<$nb_elem; $i++) {
-            $requete.='OR (nom_vip LIKE "%'.$tableau_mots_cles[$i].'%")';
+            $requete.='OR (nom_vip OR prenom_usuel_vip LIKE "%'.$tableau_mots_cles[$i].'%")';
         } 
         $requete .= 'ORDER BY nom_vip';
         
+        $req2 = $bdd->query($requete);
         // Return la requête
-        return $bdd->query($requete);
+        return $req2;
     }
 } // Fin de la fonction searchVIP()
