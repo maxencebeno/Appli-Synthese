@@ -25,12 +25,16 @@ header{
 h1{
     font-size: 20px;
     color: #cdyu8f;
+    text-align: center;
+    margin-bottom: 10px;
 }
 
 #table-ip{
     width: 1000px;
     border: 1px solid black;   
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #table-ip caption{
@@ -51,6 +55,9 @@ h1{
     width: 60px;
 }
 
+.full_wrapper{
+    margin-top:50px;
+}
 
 
 
