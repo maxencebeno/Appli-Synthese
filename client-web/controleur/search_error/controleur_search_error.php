@@ -1,1 +1,0 @@
-<?php include_once('vue/search_error/vue_search_error.php'); ?>

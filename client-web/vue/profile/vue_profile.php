@@ -38,7 +38,7 @@
                         </div>';
                     }
                 }else{
-                    header('Location: search_error.php');
+                    header('Location: search-home.php');
                 }
                 ?>
             </div>

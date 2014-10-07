@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/search_error/style_search_error.css" />
+        <link rel="stylesheet" type="text/css" href="assets/css/search-home/style_search-home.css" />
         <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
         <title>Recherche Voicela</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
