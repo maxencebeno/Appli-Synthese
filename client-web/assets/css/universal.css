@@ -41,6 +41,7 @@ a:visited{
   padding: 0;
   margin: auto;
   border: 0;
+  position: relative;
 }
 
 #header_container ul{
@@ -100,6 +101,9 @@ a:visited{
   padding: 0;
   background-color: #a3acb2;
   color: white;
+  position: absolute;
+  top: 9px;
+  right: 0;
 }
 
 #q::-webkit-input-placeholder {
@@ -111,13 +115,14 @@ a:visited{
 }
 
 #q{
-  margin-left: 20px;
-  width: 170x;
-  height: 20px;
+  padding-left: 20px;
+  width: 185px;
+  height: 100%;
   border: 0;
   color: white;
   background-color: #a3acb2;
-  border: 1px solid white;
+  border: 0;
+  border-radius: 21px;
 }
 
 #general_search_submit{
