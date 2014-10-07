@@ -12,34 +12,36 @@
     <body>
         <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
-            <?php
-            if(isset($_GET['q'])){
-                $req = searchVIP($_GET['q']);
-                
-                // On affiche tous les VIP trouvés enfin !
-                while($donnees = $req->fetch()){
-                    echo '<div class="search_films">'.$donnees['prenom_usuel_vip'].' '.$donnees['nom_vip'].
+            <div class="second_wrapper">
+                <?php
+                if(isset($_GET['q']) AND $_GET['q'] != ""){
+                    $req = searchVIP($_GET['q']);
+                    $resultat_vide = true;
                     
-                    '</div>';
-                    $resultat_vide = false; // On passe la variable à false pour ne pas afficher de message d'erreur car on a des résultats !
+                    // On affiche tous les VIP trouvés enfin !
+                    while($donnees = $req->fetch()){
+                        echo '<div class="search_films">'.$donnees['prenom_usuel_vip'].' '.$donnees['nom_vip'].'</div>';
+                        $resultat_vide = false;
+                    }
+                    
+                    // Si pas de résultat, on affiche le message d'erreur.
+                    if($resultat_vide == true){
+                        echo '<div id="no_result">
+                        <p>Aucun résultat ne correspond aux termes de recherche spécifiés (<strong>'.$_GET['q'].'</strong>).<br /><br />
+                        Suggestions :</p>
+                        <ul>
+                            <li>Le VIP que vous cherchez n\'existe pas encore dans notre base de données.</li>
+                            <li>Vérifiez l’orthographe des termes de recherche.</li>
+                            <li>Essayez d\'autres mots.</li>
+                            <li>Utilisez des mots clés plus généraux.</li>
+                        </ul>
+                        </div>';
+                    }
+                }else{
+                    header('Location: search_error.php');
                 }
-                
-                if($resultat_vide){
-                    echo '<div id="no_result">
-                    <p>Aucun document ne correspond aux termes de recherche spécifiés (<strong>'.$query.'</strong>).<br /><br />
-                    Suggestions :</p>
-                    <ul>
-                        <li>Le film que vous cherchez n\'existe pas dans notre base de données.</li>
-                        <li>Vérifiez l’orthographe des termes de recherche.</li>
-                        <li>Essayez d\'autres mots.</li>
-                        <li>Utilisez des mots clés plus généraux.</li>
-                    </ul>
-                    </div>';
-                }
-            }else{
-                echo "Aucune variable passée en paramètre.";
-            }
-            ?>
+                ?>
+            </div>
         </div>
         <script src="assets/js/core.js"></script>
         <script src="assets/js/parallax.js"></script>
