@@ -20,8 +20,8 @@ function searchVIP($q){
         $requete = 'SELECT * FROM vip WHERE nom_vip LIKE "%'.$tableau_mots_cles[0].'%" OR prenom_usuel_vip LIKE "%'.$tableau_mots_cles[0].'%" OR prenoms_vip LIKE "%'.$tableau_mots_cles[0].'%"';
         for($i=1 ; $i<$nb_elem; $i++) {
             $requete.='OR (nom_vip LIKE "%'.$tableau_mots_cles[$i].'%")';
-            $requete.='OR prenom_usuel_vip LIKE "%'.$tableau_mots_cles[i].'%"';
-            $requete.='OR prenoms_vip LIKE "%'.$tableau_mots_cles[i].'%"';
+            $requete.='OR prenom_usuel_vip LIKE "%'.$tableau_mots_cles[$i].'%"';
+            $requete.='OR prenoms_vip LIKE "%'.$tableau_mots_cles[$i].'%"';
         } 
         $requete .= 'ORDER BY nom_vip';
         
