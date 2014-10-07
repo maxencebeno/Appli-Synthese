@@ -12,7 +12,7 @@ import metier.*;
  */
 public class MonModele extends javax.swing.table.AbstractTableModel {
     private String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants"};
-    private java.util.ArrayList<VIP> donnees;
+    public java.util.ArrayList<VIP> donnees;
 
     public MonModele(java.util.ArrayList<VIP> vVIP) {
         donnees = vVIP;

@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import org.imgscalr.Scalr;
 import metier.VIP;
 import org.imgscalr.Scalr.Method;
+import vue.MonModele;
 
 /**
  *
@@ -428,6 +429,7 @@ public class AjoutVip extends javax.swing.JDialog {
                 Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        this.dispose();
     }//GEN-LAST:event_valider
 
     private void nbEnfantsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nbEnfantsSliderStateChanged
@@ -463,59 +465,14 @@ public class AjoutVip extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ajoutPhoto
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                AjoutVip dialog = new AjoutVip(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    
 
     public void insererUnVip(VIP vip) throws SQLException {
         Connection connection = null;
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement pstmt = connection.prepareStatement(requete);
             pstmt.setString(1, vip.getNom());
             pstmt.setString(2, vip.getPrenomUsage());
@@ -527,12 +484,9 @@ public class AjoutVip extends javax.swing.JDialog {
             pstmt.setString(8, vip.getLieuNaissance());
             pstmt.setString(9, vip.getStatut());
             pstmt.setInt(10, vip.getEnfants());
+            pstmt.setString(11, vip.getSexe());
             // exécution de l'ordre SQL
             pstmt.executeUpdate();
-            // validation
-            connection.commit();
-            // on repasse en mode de validation automatique
-            connection.setAutoCommit(true);
             pstmt.close();
         } catch (Exception e) {
             throw e;

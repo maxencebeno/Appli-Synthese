@@ -51,6 +51,7 @@ public final class Appli extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        actualiser = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -68,7 +69,14 @@ public final class Appli extends javax.swing.JFrame {
         table.setModel(new MonModele(vVIP));
         jScrollPane1.setViewportView(table);
 
-        boutonMenuModifierVIP.setText("File");
+        actualiser.setText("Actualiser");
+        actualiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualiser(evt);
+            }
+        });
+
+        boutonMenuModifierVIP.setText("Fichier");
         boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutonMenuModifierVIPActionPerformed(evt);
@@ -128,17 +136,23 @@ public final class Appli extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(actualiser)
+                .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(actualiser)
+                .addGap(154, 154, 154))
         );
 
         pack();
@@ -164,12 +178,21 @@ public final class Appli extends javax.swing.JFrame {
         BddVip = new AjoutVip(this, true);
         BddVip.setLocation(250, 150);
         BddVip.setVisible(true);
-
     }//GEN-LAST:event_ajoutVIP
 
     private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
 
     }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
+
+    private void actualiser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualiser
+        try {
+            monModele.donnees.clear();
+            lireLesVIP();
+            monModele.fireTableDataChanged();
+        } catch (Exception ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_actualiser
 
     public void lireLesVIP() throws Exception {
         // Affichage de tous les vip
@@ -239,13 +262,8 @@ public final class Appli extends javax.swing.JFrame {
     // Connexion
     //public static java.sql.Connection conn;
 
-    /**
-     * @param args the command line arguments
-     */
-    
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualiser;
     private javax.swing.JMenuItem boutonMenuAPropos;
     private javax.swing.JMenuItem boutonMenuAide;
     private javax.swing.JMenuItem boutonMenuAjouterDivorce;
