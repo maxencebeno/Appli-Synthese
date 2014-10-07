@@ -22,6 +22,7 @@ public final class Appli extends javax.swing.JFrame {
 
     /**
      * Creates new form Appli
+     *
      * @throws java.lang.Exception
      */
     public Appli() throws Exception {
@@ -35,7 +36,7 @@ public final class Appli extends javax.swing.JFrame {
         monModele = (MonModele) table.getModel();
         lireLesVIP();
         setLocation(250, 150);
-        
+
     }
 
     /**
@@ -167,51 +168,54 @@ public final class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_ajoutVIP
 
     private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
-        
+
     }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
 
-    public ArrayList<VIP> lireLesVIP() throws Exception {
+    public void lireLesVIP() throws Exception {
         // Affichage de tous les vip
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
-        
+
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
             String requete = "SELECT * FROM vip";
             pstmt = connection.prepareStatement(requete);
             rs = pstmt.executeQuery(); // Exécuter la requête
+            ResultSetMetaData md = rs.getMetaData();
+            int columns = md.getColumnCount();
             
             while (rs.next()) {
                 VIP v;
                 v = new VIP();
-                
-                String nom = rs.getString(2); // nom
-                String prenomUsage = rs.getString(3); // prenom usage
-                String prenom = rs.getString(4); // prenom
-                String sexe = rs.getString(12);// sexe 
-                String civilite = rs.getString(6); // civilité
-                int age = rs.getInt(8);    // age
-                String statut = rs.getString(10);// statut
-                String lieuNaissance = rs.getString(9); // lieu de naissance
-                String dateNaissance = rs.getString(7); // date de naissance
-                int nbEnfants = rs.getInt(11);   // nombre d'enfants
-                String nationalite = rs.getString(5); // nationalité
-                
-                v.setNom(nom);
-                v.setPrenomUsage(prenomUsage);
-                v.setPrenoms(prenom);
-                v.setSexe(sexe);
-                v.setCivilité(civilite);
-                v.setAge(age);
-                v.setStatut(statut);
-                v.setLieuNaissance(lieuNaissance);
-                v.setDateNaissance(dateNaissance);
-                v.setEnfants(nbEnfants);
-                v.setNationalite(nationalite);
+                for (int i = 1 ; i <= columns ; i++) {
+                    String nom = rs.getString(2); // nom
+                    String prenomUsage = rs.getString(3); // prenom usage
+                    String prenom = rs.getString(4); // prenom
+                    String sexe = rs.getString(12);// sexe 
+                    String civilite = rs.getString(6); // civilité
+                    int age = rs.getInt(8);    // age
+                    String statut = rs.getString(10);// statut
+                    String lieuNaissance = rs.getString(9); // lieu de naissance
+                    String dateNaissance = rs.getString(7); // date de naissance
+                    int nbEnfants = rs.getInt(11);   // nombre d'enfants
+                    String nationalite = rs.getString(5); // nationalité
+
+                    v.setNom(nom);
+                    v.setPrenomUsage(prenomUsage);
+                    v.setPrenoms(prenom);
+                    v.setSexe(sexe);
+                    v.setCivilité(civilite);
+                    v.setAge(age);
+                    v.setStatut(statut);
+                    v.setLieuNaissance(lieuNaissance);
+                    v.setDateNaissance(dateNaissance);
+                    v.setEnfants(nbEnfants);
+                    v.setNationalite(nationalite);
+                    
+                }
                 vVIP.add(v);
-                pstmt.close();
             }
         } catch (Exception e) {
             throw e;
@@ -231,7 +235,6 @@ public final class Appli extends javax.swing.JFrame {
             }
 
         }
-        return vVIP;
     }
     // Connexion
     //public static java.sql.Connection conn;
