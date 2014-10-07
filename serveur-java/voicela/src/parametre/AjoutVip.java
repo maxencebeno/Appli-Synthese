@@ -19,6 +19,7 @@ import javax.swing.ImageIcon;
 import org.imgscalr.Scalr;
 import metier.VIP;
 import org.imgscalr.Scalr.Method;
+import static java.nio.file.StandardCopyOption.*;
 import vue.MonModele;
 
 /**
@@ -293,7 +294,7 @@ public class AjoutVip extends javax.swing.JDialog {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP;
+        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture;
         int ageVIP = 0, nbEnfantsVIP;
         statutVIP = "";
 
@@ -306,7 +307,6 @@ public class AjoutVip extends javax.swing.JDialog {
         civiliteVIP = civilite.getSelectedItem().toString();
         nbEnfantsRecup = nbEnfantsAffiche.getText();
         nbEnfantsVIP = Integer.parseInt(nbEnfantsRecup);
-
         // Assignation dans la varible civilité l'item sélectionné
         if (acteur.isSelected()) {
             statutVIP = acteur.getText();
@@ -450,11 +450,12 @@ public class AjoutVip extends javax.swing.JDialog {
         int returnval = filechooser.showOpenDialog(this);
         if (returnval == javax.swing.JFileChooser.APPROVE_OPTION) {
             File file = filechooser.getSelectedFile();
-            
+
             BufferedImage bi;
             
             try {   //display the image in jlabel
                 bi = ImageIO.read(file);
+                file.renameTo(new File("files/" + file.getName()));
                 BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
                 ImageIO.write(bISmallImage, "png", file);
                 showImage.setIcon(new ImageIcon(bISmallImage));
@@ -465,29 +466,28 @@ public class AjoutVip extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ajoutPhoto
 
-    
-
     public void insererUnVip(VIP vip) throws SQLException {
         Connection connection = null;
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
             String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = connection.prepareStatement(requete);
-            pstmt.setString(1, vip.getNom());
-            pstmt.setString(2, vip.getPrenomUsage());
-            pstmt.setString(3, vip.getPrenoms());
-            pstmt.setString(4, vip.getNationalite());
-            pstmt.setString(5, vip.getCivilité());
-            pstmt.setString(6, vip.getDateNaissance());
-            pstmt.setInt(7, vip.getAge());
-            pstmt.setString(8, vip.getLieuNaissance());
-            pstmt.setString(9, vip.getStatut());
-            pstmt.setInt(10, vip.getEnfants());
-            pstmt.setString(11, vip.getSexe());
-            // exécution de l'ordre SQL
-            pstmt.executeUpdate();
-            pstmt.close();
+            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+                pstmt.setString(1, vip.getNom());
+                pstmt.setString(2, vip.getPrenomUsage());
+                pstmt.setString(3, vip.getPrenoms());
+                pstmt.setString(4, vip.getNationalite());
+                pstmt.setString(5, vip.getCivilité());
+                pstmt.setString(6, vip.getDateNaissance());
+                pstmt.setInt(7, vip.getAge());
+                pstmt.setString(8, vip.getLieuNaissance());
+                pstmt.setString(9, vip.getStatut());
+                pstmt.setInt(10, vip.getEnfants());
+                pstmt.setString(11, vip.getSexe());
+                
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
         } catch (Exception e) {
             throw e;
         }
