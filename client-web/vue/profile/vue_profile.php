@@ -13,7 +13,30 @@
         <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
             <div class="second_wrapper">
-                
+                <?php
+                 if(isset($_GET['id']) AND $_GET['id'] != ""){
+                    $req = getOneVIP($_GET['id']);
+                    $resultat_vide = true;
+                    
+                    // On affiche tous les VIP trouvés enfin !
+                    if($donnees = $req->fetch()){?>
+                        <div class="vip_found">
+                            <?php echo $donnees['nom_vip'] ; ?>
+                        </div>
+                        <?php
+                        $resultat_vide = false;
+                    }
+                    
+                    // Si pas de résultat, on affiche le message d'erreur.
+                    if($resultat_vide == true){
+                        echo '<div id="no_result">
+                        <p>Aucun résultat ne correspond à votre requête.<br /><br />
+                        </div>';
+                    }
+                }else{
+                    header('Location: ghost.php');
+                }
+                ?>
             </div>
         </div>
         <script src="assets/js/core.js"></script>
