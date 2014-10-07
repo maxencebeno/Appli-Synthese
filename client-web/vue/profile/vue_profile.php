@@ -12,13 +12,23 @@
     <body>
         <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
-            <div class="second_wrapper">
-                <?php
-                 if(isset($_GET['id']) AND $_GET['id'] != ""){
+            <div class="bandeau1">
+                <div class="container">
+sfdgdfgsdfg
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/core.js"></script>
+    </body>
+</html>
+
+
+
+<?php
+                 /*if(isset($_GET['id']) AND $_GET['id'] != ""){
                     $req = getOneVIP($_GET['id']);
                     $resultat_vide = true;
-                    
-                    // On affiche tous les VIP trouvés enfin !
+
                     if($donnees = $req->fetch()){?>
                         <div class="vip_found">
                             <?php echo $donnees['nom_vip'] ; ?>
@@ -35,10 +45,5 @@
                     }
                 }else{
                     header('Location: ghost.php');
-                }
+                }*/
                 ?>
-            </div>
-        </div>
-        <script src="assets/js/core.js"></script>
-    </body>
-</html>
