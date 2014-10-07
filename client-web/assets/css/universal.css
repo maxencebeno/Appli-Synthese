@@ -134,6 +134,8 @@ a:visited{
   background-image: url(../images/general/search_background.png);
   background-repeat: no-repeat;
   background-position: center center;
+  position: relative;
+  top: 4px;
 }
 
 *{
