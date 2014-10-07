@@ -23,6 +23,7 @@
                         <div class="vip_found">
                             <div class="vip_found_profile_pic" style="background-image: url(http://blogs-images.forbes.com/gregorymcneal/files/2014/05/lawyeramal_amaluddin.jpg);"></div>
                             <div class="vip_found_profile_details"><a href="profile.php?id=<?php echo $donnees['num_vip']; ?>"><h3><?php echo $donnees['prenom_usuel_vip']; ?> <?php echo $donnees['nom_vip'];?></h3></a>
+                            <p><?php echo $donnees['statut_vip']; ?></p>
                             </div>
                         </div>
                         <?php
