@@ -8,7 +8,7 @@
         </ul>
 
         <form action="search.php" method="GET" id="general_search_form">
-            <input type="text" name="q" id="q" spellcheck="false" autocomplete="off" placeholder="Recherchez sur Voicela" />
+            <input type="text" name="q" id="q" spellcheck="false" autocomplete="off" placeholder="Recherchez sur Voicela" <?php if(isset($_GET['q'])){echo 'value="'.htmlspecialchars($_GET['q']).'"';} ?>/>
             <input type="submit" value="" id="general_search_submit" />
         </form>
     </div>
