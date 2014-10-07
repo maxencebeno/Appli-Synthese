@@ -15,7 +15,7 @@
             <div class="second_wrapper">
                 <div id="search_box">
                     <h1>Recherche sur Voicela</h1>
-                    <form action="profile.php" method="GET" id="error_search_form">
+                    <form action="search.php" method="GET" id="error_search_form">
                         <input type="text" name="q" id="q_error" spellcheck="false" autocomplete="off" placeholder="Recherchez sur Voicela" />
                         <input type="submit" value="Rechercher" id="error_search_submit" />
                     </form>
