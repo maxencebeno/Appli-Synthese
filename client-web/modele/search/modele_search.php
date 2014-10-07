@@ -1,6 +1,6 @@
 <?php
 
-
+// Fonction qui renvoie tous les VIP correspondant à la chaîne de caractères passée en paramètre
 function searchVIP($q){
     // BDD !
     $bdd = connexion();
