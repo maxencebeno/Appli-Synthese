@@ -30,9 +30,8 @@ public class Main {
         // look and feel windows
         try {
             // création du DAO avec la connexion à la base concernée
-            Admin login = new Admin();
+            new Admin().setVisible(true);
             // création de la vue avec le modèle de données à afficher
-            Appli lApplication = new Appli();
         } catch (NumberFormatException e) {
             System.out.print(e.getMessage());
         }
