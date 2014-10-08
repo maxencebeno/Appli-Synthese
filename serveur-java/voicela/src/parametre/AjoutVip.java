@@ -429,7 +429,7 @@ public class AjoutVip extends javax.swing.JDialog {
 
                         try {   //display the image in jlabel
                             bi = ImageIO.read(file);
-                            copyFileUsingStream(file, new File("files/" + vip.getNom()));
+                            copyFileUsingStream(file, new File("../../client-web/files/" + vip.getNom()));
                             pathPicture = "files/" + vip.getNom();
                             vip.setPathImage(pathPicture);
                             BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
