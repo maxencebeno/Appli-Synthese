@@ -29,7 +29,6 @@
     height: 250px;
     border-radius: 7px;
     background-size: cover;
-    background-image: url(http://blogs-images.forbes.com/gregorymcneal/files/2014/05/lawyeramal_amaluddin.jpg);
     background-position: center center;
 }
 
@@ -40,4 +39,24 @@
     position: absolute;
     top: 0;
     right: 0;
+}
+
+#bio h3{
+    margin: 0;
+    padding: 0;
+    color: #128fdc;
+    font-size: 19px;
+}
+
+#bio p{
+    font-size: 14px;
+}
+
+#bio a{
+    color: #128fdc;
+    text-decoration: none;
+}
+
+#bio a:hover{
+    text-decoration: underline;
 }

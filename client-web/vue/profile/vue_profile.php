@@ -14,10 +14,30 @@
         <div class="full_wrapper">
             <div class="bandeau1">
                 <div class="container">
-                    <div id="profile_pic"></div>
+                    <div id="profile_pic" style="background-image: url(<?php echo $chemin_photo_vip; ?>);"></div>
                     
                     <div id="bio">
-                        <h3>Biographie</h3>
+                        <h3><?php echo $prenom_vip; ?> <?php echo $nom_vip; ?></h3>
+                        <p><?php echo $statut_vip; ?>, <?php echo $nationalité_vip; ?></p>
+                        <p>Née le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
+                        
+                        <?php 
+                        if($nb_enfants_vip > 0){
+                            if($nb_enfants_vip == 1){
+                                echo '<p>1 enfant</p>';
+                            }else{
+                                echo '<p>'.$nb_enfants_vip.' enfants</p>';
+                            }
+                        }
+                        ?>
+                        
+                        <?php
+                        if($vip_marie != 'none'){
+                            echo '<p>Actuellement marié avec '.$vip_marie.'.</p>'; 
+                        }else{
+                            '<p>Célibataire.</p>';
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -25,29 +45,3 @@
         <script src="assets/js/core.js"></script>
     </body>
 </html>
-
-
-
-<?php
-                 /*if(isset($_GET['id']) AND $_GET['id'] != ""){
-                    $req = getOneVIP($_GET['id']);
-                    $resultat_vide = true;
-
-                    if($donnees = $req->fetch()){?>
-                        <div class="vip_found">
-                            <?php echo $donnees['nom_vip'] ; ?>
-                        </div>
-                        <?php
-                        $resultat_vide = false;
-                    }
-                    
-                    // Si pas de résultat, on affiche le message d'erreur.
-                    if($resultat_vide == true){
-                        echo '<div id="no_result">
-                        <p>Aucun résultat ne correspond à votre requête.<br /><br />
-                        </div>';
-                    }
-                }else{
-                    header('Location: ghost.php');
-                }*/
-                ?>
