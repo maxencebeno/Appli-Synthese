@@ -19,7 +19,7 @@
                     <div id="bio">
                         <h3><?php echo $prenom_vip; ?> <?php echo $nom_vip; ?></h3>
                         <p><?php echo $statut_vip; ?>, <?php echo $nationalité_vip; ?></p>
-                        <p>Née le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
+                        <p><?php if($sexe_vip == 'Femme'){echo 'Née';}else{echo 'Né';}?> le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
                         
                         <?php 
                         if($nb_enfants_vip > 0){
@@ -54,7 +54,8 @@
                     if($donnees = $reqVip->fetch()){
                         while($donnees = $reqVip->fetch()){
                         ?>
-                            <img src="files/<?php echo $donnees['url_photo'];?>" alt />
+                            <span class="add_the_x">Ajoutée le : <?php echo $donnees['date_ajout_photo']; ?></span>
+                            <img src="files/<?php echo $donnees['url_photo'];s?>" title="<?php echo $prenom_vip; ?>" alt />
                         <?php
                         }
                     }else{

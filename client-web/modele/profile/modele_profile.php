@@ -53,6 +53,6 @@ function getAllimages($id_vip){
     $req = $bdd->prepare('SELECT * FROM photos WHERE num_vip = ?');
     $req->execute(array($id_vip));
 
-    // On retourne le VIP.
+    // On retourne les images.
     return $req;
 }
