@@ -5,30 +5,25 @@
  */
 package parametre;
 
-import java.awt.event.KeyEvent;
-import java.util.*;
-import java.util.Date;
-import java.lang.*;
-import java.io.*;
 import metier.VIP;
 import java.sql.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modele.MonModele;
-import static parametre.Connexion.conn;
+import vue.MonModele;
 
 /**
  *
  * @author Vincent
  */
-public class Appli extends javax.swing.JFrame {
+public final class Appli extends javax.swing.JFrame {
 
     public static java.sql.Connection conn;
 
     /**
      * Creates new form Appli
+     *
+     * @throws java.lang.Exception
      */
     public Appli() throws Exception {
         vVIP = new java.util.ArrayList<>();
@@ -39,8 +34,9 @@ public class Appli extends javax.swing.JFrame {
         setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         monModele = (MonModele) table.getModel();
-        
+        lireLesVIP();
         setLocation(250, 150);
+
     }
 
     /**
@@ -55,6 +51,7 @@ public class Appli extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        actualiser = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -72,7 +69,14 @@ public class Appli extends javax.swing.JFrame {
         table.setModel(new MonModele(vVIP));
         jScrollPane1.setViewportView(table);
 
-        boutonMenuModifierVIP.setText("File");
+        actualiser.setText("Actualiser");
+        actualiser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualiser(evt);
+            }
+        });
+
+        boutonMenuModifierVIP.setText("Fichier");
         boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boutonMenuModifierVIPActionPerformed(evt);
@@ -132,17 +136,23 @@ public class Appli extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(actualiser)
+                .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
                 .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(31, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(actualiser)
+                .addGap(154, 154, 154))
         );
 
         pack();
@@ -168,39 +178,67 @@ public class Appli extends javax.swing.JFrame {
         BddVip = new AjoutVip(this, true);
         BddVip.setLocation(250, 150);
         BddVip.setVisible(true);
-
     }//GEN-LAST:event_ajoutVIP
 
     private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
 
     }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
 
+    private void actualiser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualiser
+        try {
+            monModele.donnees.clear();
+            lireLesVIP();
+            monModele.fireTableDataChanged();
+        } catch (Exception ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_actualiser
+
     public void lireLesVIP() throws Exception {
         // Affichage de tous les vip
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
+
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
             String requete = "SELECT * FROM vip";
             pstmt = connection.prepareStatement(requete);
             rs = pstmt.executeQuery(); // Exécuter la requête
+            ResultSetMetaData md = rs.getMetaData();
+            int columns = md.getColumnCount();
+            
             while (rs.next()) {
-                vVIP.add(new VIP(
-                        rs.getString(2), // nom
-                        rs.getString(3), // prenom usage
-                        rs.getString(4), // prenom
-                        rs.getString(12),// sexe 
-                        rs.getString(6), // civilité
-                        rs.getInt(8),    // age
-                        rs.getString(10),// statut
-                        rs.getString(9), // lieu de naissance
-                        rs.getString(7), // date de naissance
-                        rs.getInt(11),   // nombre d'enfants
-                        rs.getString(5) // nationalité
-                ));
-                pstmt.close();
+                VIP v;
+                v = new VIP();
+                for (int i = 1 ; i <= columns ; i++) {
+                    String nom = rs.getString(2); // nom
+                    String prenomUsage = rs.getString(3); // prenom usage
+                    String prenom = rs.getString(4); // prenom
+                    String sexe = rs.getString(12);// sexe 
+                    String civilite = rs.getString(6); // civilité
+                    int age = rs.getInt(8);    // age
+                    String statut = rs.getString(10);// statut
+                    String lieuNaissance = rs.getString(9); // lieu de naissance
+                    String dateNaissance = rs.getString(7); // date de naissance
+                    int nbEnfants = rs.getInt(11);   // nombre d'enfants
+                    String nationalite = rs.getString(5); // nationalité
+
+                    v.setNom(nom);
+                    v.setPrenomUsage(prenomUsage);
+                    v.setPrenoms(prenom);
+                    v.setSexe(sexe);
+                    v.setCivilité(civilite);
+                    v.setAge(age);
+                    v.setStatut(statut);
+                    v.setLieuNaissance(lieuNaissance);
+                    v.setDateNaissance(dateNaissance);
+                    v.setEnfants(nbEnfants);
+                    v.setNationalite(nationalite);
+                    
+                }
+                vVIP.add(v);
             }
         } catch (Exception e) {
             throw e;
@@ -224,46 +262,8 @@ public class Appli extends javax.swing.JFrame {
     // Connexion
     //public static java.sql.Connection conn;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Appli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Appli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Appli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Appli.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        new Admin().setVisible(true);
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Appli().setVisible(false);
-                } catch (Exception ex) {
-                    Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton actualiser;
     private javax.swing.JMenuItem boutonMenuAPropos;
     private javax.swing.JMenuItem boutonMenuAide;
     private javax.swing.JMenuItem boutonMenuAjouterDivorce;
@@ -278,6 +278,6 @@ public class Appli extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
-    private MonModele monModele;
-    private java.util.ArrayList<VIP> vVIP;
+    private final MonModele monModele;
+    private final java.util.ArrayList<VIP> vVIP;
 }

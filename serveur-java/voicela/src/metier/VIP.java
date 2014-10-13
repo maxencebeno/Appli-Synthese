@@ -30,6 +30,7 @@ public class VIP {
     protected String dateNaissance;
     protected int enfants;
     protected String nationalite;
+    protected String pathImage;
     
     // Constructeurs
     public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite) {
@@ -99,9 +100,13 @@ public class VIP {
     public String getNationalite() {
         return nationalite;
     }
-    
-    
 
+    public String getPathImage() {
+        return pathImage;
+    }
+    
+    
+    
     // Setters
     public void setId(int id) {
         this.id = id;
@@ -150,6 +155,13 @@ public class VIP {
     public void setNationalite(String nationalite) {
         this.nationalite = nationalite;
     }
+
+    public void setPathImage(String pathImage) {
+        this.pathImage = pathImage;
+    }
+
+    
+    
     
     
      

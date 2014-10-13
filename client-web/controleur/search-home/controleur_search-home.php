@@ -1,0 +1,1 @@
+<?php include_once('vue/search-home/vue_search-home.php'); ?>

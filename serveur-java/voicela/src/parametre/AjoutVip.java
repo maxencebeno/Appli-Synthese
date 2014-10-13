@@ -5,13 +5,26 @@
  */
 package parametre;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import org.imgscalr.Scalr;
 import metier.VIP;
+import org.imgscalr.Scalr.Method;
+import static java.nio.file.StandardCopyOption.*;
+import vue.MonModele;
 
 /**
  *
@@ -76,7 +89,7 @@ public class AjoutVip extends javax.swing.JDialog {
 
         jLabel4.setText("Sexe : ");
 
-        jLabel5.setText("Civilité : ");
+        jLabel5.setText("Etat civile : ");
 
         jLabel6.setText("Nationalité : ");
 
@@ -109,6 +122,12 @@ public class AjoutVip extends javax.swing.JDialog {
         realisateur.setText("Réalisateur ");
 
         rien.setText("Aucun");
+
+        dateNaissance.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                gestionDate(evt);
+            }
+        });
 
         nbEnfantsSlider.setMaximum(10);
         nbEnfantsSlider.setValue(0);
@@ -148,10 +167,6 @@ public class AjoutVip extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(acteur)
@@ -164,7 +179,11 @@ public class AjoutVip extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(nbEnfantsSlider, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nbEnfantsAffiche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(nbEnfantsAffiche, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(dateNaissance, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)))
                                 .addGap(18, 18, 18))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,7 +214,7 @@ public class AjoutVip extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
+                .addGap(82, 82, 82)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -253,7 +272,7 @@ public class AjoutVip extends javax.swing.JDialog {
                     .addComponent(jLabel13))
                 .addGap(18, 18, 18)
                 .addComponent(valider)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -261,7 +280,7 @@ public class AjoutVip extends javax.swing.JDialog {
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
-        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP;
+        String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
         int ageVIP = 0, nbEnfantsVIP;
         statutVIP = "";
 
@@ -274,7 +293,6 @@ public class AjoutVip extends javax.swing.JDialog {
         civiliteVIP = civilite.getSelectedItem().toString();
         nbEnfantsRecup = nbEnfantsAffiche.getText();
         nbEnfantsVIP = Integer.parseInt(nbEnfantsRecup);
-
         // Assignation dans la varible civilité l'item sélectionné
         if (acteur.isSelected()) {
             statutVIP = acteur.getText();
@@ -392,11 +410,44 @@ public class AjoutVip extends javax.swing.JDialog {
             VIP vip;
             vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP);
             try {
+                int resultPhoto = javax.swing.JOptionPane.showConfirmDialog(
+                        this,
+                        "Voulez vous ajouter une photo à votre vip ?",
+                        "Ajout Photo",
+                        javax.swing.JOptionPane.OK_CANCEL_OPTION
+                );
+                if (resultPhoto == javax.swing.JOptionPane.OK_OPTION) {
+                    javax.swing.JFileChooser filechooser = new javax.swing.JFileChooser();
+                    filechooser.setDialogTitle("Choisissez la photo");
+                    filechooser.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
+                    //below codes for select  the file 
+                    int returnval = filechooser.showOpenDialog(this);
+                    if (returnval == javax.swing.JFileChooser.APPROVE_OPTION) {
+                        File file = filechooser.getSelectedFile();
+
+                        BufferedImage bi;
+
+                        try {   //display the image in jlabel
+                            bi = ImageIO.read(file);
+                            copyFileUsingStream(file, new File("../../client-web/files/" + vip.getNom() + ".jpg"));
+                            pathPicture = "files/" + vip.getNom() + ".jpg";
+                            vip.setPathImage(pathPicture);
+                            BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
+                            ImageIO.write(bISmallImage, "jpg", file);
+                        } catch (IOException e) {
+
+                        }
+                        this.pack();
+                    }
+                } else {
+                    vip.setPathImage(pathPicture);
+                }
                 insererUnVip(vip);
             } catch (SQLException ex) {
                 Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        this.dispose();
     }//GEN-LAST:event_valider
 
     private void nbEnfantsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nbEnfantsSliderStateChanged
@@ -409,81 +460,74 @@ public class AjoutVip extends javax.swing.JDialog {
         nbEnfantsSlider.setMinimum(NB_ENFANTS_MIN);
     }//GEN-LAST:event_nbEnfantsSliderStateChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+    private void gestionDate(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gestionDate
+        char c = evt.getKeyChar();
+        int jj, mm, aaaa;
 
-                }
+        if (dateNaissance.getDocument().getLength() < 10) {
+            if (!Character.isDigit(c)) {
+                evt.consume();
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AjoutVip.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            if (dateNaissance.getDocument().getLength() == 4) {
+                evt.setKeyChar('-');
+            }
+            if (dateNaissance.getDocument().getLength() == 7) {
+                evt.setKeyChar('-');
+            }
+            
+        } else {
+            evt.consume();
         }
-        //</editor-fold>
+        
+        avancement++;
+        System.out.print(avancement);
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                AjoutVip dialog = new AjoutVip(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_gestionDate
 
     public void insererUnVip(VIP vip) throws SQLException {
         Connection connection = null;
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = connection.prepareStatement(requete);
-            pstmt.setString(1, vip.getNom());
-            pstmt.setString(2, vip.getPrenomUsage());
-            pstmt.setString(3, vip.getPrenoms());
-            pstmt.setString(4, vip.getNationalite());
-            pstmt.setString(5, vip.getCivilité());
-            pstmt.setString(6, vip.getDateNaissance());
-            pstmt.setInt(7, vip.getAge());
-            pstmt.setString(8, vip.getLieuNaissance());
-            pstmt.setString(9, vip.getStatut());
-            pstmt.setInt(10, vip.getEnfants());
-            // exécution de l'ordre SQL
-            pstmt.executeUpdate();
-            // validation
-            connection.commit();
-            // on repasse en mode de validation automatique
-            connection.setAutoCommit(true);
-            pstmt.close();
+            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+                pstmt.setString(1, vip.getNom());
+                pstmt.setString(2, vip.getPrenomUsage());
+                pstmt.setString(3, vip.getPrenoms());
+                pstmt.setString(4, vip.getNationalite());
+                pstmt.setString(5, vip.getCivilité());
+                pstmt.setString(6, vip.getDateNaissance());
+                pstmt.setInt(7, vip.getAge());
+                pstmt.setString(8, vip.getLieuNaissance());
+                pstmt.setString(9, vip.getStatut());
+                pstmt.setInt(10, vip.getEnfants());
+                pstmt.setString(11, vip.getSexe());
+                pstmt.setString(12, vip.getPathImage());
+
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
         } catch (Exception e) {
             throw e;
         }
-    } // insererEtudiant
+    } // insererVip
+
+    private static void copyFileUsingStream(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox acteur;
@@ -518,4 +562,5 @@ public class AjoutVip extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     static final int NB_ENFANTS_MIN = 0;
     static final int NB_ENFANTS_MAX = 10;
+    int avancement = 0;
 }

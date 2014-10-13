@@ -12,41 +12,38 @@
     <body>
         <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
-            <?php
-            if(isset($_GET['q'])){
-                $req = searchVIP($_GET['q']);
-                
-                // On affiche tous les VIP trouvés enfin !
-                while($donnees = $req->fetch()){
-                    echo '<div class="search_films">'.$donnees['nom_vip'].
-                    
-                    '</div>';
-                    $resultat_vide = false; // On passe la variable à false pour ne pas afficher de message d'erreur car on a des résultats !
-                }
-                
-                if($resultat_vide){
-                    echo '<div id="no_result">
-                    <p>Aucun document ne correspond aux termes de recherche spécifiés (<strong>'.$query.'</strong>).<br /><br />
-                    Suggestions :</p>
-                    <ul>
-                        <li>Le film que vous cherchez n\'existe pas dans notre base de données.</li>
-                        <li>Vérifiez l’orthographe des termes de recherche.</li>
-                        <li>Essayez d\'autres mots.</li>
-                        <li>Utilisez des mots clés plus généraux.</li>
-                    </ul>
-                    </div>';
-                }
-            }else{
-                echo "Aucune variable passée en paramètre.";
-            }
-            ?>
+            <div class="bandeau1">
+                <div class="container">
+sfdgdfgsdfg
+                </div>
+            </div>
         </div>
         <script src="assets/js/core.js"></script>
-        <script src="assets/js/parallax.js"></script>
-        <script type="text/javascript"> 
-            $(document).ready(function(){       
-                $('#section_one').parallax("center", 0, 0.1, true);
-            });
-        </script>
     </body>
 </html>
+
+
+
+<?php
+                 /*if(isset($_GET['id']) AND $_GET['id'] != ""){
+                    $req = getOneVIP($_GET['id']);
+                    $resultat_vide = true;
+
+                    if($donnees = $req->fetch()){?>
+                        <div class="vip_found">
+                            <?php echo $donnees['nom_vip'] ; ?>
+                        </div>
+                        <?php
+                        $resultat_vide = false;
+                    }
+                    
+                    // Si pas de résultat, on affiche le message d'erreur.
+                    if($resultat_vide == true){
+                        echo '<div id="no_result">
+                        <p>Aucun résultat ne correspond à votre requête.<br /><br />
+                        </div>';
+                    }
+                }else{
+                    header('Location: ghost.php');
+                }*/
+                ?>
