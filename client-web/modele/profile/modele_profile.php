@@ -40,7 +40,7 @@ function getMariageVIP($id_vip){
         }
     }
     else{
-        // On retourne -1 si pas de résultat
+        // On retourne 'none' si pas de résultat
         return 'none';
     }
 }

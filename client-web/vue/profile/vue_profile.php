@@ -40,7 +40,7 @@
                             }
                             echo '<p>Actuellement '.$mot_marie.' avec '.$vip_marie.'.</p>'; 
                         }else{
-                            '<p>Célibataire.</p>';
+                            echo '<p>Pas encore marié.</p>';
                         }
                         ?>
                     </div>
