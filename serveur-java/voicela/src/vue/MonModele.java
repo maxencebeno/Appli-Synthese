@@ -5,7 +5,11 @@
  */
 package vue;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import metier.*;
+import parametre.AccesBD;
 /**
  *
  * @author maxencebeno
@@ -13,7 +17,7 @@ import metier.*;
 public class MonModele extends javax.swing.table.AbstractTableModel {
     private String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants"};
     public java.util.ArrayList<VIP> donnees;
-
+    public AccesBD modif = new AccesBD();
     public MonModele(java.util.ArrayList<VIP> vVIP) {
         donnees = vVIP;
            // ajout  d'un écouteur perso pour espionner les modif
@@ -75,34 +79,104 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     // seules les cellules des colonnes 2(sport) et 4(vegetarien) sont modifiables
     public void setValueAt(Object value, int row, int col) {
         if(col == 0) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setNom((String) value);
+            try {
+                modif.modifNom((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (col == 1) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setPrenomUsage((String) value);
+            try {
+                modif.modifPrenomUsage((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(col == 2) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setNationalite((String) value);
+            try {
+                modif.modifNationalite((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (col == 3) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setCivilité((String) value);
+            try {
+                modif.modifCivilite((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(col == 4) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setSexe((String) value);
+            try {
+                modif.modifSexe((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (col == 5) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setDateNaissance((String) value);
+            try {
+                modif.modifDateNaissance((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(col == 6) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setLieuNaissance((String) value);
+            try {
+                modif.modifLieuNaissance((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(col == 7) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setAge((int) value);
+            try {
+                modif.modifAge((int) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(col == 8) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setStatut((String) value);
+            try {
+                modif.modifStatut((String) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if(col == 9) {
+            String name = donnees.get(row).getNom();
+            String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setEnfants((int) value);
+            try {
+                modif.modifNbEnfants((int) value, name, surname);
+            } catch (SQLException ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         fireTableCellUpdated(row, col);
     }
