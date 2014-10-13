@@ -43,6 +43,10 @@ public class AjoutVip extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+    
+    public AjoutVip() {
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -553,7 +557,7 @@ public class AjoutVip extends javax.swing.JDialog {
         }
     } // ajoutPhoto
 
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
+    public static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
         OutputStream os = null;
         try {

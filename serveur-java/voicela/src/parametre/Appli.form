@@ -10,9 +10,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Fichier"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonMenuModifierVIPActionPerformed"/>
-          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="boutonMenuAjouterVIP">
               <Properties>
@@ -42,6 +39,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Ajouter une photo"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ajouterPhoto"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

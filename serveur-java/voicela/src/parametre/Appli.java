@@ -118,11 +118,6 @@ public final class Appli extends javax.swing.JFrame {
         });
 
         boutonMenuModifierVIP.setText("Fichier");
-        boutonMenuModifierVIP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boutonMenuModifierVIPActionPerformed(evt);
-            }
-        });
 
         boutonMenuAjouterVIP.setText("Ajouter un VIP");
         boutonMenuAjouterVIP.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +144,11 @@ public final class Appli extends javax.swing.JFrame {
         boutonMenuModifierVIP.add(boutonMenuAjouterDivorce);
 
         boutonMenuAjouterPhoto.setText("Ajouter une photo");
+        boutonMenuAjouterPhoto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajouterPhoto(evt);
+            }
+        });
         boutonMenuModifierVIP.add(boutonMenuAjouterPhoto);
 
         jMenuBar1.add(boutonMenuModifierVIP);
@@ -218,10 +218,6 @@ public final class Appli extends javax.swing.JFrame {
         BddVip.setVisible(true);
     }//GEN-LAST:event_ajoutVIP
 
-    private void boutonMenuModifierVIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierVIPActionPerformed
-
-    }//GEN-LAST:event_boutonMenuModifierVIPActionPerformed
-
     private void actualiser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualiser
         try {
             monModele.donnees.clear();
@@ -231,6 +227,13 @@ public final class Appli extends javax.swing.JFrame {
             Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_actualiser
+
+    private void ajouterPhoto(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterPhoto
+        AjoutPhoto BddVip;
+        BddVip = new AjoutPhoto(this, true);
+        BddVip.setLocation(250, 150);
+        BddVip.setVisible(true);
+    }//GEN-LAST:event_ajouterPhoto
 
     public void lireLesVIP() throws Exception {
         // Affichage de tous les vip
