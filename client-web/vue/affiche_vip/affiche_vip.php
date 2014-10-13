@@ -53,7 +53,7 @@
 
 			echo "<td>".$donnee["lieu_naissance_vip"]."</td>";
 			echo "<td>".$donnee["statut_vip"]."</td>";
-			echo '<td><a href="">Voir profil</a></td>';
+			echo '<td><a href="profile.php?id='.$donnee["num_vip"].'">Voir profil</a></td>';
 			echo "</tr>";
 		}
 		?>
