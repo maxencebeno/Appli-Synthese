@@ -55,7 +55,7 @@
                         while($donnees = $reqVip->fetch()){
                         ?>
                             <span class="add_the_x">Ajoutée le : <?php echo $donnees['date_ajout_photo']; ?></span>
-                            <img src="files/<?php echo $donnees['url_photo'];s?>" title="<?php echo $prenom_vip; ?>" alt />
+                            <img src="files/<?php echo $donnees['url_photo'];?>" title="<?php echo $prenom_vip.' '.$nom_vip; ?>" alt />
                         <?php
                         }
                     }else{
