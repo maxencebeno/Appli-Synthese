@@ -59,3 +59,17 @@ h1 {
     z-index: 100;
 }
 
+.random{
+    margin-left:80%;
+    text-decoration: none;
+
+}
+
+#imgRand {
+    width:25px;
+    position: absolute;
+}
+
+.random span{
+    margin-left:25px;
+}

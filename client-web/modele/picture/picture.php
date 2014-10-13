@@ -1,7 +1,7 @@
 <?php
 function allPhotos() {
 	$bdd = connexion();
-	$req = $bdd->query("SELECT * from photos");
+	$req = $bdd->query("SELECT * from photos ORDER BY date_ajout_photo DESC");
 
 	return $req;
 }

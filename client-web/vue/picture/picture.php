@@ -20,15 +20,16 @@
 	<div class="full_wrapper">
 
 		<h1>Photos récentes ajoutés</h1>
-		<a class="random" href="picture.php?r=1">Random</a>
+		<a class="random" href="./picture.php?r=1"><img id="imgRand" src="assets/images/picture/random.png"><span>Random</span></a>
 		<div class="files-list-loading-overlay" style="display: none"></div>
 		<div id="photos">
 		<?php
 		
-		if(isset($_GET["r"]) && ($_GET["r"] == 1)) {
+		if(isset($_GET["r"]) && ($_GET["r"] == 1)) {//on est en random
 			$nbPhotos= countPhotos();
-			$arrayPhotos[]="hello";
+			$arrayPhotos[]=0;
 			$arrayId[]=0;
+			$conv[]=0;
 			$req = randomPhotos();
 			$i=0;
 			while($photo=$req->fetch()){
@@ -36,20 +37,17 @@
 				$arrayId[$i]=$photo["num_vip"];
 				$i++;
 			}
-			for($pos=$nbPhotos-1; $pos >=0; $pos-- ){
-				$chance=floor(rand(0, $pos+1));
-				$save=$arrayPhotos[$pos];
-				$arrayPhotos[$pos]=$arrayPhotos[$chance];
-				$arrayPhotos[$chance]=$save;
-
-				echo '<a href="profile.php?id='.$arrayId[$pos].'">';
-				echo '<img src="./files/'.$arrayPhotos[$pos].'" class="photos"/>';
-				echo '</a>';
+				//aléatoire
+				$random=range(0, $nbPhotos-1);
+				shuffle($random);
+				foreach ($random as $pos) {
+					echo '<a href="profile.php?id='.$arrayId[$pos].'">';
+					echo '<img src="./files/'.$arrayPhotos[$pos].'" class="photos"/>';
+					echo '</a>';
+				}
 			
-
-			}
 		}
-		else{
+		else{//en affiche du plus récent au moins récent
 
 			while($photos = $req->fetch()){
 			
