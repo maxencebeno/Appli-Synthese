@@ -14,7 +14,12 @@
         <div class="full_wrapper">
             <div class="bandeau1">
                 <div class="container">
-sfdgdfgsdfg
+                    <div id="profile_pic">
+                        
+                    </div>
+                    <div id="bio">
+                        
+                    </div>
                 </div>
             </div>
         </div>

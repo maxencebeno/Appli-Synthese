@@ -11,12 +11,27 @@
 
 .bandeau1{
     width: 100%;
-    height: 300px;
-    background: silver;
+    height: 200px;
+    border-bottom: 1px solid silver;
 }
 
 .container{
     width: 1190px;
     margin: auto;
     position: relative;
+}
+
+#profile_pic{
+    width: 200px;
+    height: 200px;
+    border: 1px solid red;
+    display: inline-block;
+}
+
+#bio{
+    height: 200px;
+    padding: 20px;
+    border: 1px solid blue;
+    width: 980px;
+    display: inline-block
 }
