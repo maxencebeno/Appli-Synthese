@@ -34,9 +34,51 @@ public final class Appli extends javax.swing.JFrame {
         setDefaultLookAndFeelDecorated(true);
         this.setExtendedState(MAXIMIZED_BOTH);
         monModele = (MonModele) table.getModel();
+        AccesBD vip = new AccesBD();
         lireLesVIP();
         setLocation(250, 150);
 
+        // associer une ComboBox  à la colonne CIVILITE
+        javax.swing.JComboBox comboBoxCivilite = new javax.swing.JComboBox();
+
+        try {
+            vip.afficherComboBoxCivilite(comboBoxCivilite);
+        } catch (Exception ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // fixer l'éditeur pour la colonne numéro 3 (civilite)
+        javax.swing.table.TableColumn colcivilite
+                = table.getColumnModel().getColumn(3);
+        colcivilite.setCellEditor(new javax.swing.DefaultCellEditor(comboBoxCivilite));
+
+        // associer une ComboBox  à la colonne SEXE
+        javax.swing.JComboBox comboBoxSexe = new javax.swing.JComboBox();
+
+        try {
+            vip.afficherComboBoxSexe(comboBoxSexe);
+        } catch (Exception ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // fixer l'éditeur pour la colonne numéro 4 (sexe)
+        javax.swing.table.TableColumn colsexe
+                = table.getColumnModel().getColumn(4);
+        colsexe.setCellEditor(new javax.swing.DefaultCellEditor(comboBoxSexe));
+
+        // associer une ComboBox  à la colonne statut
+        javax.swing.JComboBox comboBoxStatut = new javax.swing.JComboBox();
+
+        try {
+            vip.afficherComboBoxStatut(comboBoxStatut);
+        } catch (Exception ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // fixer l'éditeur pour la colonne numéro 3 (statut)
+        javax.swing.table.TableColumn colstatut
+                = table.getColumnModel().getColumn(8);
+        colstatut.setCellEditor(new javax.swing.DefaultCellEditor(comboBoxStatut));
     }
 
     /**
@@ -208,11 +250,11 @@ public final class Appli extends javax.swing.JFrame {
             rs = pstmt.executeQuery(); // Exécuter la requête
             ResultSetMetaData md = rs.getMetaData();
             int columns = md.getColumnCount();
-            
+
             while (rs.next()) {
                 VIP v;
                 v = new VIP();
-                for (int i = 1 ; i <= columns ; i++) {
+                for (int i = 1; i <= columns; i++) {
                     String nom = rs.getString(2); // nom
                     String prenomUsage = rs.getString(3); // prenom usage
                     String prenom = rs.getString(4); // prenom
@@ -236,7 +278,7 @@ public final class Appli extends javax.swing.JFrame {
                     v.setDateNaissance(dateNaissance);
                     v.setEnfants(nbEnfants);
                     v.setNationalite(nationalite);
-                    
+
                 }
                 vVIP.add(v);
             }

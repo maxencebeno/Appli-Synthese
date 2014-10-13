@@ -18,14 +18,15 @@ public class Photographie {
     // Attributs
     protected int numPhoto;
     protected int numVIP;
-    protected String nomPhoto;
     protected String urlPhoto;
-    protected Date dateAjoutPhoto;
+    protected String dateAjoutPhoto;
+    
+    private static int dernierNumeroAttribue = 31;
     
     // Constructeurs
-    public Photographie(int numVIP, String nomPhoto, String urlPhoto, Date dateAjoutPhoto) {
+    public Photographie(int numVIP, String urlPhoto, String dateAjoutPhoto) {
+        numPhoto = ++dernierNumeroAttribue;
         this.numVIP = numVIP;
-        this.nomPhoto = nomPhoto;
         this.urlPhoto = urlPhoto;
         this.dateAjoutPhoto = dateAjoutPhoto;
     }
@@ -42,15 +43,11 @@ public class Photographie {
         return numVIP;
     }
 
-    public String getNomPhoto() {
-        return nomPhoto;
-    }
-
     public String getUrlPhoto() {
         return urlPhoto;
     }
 
-    public Date getDateAjoutPhoto() {
+    public String getDateAjoutPhoto() {
         return dateAjoutPhoto;
     }
     
@@ -63,15 +60,11 @@ public class Photographie {
         this.numVIP = numVIP;
     }
 
-    public void setNomPhoto(String nomPhoto) {
-        this.nomPhoto = nomPhoto;
-    }
-
     public void setUrlPhoto(String urlPhoto) {
         this.urlPhoto = urlPhoto;
     }
 
-    public void setDateAjoutPhoto(Date dateAjoutPhoto) {
+    public void setDateAjoutPhoto(String dateAjoutPhoto) {
         this.dateAjoutPhoto = dateAjoutPhoto;
     }
     

@@ -32,8 +32,11 @@ public class VIP {
     protected String nationalite;
     protected String pathImage;
     
+    private static int dernierNumeroAttribue = 31;
+    
     // Constructeurs
     public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite) {
+        id = ++dernierNumeroAttribue;
         this.nom = nom;
         this.prenomUsage = prenomUsage;
         this.prenoms = prenoms;

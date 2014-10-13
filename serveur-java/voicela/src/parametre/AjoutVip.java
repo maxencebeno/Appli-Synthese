@@ -24,6 +24,10 @@ import org.imgscalr.Scalr;
 import metier.VIP;
 import org.imgscalr.Scalr.Method;
 import static java.nio.file.StandardCopyOption.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+import metier.Photographie;
 import vue.MonModele;
 
 /**
@@ -434,6 +438,21 @@ public class AjoutVip extends javax.swing.JDialog {
                             vip.setPathImage(pathPicture);
                             BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
                             ImageIO.write(bISmallImage, "jpg", file);
+
+                            Date date = new Date();
+                            // Specify the desired date format
+                            String DATE_FORMAT = "yyyy/MM/dd";
+                            // Create object of SimpleDateFormat and pass the desired date format.
+                            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+                            /*
+                             * Use format method of SimpleDateFormat class to format the date.
+                             */
+                            String dateAjoutPhoto = sdf.format(date);
+
+                            Photographie photo;
+                            photo = new Photographie(vip.getId(), vip.getNom() + ".jpg", dateAjoutPhoto);
+                            ajoutPhoto(photo, vip);
+
                         } catch (IOException e) {
 
                         }
@@ -474,11 +493,11 @@ public class AjoutVip extends javax.swing.JDialog {
             if (dateNaissance.getDocument().getLength() == 7) {
                 evt.setKeyChar('-');
             }
-            
+
         } else {
             evt.consume();
         }
-        
+
         avancement++;
         System.out.print(avancement);
 
@@ -489,20 +508,21 @@ public class AjoutVip extends javax.swing.JDialog {
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String requete = "insert into vip (num_vip, nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setString(1, vip.getNom());
-                pstmt.setString(2, vip.getPrenomUsage());
-                pstmt.setString(3, vip.getPrenoms());
-                pstmt.setString(4, vip.getNationalite());
-                pstmt.setString(5, vip.getCivilité());
-                pstmt.setString(6, vip.getDateNaissance());
-                pstmt.setInt(7, vip.getAge());
-                pstmt.setString(8, vip.getLieuNaissance());
-                pstmt.setString(9, vip.getStatut());
-                pstmt.setInt(10, vip.getEnfants());
-                pstmt.setString(11, vip.getSexe());
-                pstmt.setString(12, vip.getPathImage());
+                pstmt.setInt(1, vip.getId());
+                pstmt.setString(2, vip.getNom());
+                pstmt.setString(3, vip.getPrenomUsage());
+                pstmt.setString(4, vip.getPrenoms());
+                pstmt.setString(5, vip.getNationalite());
+                pstmt.setString(6, vip.getCivilité());
+                pstmt.setString(7, vip.getDateNaissance());
+                pstmt.setInt(8, vip.getAge());
+                pstmt.setString(9, vip.getLieuNaissance());
+                pstmt.setString(10, vip.getStatut());
+                pstmt.setInt(11, vip.getEnfants());
+                pstmt.setString(12, vip.getSexe());
+                pstmt.setString(13, vip.getPathImage());
 
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
@@ -511,6 +531,27 @@ public class AjoutVip extends javax.swing.JDialog {
             throw e;
         }
     } // insererVip
+
+    public void ajoutPhoto(Photographie photo, VIP vip) throws SQLException {
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            
+            String requete = "insert into photos (id_photo, num_vip, url_photo, date_ajout_photo) values(?, ?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+                pstmt.setInt(1, photo.getNumPhoto());
+                pstmt.setInt(2, vip.getId());
+                pstmt.setString(3, photo.getUrlPhoto());
+                pstmt.setString(4, photo.getDateAjoutPhoto());
+
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    } // ajoutPhoto
 
     private static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;

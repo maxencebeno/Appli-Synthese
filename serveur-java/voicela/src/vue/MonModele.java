@@ -65,6 +65,48 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
         return getValueAt(0, c).getClass();
     }
     
+    @Override
+    // toutes les cellules sont modifiables
+    public boolean isCellEditable(int row, int col) {
+        return ((col == 0 || col == 1 || col == 2 || col == 3 || col == 4 || col == 5 || col == 6 || col == 7 || col == 8 || col == 9) ? true : false);
+    }
+    
+    @Override
+    // seules les cellules des colonnes 2(sport) et 4(vegetarien) sont modifiables
+    public void setValueAt(Object value, int row, int col) {
+        if(col == 0) {
+            donnees.get(row).setNom((String) value);
+        }
+        if (col == 1) {
+            donnees.get(row).setPrenomUsage((String) value);
+        }
+        if(col == 2) {
+            donnees.get(row).setNationalite((String) value);
+        }
+        if (col == 3) {
+            donnees.get(row).setCivilité((String) value);
+        }
+        if(col == 4) {
+            donnees.get(row).setSexe((String) value);
+        }
+        if (col == 5) {
+            donnees.get(row).setDateNaissance((String) value);
+        }
+        if(col == 6) {
+            donnees.get(row).setLieuNaissance((String) value);
+        }
+        if(col == 7) {
+            donnees.get(row).setAge((int) value);
+        }
+        if(col == 8) {
+            donnees.get(row).setStatut((String) value);
+        }
+        if(col == 9) {
+            donnees.get(row).setEnfants((int) value);
+        }
+        fireTableCellUpdated(row, col);
+    }
+    
     // insertion en fin de table
 
     public void ajoutLigne(VIP v) {
