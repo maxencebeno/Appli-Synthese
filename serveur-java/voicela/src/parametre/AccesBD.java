@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author maxencebeno
  */
 public class AccesBD {
-
+    
     public javax.swing.JComboBox afficherComboBoxCivilite(javax.swing.JComboBox combobox) throws Exception {
        
         combobox.addItem("Mr");
@@ -153,6 +153,12 @@ public class AccesBD {
                 pstmt.setString(3, surname);
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
+            } catch (Exception e) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        null, 
+                        "La date n'est pas au format date !",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE);
             }
         } catch (Exception e) {
             throw e;

@@ -97,7 +97,6 @@ public final class Appli extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
         boutonMenuModifierMariage = new javax.swing.JMenuItem();
         boutonMenuAjouterDivorce = new javax.swing.JMenuItem();
         boutonMenuAjouterPhoto = new javax.swing.JMenuItem();
@@ -132,9 +131,6 @@ public final class Appli extends javax.swing.JFrame {
             }
         });
         boutonMenuModifierVIP.add(boutonMenuAjouterVIP);
-
-        jMenuItem1.setText("Modifier un VIP");
-        boutonMenuModifierVIP.add(jMenuItem1);
 
         boutonMenuModifierMariage.setText("Ajouter mariage");
         boutonMenuModifierMariage.addActionListener(new java.awt.event.ActionListener() {
@@ -316,7 +312,6 @@ public final class Appli extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
