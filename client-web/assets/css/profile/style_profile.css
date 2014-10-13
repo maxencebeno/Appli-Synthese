@@ -14,6 +14,7 @@
     height: 290px;
     padding-bottom: 30px;
     border-bottom: 1px solid silver;
+    background: white;
 }
 
 .container{
@@ -60,4 +61,36 @@
 
 #bio a:hover{
     text-decoration: underline;
+}
+
+/* Design bandeau 2 (images) */
+
+.bandeau_2{
+    width: 100%;
+    padding-top: 30px;
+    min-height: 100px;
+    background-color: #188dc7
+}
+
+#images_list{
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 7px;
+    background: white;
+}
+
+#images_list img{
+    max-width: 90%;
+    margin-bottom: 25px;
+}
+
+#images_list h2{
+    font-size: 22px;
+    font-weight: normal;
+    text-align: left;
+    color: grey;
+    padding-left: 20px;
 }

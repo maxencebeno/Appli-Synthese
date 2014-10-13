@@ -46,6 +46,23 @@
                     </div>
                 </div>
             </div>
+            <div class="bandeau_2">
+                <div id="images_list">
+                    <h2>Dernières photos</h2>
+                    <?php
+                    $reqVip = getAllImages($num_vip);
+                    if($donnees = $reqVip->fetch()){
+                        while($donnees = $reqVip->fetch()){
+                        ?>
+                            <img src="files/<?php echo $donnees['url_photo'];?>" alt />
+                        <?php
+                        }
+                    }else{
+                        echo '<p>Aucune image à montrer</p>';
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
         <script src="assets/js/core.js"></script>
     </body>

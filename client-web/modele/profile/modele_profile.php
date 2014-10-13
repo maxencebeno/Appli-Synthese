@@ -44,3 +44,15 @@ function getMariageVIP($id_vip){
         return 'none';
     }
 }
+
+// Fonction qui retourne toutes les images liées à un ID de VIP passé en entrée
+function getAllimages($id_vip){
+    // BDD !
+    $bdd = connexion();
+
+    $req = $bdd->prepare('SELECT * FROM photos WHERE num_vip = ?');
+    $req->execute(array($id_vip));
+
+    // On retourne le VIP.
+    return $req;
+}
