@@ -14,11 +14,10 @@
         <div class="full_wrapper">
             <div class="bandeau1">
                 <div class="container">
-                    <div id="profile_pic">
-                        
-                    </div>
+                    <div id="profile_pic"></div>
+                    
                     <div id="bio">
-                        
+                        <h3>Biographie</h3>
                     </div>
                 </div>
             </div>
