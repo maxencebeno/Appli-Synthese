@@ -33,7 +33,12 @@
                         
                         <?php
                         if($vip_marie != 'none'){
-                            echo '<p>Actuellement marié avec '.$vip_marie.'.</p>'; 
+                            if($sexe_vip == 'Femme'){
+                                $mot_marie = 'mariée';
+                            }else{
+                                $mot_marie = 'marié';
+                            }
+                            echo '<p>Actuellement '.$mot_marie.' avec '.$vip_marie.'.</p>'; 
                         }else{
                             '<p>Célibataire.</p>';
                         }
