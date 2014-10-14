@@ -35,7 +35,7 @@ import vue.MonModele;
  * @author maxencebeno
  */
 public class AjoutVip extends javax.swing.JDialog {
-
+    
     /**
      * Creates new form AjoutVip
      */
@@ -287,6 +287,8 @@ public class AjoutVip extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
+        AccesBD bdd;
+        bdd = new AccesBD();
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
         String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
         int ageVIP = 0, nbEnfantsVIP;
@@ -455,7 +457,7 @@ public class AjoutVip extends javax.swing.JDialog {
 
                             Photographie photo;
                             photo = new Photographie(vip.getId(), vip.getNom() + ".jpg", dateAjoutPhoto);
-                            ajoutPhoto(photo, vip);
+                            bdd.ajoutPhoto(photo, vip);
 
                         } catch (IOException e) {
 
@@ -465,7 +467,7 @@ public class AjoutVip extends javax.swing.JDialog {
                 } else {
                     vip.setPathImage(pathPicture);
                 }
-                insererUnVip(vip);
+                bdd.insererUnVip(vip);
             } catch (SQLException ex) {
                 Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -507,55 +509,9 @@ public class AjoutVip extends javax.swing.JDialog {
 
     }//GEN-LAST:event_gestionDate
 
-    public void insererUnVip(VIP vip) throws SQLException {
-        Connection connection = null;
-        try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
-            String requete = "insert into vip (num_vip, nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, vip.getId());
-                pstmt.setString(2, vip.getNom());
-                pstmt.setString(3, vip.getPrenomUsage());
-                pstmt.setString(4, vip.getPrenoms());
-                pstmt.setString(5, vip.getNationalite());
-                pstmt.setString(6, vip.getCivilité());
-                pstmt.setString(7, vip.getDateNaissance());
-                pstmt.setInt(8, vip.getAge());
-                pstmt.setString(9, vip.getLieuNaissance());
-                pstmt.setString(10, vip.getStatut());
-                pstmt.setInt(11, vip.getEnfants());
-                pstmt.setString(12, vip.getSexe());
-                pstmt.setString(13, vip.getPathImage());
+    
 
-                // exécution de l'ordre SQL
-                pstmt.executeUpdate();
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-    } // insererVip
-
-    public void ajoutPhoto(Photographie photo, VIP vip) throws SQLException {
-        Connection connection = null;
-        try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
-            
-            String requete = "insert into photos (id_photo, num_vip, url_photo, date_ajout_photo) values(?, ?, ?, ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, photo.getNumPhoto());
-                pstmt.setInt(2, vip.getId());
-                pstmt.setString(3, photo.getUrlPhoto());
-                pstmt.setString(4, photo.getDateAjoutPhoto());
-
-                // exécution de l'ordre SQL
-                pstmt.executeUpdate();
-            }
-        } catch (Exception e) {
-            throw e;
-        }
-    } // ajoutPhoto
+    
 
     public static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;

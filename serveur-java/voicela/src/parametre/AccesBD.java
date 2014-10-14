@@ -290,7 +290,6 @@ public class AccesBD {
                 if (rs.next()) {
 
                     numVip = rs.getInt(1); // nom
-                    
 
                 }
             }
@@ -323,6 +322,124 @@ public class AccesBD {
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
                 pstmt.setInt(1, photo.getNumPhoto());
                 pstmt.setInt(2, photo.getNumPhoto());
+                pstmt.setString(3, photo.getUrlPhoto());
+                pstmt.setString(4, photo.getDateAjoutPhoto());
+
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    } // ajoutPhoto
+
+    public ArrayList<VIP> lireLesVIP() throws Exception {
+        // Affichage de tous les vip
+        
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete = "SELECT * FROM vip";
+            pstmt = connection.prepareStatement(requete);
+            rs = pstmt.executeQuery(); // Exécuter la requête
+            ResultSetMetaData md = rs.getMetaData();
+            int columns = md.getColumnCount();
+
+            while (rs.next()) {
+                VIP v;
+                v = new VIP();
+                for (int i = 1; i <= columns; i++) {
+                    String nom = rs.getString(2); // nom
+                    String prenomUsage = rs.getString(3); // prenom usage
+                    String prenom = rs.getString(4); // prenom
+                    String sexe = rs.getString(12);// sexe 
+                    String civilite = rs.getString(6); // civilité
+                    int age = rs.getInt(8);    // age
+                    String statut = rs.getString(10);// statut
+                    String lieuNaissance = rs.getString(9); // lieu de naissance
+                    String dateNaissance = rs.getString(7); // date de naissance
+                    int nbEnfants = rs.getInt(11);   // nombre d'enfants
+                    String nationalite = rs.getString(5); // nationalité
+
+                    v.setNom(nom);
+                    v.setPrenomUsage(prenomUsage);
+                    v.setPrenoms(prenom);
+                    v.setSexe(sexe);
+                    v.setCivilité(civilite);
+                    v.setAge(age);
+                    v.setStatut(statut);
+                    v.setLieuNaissance(lieuNaissance);
+                    v.setDateNaissance(dateNaissance);
+                    v.setEnfants(nbEnfants);
+                    v.setNationalite(nationalite);
+
+                }
+                Appli.vVIP.add(v);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return Appli.vVIP;
+    }
+    
+    public void insererUnVip(VIP vip) throws SQLException {
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete = "insert into vip (num_vip, nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+                pstmt.setInt(1, vip.getId());
+                pstmt.setString(2, vip.getNom());
+                pstmt.setString(3, vip.getPrenomUsage());
+                pstmt.setString(4, vip.getPrenoms());
+                pstmt.setString(5, vip.getNationalite());
+                pstmt.setString(6, vip.getCivilité());
+                pstmt.setString(7, vip.getDateNaissance());
+                pstmt.setInt(8, vip.getAge());
+                pstmt.setString(9, vip.getLieuNaissance());
+                pstmt.setString(10, vip.getStatut());
+                pstmt.setInt(11, vip.getEnfants());
+                pstmt.setString(12, vip.getSexe());
+                pstmt.setString(13, vip.getPathImage());
+
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    } // insererVip
+    
+    public void ajoutPhoto(Photographie photo, VIP vip) throws SQLException {
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            
+            String requete = "insert into photos (id_photo, num_vip, url_photo, date_ajout_photo) values(?, ?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+                pstmt.setInt(1, photo.getNumPhoto());
+                pstmt.setInt(2, vip.getId());
                 pstmt.setString(3, photo.getUrlPhoto());
                 pstmt.setString(4, photo.getDateAjoutPhoto());
 
