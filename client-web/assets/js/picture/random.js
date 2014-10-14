@@ -21,4 +21,4 @@ $(document).on('click', "a.random", function (e) {
         });
         return false;
     })
-});
+});*/
