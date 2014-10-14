@@ -283,13 +283,14 @@ public class AccesBD {
             connection = cnx.Connecter();
             String requete = "SELECT num_vip FROM vip where nom_vip = ? and prenom_usuel_vip = ?";
             try (PreparedStatement pstmt = connection.prepareStatement(requete);) {
+                pstmt.setString(1, name);
+                pstmt.setString(2, surname);
                 rs = pstmt.executeQuery(); // Exécuter la requête
 
-                while (rs.next()) {
+                if (rs.next()) {
 
                     numVip = rs.getInt(1); // nom
-                    pstmt.setString(2, name);
-                    pstmt.setString(3, surname);
+                    
 
                 }
             }
