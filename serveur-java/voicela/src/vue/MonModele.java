@@ -15,7 +15,7 @@ import parametre.AccesBD;
  * @author maxencebeno
  */
 public class MonModele extends javax.swing.table.AbstractTableModel {
-    private String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants", "Marié à"};
+    private String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants"};
     public java.util.ArrayList<VIP> donnees;
     public AccesBD modif = new AccesBD();
     public MonModele(java.util.ArrayList<VIP> vVIP) {
@@ -54,18 +54,8 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
             return donnees.get(row).getAge();
         } else if (col == 8) {
             return donnees.get(row).getStatut();
-        } else if (col == 9) {
-            return donnees.get(row).getEnfants();
         } else {
-            String nomVip, prenomVip;
-            nomVip = (String) this.getValueAt(row, 0);
-            prenomVip = (String) this.getValueAt(row, 1);
-            try {
-                return donnees.get(row).getMarieA(nomVip, prenomVip);
-            } catch (Exception ex) {
-                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return "Erreur";
+            return donnees.get(row).getEnfants();
         }
     }
 

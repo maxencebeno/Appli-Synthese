@@ -6,9 +6,10 @@
 package parametre;
 
 import metier.VIP;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import metier.Mariage;
 import vue.MonModele;
 
 /**
@@ -19,7 +20,7 @@ public final class Appli extends javax.swing.JFrame {
 
     public static java.sql.Connection conn;
     public static java.util.ArrayList<VIP> vVIP;
-    public static java.util.ArrayList<Mariage> vMariage;
+    
     /**
      * Creates new form Appli
      *
@@ -27,7 +28,6 @@ public final class Appli extends javax.swing.JFrame {
      */
     public Appli() throws Exception {
         vVIP = new java.util.ArrayList<>();
-        vMariage = new java.util.ArrayList<>();
         initComponents();
 
         // Les 3 prochaines lignes permettent de mettre l'application en plein écran
@@ -37,7 +37,6 @@ public final class Appli extends javax.swing.JFrame {
         monModele = (MonModele) table.getModel();
         AccesBD vip = new AccesBD();
         vVIP = vip.lireLesVIP();
-        vMariage = vip.lireLesMariages();
         setLocation(250, 150);
 
         // associer une ComboBox  à la colonne CIVILITE
@@ -96,7 +95,6 @@ public final class Appli extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         actualiser = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -109,8 +107,6 @@ public final class Appli extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
-        setBounds(new java.awt.Rectangle(0, 23, 0, 0));
-        setSize(800, 800);
 
         table.setModel(new MonModele(vVIP));
         jScrollPane1.setViewportView(table);
@@ -121,8 +117,6 @@ public final class Appli extends javax.swing.JFrame {
                 actualiser(evt);
             }
         });
-
-        jLabel1.setText("Liste des VIPs");
 
         boutonMenuModifierVIP.setText("Fichier");
 
@@ -182,29 +176,22 @@ public final class Appli extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(486, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(actualiser)
-                .addGap(100, 100, 100))
+                .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(224, 224, 224)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 671, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1)
-                .addGap(57, 57, 57)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(actualiser)
-                .addContainerGap())
+                .addGap(154, 154, 154))
         );
 
         pack();
@@ -265,11 +252,11 @@ public final class Appli extends javax.swing.JFrame {
     private javax.swing.JMenuItem boutonMenuModifierMariage;
     private javax.swing.JMenu boutonMenuModifierVIP;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
     private final MonModele monModele;
+    
 }
