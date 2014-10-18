@@ -198,10 +198,10 @@ public final class Appli extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonMenuModifierMariageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierMariageActionPerformed
-        AjouterMariage BddAjouterMariage;
-        BddAjouterMariage = new AjouterMariage(this, true);
-        BddAjouterMariage.setLocation(250, 150);
-        BddAjouterMariage.setVisible(true);
+        AjouterMariage Bdd;
+        Bdd = new AjouterMariage(this, true);
+        Bdd.setLocation(250, 150);
+        Bdd.setVisible(true);
     }//GEN-LAST:event_boutonMenuModifierMariageActionPerformed
 
     private void boutonMenuAjouterDivorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAjouterDivorceActionPerformed

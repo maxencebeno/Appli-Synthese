@@ -5,6 +5,13 @@
  */
 package parametre;
 
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import metier.Mariage;
+
 /**
  *
  * @author maxencebeno
@@ -17,6 +24,26 @@ public class AjouterMariage extends javax.swing.JDialog {
     public AjouterMariage(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        listModelVIP1 = new javax.swing.DefaultListModel<>();
+        listvip1.setModel(listModelVIP1);
+        try {
+            ajout.alimenterListeVIP(listModelVIP1);
+        } catch (Exception ex) {
+            Logger.getLogger(AjoutPhoto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        listvip1.setSelectedIndex(0);
+
+        listModelVIP2 = new javax.swing.DefaultListModel<>();
+        listvip2.setModel(listModelVIP2);
+        try {
+            ajout.alimenterListeVIP(listModelVIP2);
+        } catch (Exception ex) {
+            Logger.getLogger(AjoutPhoto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        listvip2.setSelectedIndex(0);
     }
 
     /**
@@ -28,64 +55,190 @@ public class AjouterMariage extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listvip1 = new javax.swing.JList();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listvip2 = new javax.swing.JList();
+        lieu = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("AJOUTER UN MARIAGE");
+
+        jLabel1.setText("Nom du Vip 1 :");
+
+        jLabel2.setText("Nom du vip 2 : ");
+
+        jButton1.setText("Ajouter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajouterMariage(evt);
+            }
+        });
+
+        listvip1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listvip1);
+
+        listvip2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(listvip2);
+
+        jLabel3.setText("Lieu du mariage : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(67, 67, 67)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(lieu))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(40, 40, 40))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+    private void ajouterMariage(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterMariage
+        String vip1, vip2, lieuMariage;
+        String[] vipArray1;
+        String[] vipArray2;
+        String nomVip1, nomVip2, prenomVip1, prenomVip2;
+        int numVip1 = 0, numVip2 = 0;
+        boolean verifMariage = false;
+
+        lieuMariage = lieu.getText();
+        if (lieuMariage == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Erreur : vous n'avez pas entré de lieu pour ce mariage",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+
+        vip1 = listvip1.getSelectedValue().toString();
+        vip2 = listvip2.getSelectedValue().toString();
+
+        vipArray1 = vip1.split(" ");
+        nomVip1 = vipArray1[0];
+        prenomVip1 = vipArray1[1];
+
+        vipArray2 = vip2.split(" ");
+        nomVip2 = vipArray2[0];
+        prenomVip2 = vipArray2[1];
+
+        Date date = new Date();
+        // Specify the desired date format
+        String DATE_FORMAT = "yyyy/MM/dd";
+        // Create object of SimpleDateFormat and pass the desired date format.
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+        /*
+         * Use format method of SimpleDateFormat class to format the date.
          */
+        String dateMariage = sdf.format(date);
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
+            numVip1 = ajout.searchVip(nomVip1, prenomVip1);
+        } catch (Exception ex) {
+            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            numVip2 = ajout.searchVip(nomVip2, prenomVip2);
+        } catch (Exception ex) {
+            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            verifMariage = ajout.searchMariage(numVip1, numVip2);
+        } catch (Exception ex) {
+            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (verifMariage == true) {
+            int result = javax.swing.JOptionPane.showConfirmDialog(
+                    this,
+                    "Voici le mariage que vous êtes sur le point d'insérer : \n"
+                    + nomVip1 + " "
+                    + prenomVip1 + " est sur le point de se marier avec "
+                    + nomVip2 + " "
+                    + prenomVip2 + ".\n"
+                    + "Ils se sont mariés le : "
+                    + dateMariage
+                    + " à "
+                    + lieuMariage
+                    + ".\nEtes vous sur de ceci?",
+                    "Confirmation mariage",
+                    javax.swing.JOptionPane.OK_CANCEL_OPTION
+            );
+            if (result == javax.swing.JOptionPane.OK_OPTION) {
+                Mariage mariage;
+                mariage = new Mariage();
+
+                mariage.setDivorce(false);
+                mariage.setMarie1(numVip1);
+                mariage.setMarie2(numVip2);
+                mariage.setDateMariage(dateMariage);
+                mariage.setLieuMariage(lieuMariage);
+                mariage.setDateDivorce(null);
+                try {
+                    ajout.insererUnMariage(mariage);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AjouterMariage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AjouterMariage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AjouterMariage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AjouterMariage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Erreur, ces VIPs sont déjà mariés",
+                    "Conflits de mariages",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
         }
-        //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                AjouterMariage dialog = new AjouterMariage(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_ajouterMariage
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField lieu;
+    private javax.swing.JList listvip1;
+    private javax.swing.JList listvip2;
     // End of variables declaration//GEN-END:variables
+    javax.swing.DefaultListModel<String> listModelVIP1;
+    javax.swing.DefaultListModel<String> listModelVIP2;
+    AccesBD ajout = new AccesBD();
 }

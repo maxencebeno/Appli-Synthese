@@ -17,19 +17,23 @@ import java.io.*;
 public class Mariage {
     // Attributs
     protected int numMariage;
-    protected String marie1;
-    protected String marie2;
+    protected int marie1;
+    protected int marie2;
     protected String lieuMariage;
     protected boolean divorce;
-    protected Date dateMariage;
+    protected String dateDivorce;
+    protected String dateMariage;
+    
+    private static int dernierNumeroAttribue = 0;
     
     // Constructeur
-    public Mariage(int numMariage, String marie1, String marie2, String lieuMariage, boolean divorce, Date dateMariage) {
-        this.numMariage = numMariage;
+    public Mariage(int numMariage, int marie1, int marie2, String lieuMariage, boolean divorce, String dateDivorce, String dateMariage) {
+        numMariage = ++dernierNumeroAttribue;
         this.marie1 = marie1;
         this.marie2 = marie2;
         this.lieuMariage = lieuMariage;
         this.divorce = divorce;
+        this.dateDivorce = dateDivorce;
         this.dateMariage = dateMariage;
     }
     
@@ -42,7 +46,7 @@ public class Mariage {
         return numMariage;
     }
 
-    public String getMarie1() {
+    public int getMarie1() {
         return marie1;
     }
 
@@ -50,17 +54,23 @@ public class Mariage {
         return lieuMariage;
     }
 
-    public boolean isDivorce() {
+    public boolean getDivorce() {
         return divorce;
     }
 
-    public Date getDateMariage() {
+    public String getDateMariage() {
         return dateMariage;
     }
 
-    public String getMarie2() {
+    public int getMarie2() {
         return marie2;
     }
+
+    public String getDateDivorce() {
+        return dateDivorce;
+    }
+    
+    
     
     
     // Setters
@@ -68,7 +78,7 @@ public class Mariage {
         this.numMariage = numMariage;
     }
 
-    public void setMarie1(String marie1) {
+    public void setMarie1(int marie1) {
         this.marie1 = marie1;
     }
 
@@ -80,12 +90,16 @@ public class Mariage {
         this.divorce = divorce;
     }
 
-    public void setDateMariage(Date dateMariage) {
+    public void setDateMariage(String dateMariage) {
         this.dateMariage = dateMariage;
     }
 
-    public void setMarie2(String marie2) {
+    public void setMarie2(int marie2) {
         this.marie2 = marie2;
+    }
+
+    public void setDateDivorce(String dateDivorce) {
+        this.dateDivorce = dateDivorce;
     }
     
 }

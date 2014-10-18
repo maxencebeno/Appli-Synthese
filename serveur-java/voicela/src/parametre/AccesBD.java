@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import metier.Mariage;
 import metier.Photographie;
 import metier.VIP;
 
@@ -450,4 +451,67 @@ public class AccesBD {
             throw e;
         }
     } // ajoutPhoto
+    
+    public void insererUnMariage(Mariage mariage) throws SQLException {
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete = "insert into mariage (id_mariage, num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) values(?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+                pstmt.setInt(1, mariage.getNumMariage());
+                pstmt.setInt(2, mariage.getMarie1());
+                pstmt.setInt(3, mariage.getMarie2());
+                pstmt.setString(4, mariage.getLieuMariage());
+                pstmt.setString(5, mariage.getDateMariage());
+                pstmt.setBoolean(6, mariage.getDivorce());
+                pstmt.setString(7, mariage.getDateDivorce());
+
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    } // insererVip
+    
+    public boolean searchMariage(int vip1, int vip2) throws Exception {
+        // Affichage de tous les vip
+        Connection connection = null;
+        ResultSet rs = null;
+        boolean divorce = true;
+        
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete = "SELECT divorce FROM mariage WHERE (num_vip1 = ? and num_vip2 = ?) or (num_vip2 = ? and num_vip1 = ?)";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete);) {
+                pstmt.setInt(1, vip1);
+                pstmt.setInt(2, vip2);
+                pstmt.setInt(3, vip1);
+                pstmt.setInt(4, vip2);
+                rs = pstmt.executeQuery(); // Exécuter la requête
+
+                if (rs.next()) {
+                    divorce = rs.getBoolean(1);
+                }
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return divorce;
+    }
 }
