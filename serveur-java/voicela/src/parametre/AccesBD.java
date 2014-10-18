@@ -365,7 +365,8 @@ public class AccesBD {
                     String dateNaissance = rs.getString(7); // date de naissance
                     int nbEnfants = rs.getInt(11);   // nombre d'enfants
                     String nationalite = rs.getString(5); // nationalité
-
+                    String nomPartenaire = this.searchPartner(nom, prenomUsage);
+                    
                     v.setNom(nom);
                     v.setPrenomUsage(prenomUsage);
                     v.setPrenoms(prenom);
@@ -377,6 +378,7 @@ public class AccesBD {
                     v.setDateNaissance(dateNaissance);
                     v.setEnfants(nbEnfants);
                     v.setNationalite(nationalite);
+                    v.setMarieA(nomPartenaire);
 
                 }
                 Appli.vVIP.add(v);
@@ -513,5 +515,104 @@ public class AccesBD {
 
         }
         return divorce;
+    }
+    
+    public ArrayList<Mariage> lireLesMariages() throws Exception {
+        // Affichage de tous les vip
+        
+        PreparedStatement pstmt = null;
+        Connection connection = null;
+        ResultSet rs = null;
+
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete = "SELECT * FROM mariage";
+            pstmt = connection.prepareStatement(requete);
+            rs = pstmt.executeQuery(); // Exécuter la requête
+            ResultSetMetaData md = rs.getMetaData();
+            int columns = md.getColumnCount();
+
+            while (rs.next()) {
+                Mariage m;
+                m = new Mariage();
+                for (int i = 1; i <= columns; i++) {
+                    m.setMarie1(rs.getInt(1));
+                    m.setMarie2(rs.getInt(2));
+                    m.setLieuMariage(rs.getString(3));
+                    m.setDateMariage(rs.getString(4));
+                    m.setDivorce(rs.getBoolean(5));
+                    m.setDateDivorce(rs.getString(6));
+                }
+                Appli.vMariage.add(m);
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return Appli.vMariage;
+    }
+    
+    public String searchPartner(String nomVip, String prenomVip) throws Exception {
+        // Affichage de tous les vip
+        Connection connection = null;
+        ResultSet rs = null;
+        int numVip = 0;
+        String nomPartenaire = null;
+        
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete1 = "SELECT num_vip FROM vip WHERE nom_vip = ? and prenom_usuel_vip = ?";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete1);) {
+                pstmt.setString(1, nomVip);
+                pstmt.setString(2, prenomVip);
+                rs = pstmt.executeQuery(); // Exécuter la requête
+
+                if (rs.next()) {
+                    numVip = rs.getInt(1);
+                }
+            }
+            
+            String requete2 = "SELECT nom_vip FROM vip JOIN mariage on ? = mariage.num_vip2";
+            try (PreparedStatement pstmt = connection.prepareStatement(requete2);) {
+                pstmt.setInt(1, numVip);
+                rs = pstmt.executeQuery(); // Exécuter la requête
+
+                if (rs.next()) {
+                    nomPartenaire = rs.getString(1);
+                }
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return nomPartenaire;
     }
 }

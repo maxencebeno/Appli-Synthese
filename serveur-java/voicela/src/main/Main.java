@@ -31,7 +31,6 @@ public class Main {
         try {
             // création du DAO avec la connexion à la base concernée
             new Admin().setVisible(true);
-            // création de la vue avec le modèle de données à afficher
         } catch (NumberFormatException e) {
             System.out.print(e.getMessage());
         }

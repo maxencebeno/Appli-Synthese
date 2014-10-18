@@ -283,7 +283,7 @@ public class AjoutVip extends javax.swing.JDialog {
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         AccesBD bdd;
         bdd = new AccesBD();
-        String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
+        String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP, marieA = "Célibataire";
         String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
         int ageVIP = 0, nbEnfantsVIP;
         statutVIP = "";
@@ -412,7 +412,7 @@ public class AjoutVip extends javax.swing.JDialog {
         );
         if (result == javax.swing.JOptionPane.OK_OPTION) {
             VIP vip;
-            vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP);
+            vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP, marieA);
             try {
                 int resultPhoto = javax.swing.JOptionPane.showConfirmDialog(
                         this,

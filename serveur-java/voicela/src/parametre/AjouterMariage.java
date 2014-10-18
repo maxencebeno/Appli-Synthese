@@ -183,6 +183,14 @@ public class AjouterMariage extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        if(numVip1 == numVip2) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Erreur, un vip ne peut pas se marier avec lui-même.",
+                    "Conflits de mariages",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
         if (verifMariage == true) {
             int result = javax.swing.JOptionPane.showConfirmDialog(
                     this,
@@ -218,7 +226,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         } else {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
-                    "Erreur, ces VIPs sont déjà mariés",
+                    "Erreur, ces VIPs sont déjà mariés.",
                     "Conflits de mariages",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );

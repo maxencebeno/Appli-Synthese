@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.*;
 import java.io.*;
 import java.sql.*;
+import parametre.AccesBD;
 import parametre.Connexion;
 
 /**
@@ -31,11 +32,12 @@ public class VIP {
     protected int enfants;
     protected String nationalite;
     protected String pathImage;
+    protected String marieA;
     
     private static int dernierNumeroAttribue = 31;
     
     // Constructeurs
-    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite) {
+    public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite, String marieA) {
         id = ++dernierNumeroAttribue;
         this.nom = nom;
         this.prenomUsage = prenomUsage;
@@ -48,6 +50,7 @@ public class VIP {
         this.dateNaissance = dateNaissance;
         this.enfants = enfants;
         this.nationalite = nationalite;
+        this.marieA = marieA;
     }
     
     
@@ -108,7 +111,13 @@ public class VIP {
         return pathImage;
     }
     
-    
+    public String getMarieA(String nomVip, String prenomVip) throws Exception {
+        AccesBD bdd;
+        bdd = new AccesBD();
+        
+        String nomPartenaire = bdd.searchPartner(nomVip, prenomVip);
+        return nomPartenaire;
+    }
     
     // Setters
     public void setId(int id) {
@@ -162,4 +171,9 @@ public class VIP {
     public void setPathImage(String pathImage) {
         this.pathImage = pathImage;
     }
+
+    public void setMarieA(String marieA) {
+        this.marieA = marieA;
+    }
+    
 }
