@@ -162,4 +162,83 @@ public class VIP {
     public void setPathImage(String pathImage) {
         this.pathImage = pathImage;
     }
+
+    
+    
+    
+    
+     
+    // Méthodes
+    public void seMarier(VIP vip1, VIP vip2, String lieuMariage, Date dateMariage){     
+        // Insertion du mariage en base de données
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            
+            //----------------------------------------------------------------
+            // INSERTION
+            //----------------------------------------------------------------
+            // Préparation de la date pour conversion date java -> date SQL
+            java.util.Date utilDate = dateMariage;
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            // Requête d'insertion
+            ps = connection.prepareStatement("INSERT INTO mariage (num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) VALUES (?, ?, ?, ?, ? , ?)");         
+            ps.setInt(1, vip1.getId());
+            ps.setInt(2, vip2.getId());
+            ps.setString(3, lieuMariage);
+            ps.setDate(4, sqlDate);
+            ps.setBoolean(5, false);
+            ps.setDate(6, null);
+            // On valide la première insertion
+            ps.executeUpdate();
+        }catch(Exception e){
+            //throw e;
+        }finally{
+            try{
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(connection != null) connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void divorcer(Mariage mariage){
+        // Insertion du mariage en base de données
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Connection connection = null;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            
+            //----------------------------------------------------------------
+            // INSERTION
+            //----------------------------------------------------------------
+            // Préparation de la date pour conversion date java -> date SQL
+            java.util.Date utilDate = new Date();
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+            
+            // Requête d'update pour passer à divorcé et mettre la date de divorce
+            ps = connection.prepareStatement("UPDATE mariage SET divorce = 1 AND date_divorce = ? WHERE id_mariage = ? ");         
+            ps.setDate(1, sqlDate);
+            ps.setInt(2, mariage.getNumMariage());
+            // On valide le divorce
+            ps.executeUpdate();
+        }catch(Exception e){
+            //throw e;
+        }finally{
+            try{
+                if(rs != null) rs.close();
+                if(ps != null) ps.close();
+                if(connection != null) connection.close();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 }
