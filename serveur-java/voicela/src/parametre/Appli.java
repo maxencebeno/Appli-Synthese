@@ -10,6 +10,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import metier.Mariage;
 import vue.MonModele;
 
 /**
@@ -20,6 +21,7 @@ public final class Appli extends javax.swing.JFrame {
 
     public static java.sql.Connection conn;
     public static java.util.ArrayList<VIP> vVIP;
+    public static java.util.ArrayList<Mariage> vMariage;
     
     /**
      * Creates new form Appli
@@ -28,6 +30,7 @@ public final class Appli extends javax.swing.JFrame {
      */
     public Appli() throws Exception {
         vVIP = new java.util.ArrayList<>();
+        vMariage = new java.util.ArrayList<>();
         initComponents();
 
         // Les 3 prochaines lignes permettent de mettre l'application en plein écran
