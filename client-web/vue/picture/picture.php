@@ -41,9 +41,10 @@
 				$random=range(0, $nbPhotos-1);
 				shuffle($random);
 				foreach ($random as $pos) {
-					echo '<a href="profile.php?id='.$arrayId[$pos].'">';
-					echo '<img src="./files/photos/'.$arrayPhotos[$pos].'" class="photos"/>';
-					echo '</a>';
+				    echo '<a href="profile.php?id='.$arrayId[$pos].'">';
+                                    echo '<div class="pic_container" style="background-image: url(./files/photos/'.$arrayPhotos[$pos].')">';
+				    echo '</div>';
+                                    echo '</a>';
 				}
 			
 		}
