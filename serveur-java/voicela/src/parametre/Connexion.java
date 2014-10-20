@@ -13,7 +13,7 @@ public static java.sql.Connection conn;
         try{
             
         // parametres de connexion
-            String url="jdbc:mysql://localhost/db=voicela";
+            String url="jdbc:mysql://localhost:3306/voicela";
             String login="root";
             String pass="root";
 
