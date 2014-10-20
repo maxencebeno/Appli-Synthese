@@ -1,51 +1,45 @@
-body{
-    width: 100%;
-    min-height: 100%;
-    background-color: white;
-    font-family: Tahoma;
-    color: grey;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-}
-
-header{
-    width: 95%;
-    height: 50px;   line-height: 50px;  
-    background-color: grey;
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding-left: 5%;
-    font-size: 20px;
+.wrapper{
+    width: 1000px;
+    margin: auto;
+    margin-bottom: 70px;
+    position: relative;
 }
 
 .full_wrapper{
     margin-top:50px;
 }
 
-.photos{
-    height: 200px;
+.pic_container{
+    display: inline-block;
     width: 200px;
-    margin-right: 50px;
-    margin-left: 50px;
-    margin-top: 50px;
-    -webkit-transition: .3s opacity;
-    transition: .3s opacity;
-    background-color: black;
+    height: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+}
 
+.photos{
+    max-width: 200px;
+    max-height: 200px;
+    -webkit-transition: .3s opacity;
+    transition: 0.3s opacity;
+    vertical-align: middle;
 }
 
 .photos:hover { 
     opacity: .75;
 }
 
+#photos{
+    border: 1px solid red;
+    width: 100%;
+    text-align: center;
+}
 
 h1 {
-    margin-left: 100px;
-    top: 5%;
+    color: #128fdc;
+    margin-top: 100px;
 }
 
 /* Loading overlay sorting */
@@ -60,9 +54,10 @@ h1 {
 }
 
 .random{
-    margin-left:80%;
+    position: absolute;
+    top: 20px;
+    right: 0;
     text-decoration: none;
-
 }
 
 #imgRand {

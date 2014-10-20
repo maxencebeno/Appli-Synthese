@@ -15,7 +15,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import metier.Photographie;
-import metier.VIP;
 import org.imgscalr.Scalr;
 import org.imgscalr.Scalr.Method;
 import static parametre.AjoutVip.copyFileUsingStream;
