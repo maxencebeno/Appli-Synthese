@@ -18,7 +18,7 @@
 	<?php include('vue/includes/header.php'); ?>
 
 	<div class="full_wrapper">
-
+            <div class="wrapper">
 		<h1>Photos récentes ajoutés</h1>
 		<a class="random" href="./picture.php?r=1"><img id="imgRand" src="assets/images/picture/random.png"><span>Random</span></a>
 		<div class="files-list-loading-overlay" style="display: none"></div>
@@ -53,16 +53,16 @@
 			
 				$urlPhotos = $photos["url_photo"];
 				$idVIP= $photos["num_vip"];
-				
-				echo '<a href="profile.php?id='.$idVIP.'">';
-				echo '<img src="./files/photos/'.$urlPhotos.'" class="photos"/>';
-				echo '</a>';
-			
+                                echo '<a href="profile.php?id='.$idVIP.'">';
+                                    echo '<div class="pic_container" style="background-image: url(./files/photos/'.$urlPhotos.')">';
+                                    echo '</div>';
+                                echo '</a>';
 			}
 		}
 		?>	
 		</div>
 	</div>
+        </div>
 </body>
 
 <footer>
