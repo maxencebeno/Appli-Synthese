@@ -554,9 +554,10 @@ public class AccesBD {
         return bonAMarier;
     }
 
-    public ArrayList<Mariage> lireLesMariages() throws Exception {
+    public String lireLesCouples(int numVip) throws Exception {
         // Affichage de tous les vip
-
+        String nomVipMarie = null;
+        int numVip2 = 0;
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -564,24 +565,15 @@ public class AccesBD {
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "SELECT * FROM mariage";
+            String requete = "SELECT num_vip2 FROM mariage where num_vip1 = ?";
             pstmt = connection.prepareStatement(requete);
+            pstmt.setInt(1, numVip);
             rs = pstmt.executeQuery(); // Exécuter la requête
-            ResultSetMetaData md = rs.getMetaData();
-            int columns = md.getColumnCount();
 
-            while (rs.next()) {
-                Mariage m;
-                m = new Mariage();
-                for (int i = 1; i <= columns; i++) {
-                    m.setMarie1(rs.getInt(1));
-                    m.setMarie2(rs.getInt(2));
-                    m.setLieuMariage(rs.getString(3));
-                    m.setDateMariage(rs.getString(4));
-                    m.setDivorce(rs.getBoolean(5));
-                    m.setDateDivorce(rs.getString(6));
-                }
-                Appli.vMariage.add(m);
+            if (rs.next()) {
+                numVip2 = rs.getInt(1);
+            } else {
+                nomVipMarie = "Célibataire";
             }
         } catch (Exception e) {
             throw e;
@@ -601,7 +593,38 @@ public class AccesBD {
             }
 
         }
-        return Appli.vMariage;
+        try {
+            Connexion cnx = new Connexion();
+            connection = cnx.Connecter();
+            String requete2 = "SELECT nom_vip FROM vip where num_vip = ?";
+            pstmt = connection.prepareStatement(requete2);
+            pstmt.setInt(1, numVip2);
+            rs = pstmt.executeQuery(); // Exécuter la requête
+
+            if (rs.next()) {
+                nomVipMarie = rs.getString(1);
+            } else {
+                return nomVipMarie = "Célibataire";
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return nomVipMarie;
     }
 
 }

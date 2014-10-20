@@ -38,7 +38,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     public int getRowCount() {
         return donnees.size();
     }
-    
+
     public int getColumnCountCouple() {
         return 1;
     }
@@ -71,20 +71,17 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
             return donnees.get(row).getEnfants();
         } else {
             String nomVip2;
-            nomVip2 = "test";
+            nomVip2 = "Célibataire";
             int numVip = 0;
             try {
                 numVip = modif.searchVip(donnees.get(row).getNom(), donnees.get(row).getPrenomUsage());
             } catch (Exception ex) {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
-            for (Maries m : donneesCouple) {
-                if(numVip == m.getNumVip1()) {
-                    nomVip2 = m.getNomVip2();
-                    return nomVip2;
-                } else {
-                    return "Célibataire";
-                }
+            try {
+                nomVip2 = modif.lireLesCouples(numVip);
+            } catch (Exception ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
             return nomVip2;
         }
@@ -94,7 +91,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     public String getColumnName(int col) {
         return col >= 0 ? nomsColonnes[col] : null;
     }
-    
+
     public String getColumnNameCouple(int col) {
         return "Marie à";
     }
@@ -103,7 +100,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     public Class getColumnClass(int c) {
         return getValueAt(0, c).getClass();
     }
-    
+
     public Class getColumnClassCouple(int c) {
         return getValueAt(0, 10).getClass();
     }
