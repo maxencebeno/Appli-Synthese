@@ -24,11 +24,8 @@ public class Mariage {
     protected String dateDivorce;
     protected String dateMariage;
     
-    private static int dernierNumeroAttribue = 0;
-    
     // Constructeur
-    public Mariage(int numMariage, int marie1, int marie2, String lieuMariage, boolean divorce, String dateDivorce, String dateMariage) {
-        numMariage = ++dernierNumeroAttribue;
+    public Mariage(int marie1, int marie2, String lieuMariage, boolean divorce, String dateDivorce, String dateMariage) {
         this.marie1 = marie1;
         this.marie2 = marie2;
         this.lieuMariage = lieuMariage;

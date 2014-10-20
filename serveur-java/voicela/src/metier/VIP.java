@@ -28,11 +28,8 @@ public class VIP {
     protected String pathImage;
     protected String marieA;
     
-    private static int dernierNumeroAttribue = 0;
-    
     // Constructeurs
     public VIP(String nom, String prenomUsage, String prenoms, String sexe, String civilite, int age, String statut, String lieuNaissance, String dateNaissance, int enfants, String nationalite, String marieA) {
-        id = ++dernierNumeroAttribue;
         this.nom = nom;
         this.prenomUsage = prenomUsage;
         this.prenoms = prenoms;
