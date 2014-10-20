@@ -1,0 +1,26 @@
+.full_wrapper{
+    margin-top:50px;
+}
+
+.img_container{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.films_container{
+    width:200px;
+    display: inline-block;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.film_wrapper{
+    width: 1000px;
+}
