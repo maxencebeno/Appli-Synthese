@@ -29,7 +29,7 @@ import metier.Photographie;
  * @author maxencebeno
  */
 public class AjoutVip extends javax.swing.JDialog {
-    
+
     /**
      * Creates new form AjoutVip
      */
@@ -37,9 +37,9 @@ public class AjoutVip extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-    
+
     public AjoutVip() {
-        
+
     }
 
     /**
@@ -124,6 +124,11 @@ public class AjoutVip extends javax.swing.JDialog {
         realisateur.setText("Réalisateur ");
 
         rien.setText("Aucun");
+        rien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rienActionPerformed(evt);
+            }
+        });
 
         dateNaissance.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -413,8 +418,7 @@ public class AjoutVip extends javax.swing.JDialog {
         if (result == javax.swing.JOptionPane.OK_OPTION) {
             VIP vip;
             vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP, marieA);
-            
-            
+
             try {
                 int resultPhoto = javax.swing.JOptionPane.showConfirmDialog(
                         this,
@@ -436,7 +440,7 @@ public class AjoutVip extends javax.swing.JDialog {
                         try {   //display the image in jlabel
                             bi = ImageIO.read(file);
                             copyFileUsingStream(file, new File("../../client-web/files/photos/" + vip.getNom() + ".jpg"));
-                            pathPicture = "files/" + vip.getNom() + ".jpg";
+                            pathPicture = "files/photos/" + vip.getNom() + ".jpg";
                             vip.setPathImage(pathPicture);
                             BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
                             ImageIO.write(bISmallImage, "jpg", file);
@@ -450,9 +454,6 @@ public class AjoutVip extends javax.swing.JDialog {
                              * Use format method of SimpleDateFormat class to format the date.
                              */
                             String dateAjoutPhoto = sdf.format(date);
-                            Photographie photo;
-                            photo = new Photographie(vip.getId(), vip.getNom() + ".jpg", dateAjoutPhoto);
-                            bdd.ajoutPhoto(photo, vip);
 
                         } catch (IOException e) {
 
@@ -462,7 +463,29 @@ public class AjoutVip extends javax.swing.JDialog {
                 } else {
                     vip.setPathImage(pathPicture);
                 }
+
+                Date date = new Date();
+                // Specify the desired date format
+                String DATE_FORMAT = "yyyy/MM/dd";
+                // Create object of SimpleDateFormat and pass the desired date format.
+                SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+                /*
+                 * Use format method of SimpleDateFormat class to format the date.
+                 */
+                String dateAjoutPhoto = sdf.format(date);
+
                 bdd.insererUnVip(vip);
+                Photographie photo;
+                
+                int numVip = 0;
+                try {
+                    numVip = bdd.searchVip(vip.getNom(), vip.getPrenomUsage());
+                } catch (Exception ex) {
+                    Logger.getLogger(AjoutVip.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                photo = new Photographie(numVip, vip.getNom() + ".jpg", dateAjoutPhoto);
+                bdd.ajoutPhoto(photo, vip);
             } catch (SQLException ex) {
                 Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -504,9 +527,16 @@ public class AjoutVip extends javax.swing.JDialog {
 
     }//GEN-LAST:event_gestionDate
 
-    
-
-    
+    private void rienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rienActionPerformed
+        if (acteur.isSelected() || realisateur.isSelected()) {
+            rien.setSelected(false);
+        } else {
+            if (rien.isSelected()) {
+                acteur.setSelected(false);
+                realisateur.setSelected(false);
+            }
+        }
+    }//GEN-LAST:event_rienActionPerformed
 
     public static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;

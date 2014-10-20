@@ -320,10 +320,9 @@ public class AccesBD {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
 
-            String requete = "insert into photos (id_photo, num_vip, url_photo, date_ajout_photo) values(?, ?, ?, ?)";
+            String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, photo.getNumPhoto());
-                pstmt.setInt(2, photo.getNumPhoto());
+                pstmt.setInt(2, photo.getNumVIP());
                 pstmt.setString(3, photo.getUrlPhoto());
                 pstmt.setString(4, photo.getDateAjoutPhoto());
 
@@ -408,21 +407,20 @@ public class AccesBD {
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "insert into vip (num_vip, nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, vip.getId());
-                pstmt.setString(2, vip.getNom());
-                pstmt.setString(3, vip.getPrenomUsage());
-                pstmt.setString(4, vip.getPrenoms());
-                pstmt.setString(5, vip.getNationalite());
-                pstmt.setString(6, vip.getCivilité());
-                pstmt.setString(7, vip.getDateNaissance());
-                pstmt.setInt(8, vip.getAge());
-                pstmt.setString(9, vip.getLieuNaissance());
-                pstmt.setString(10, vip.getStatut());
-                pstmt.setInt(11, vip.getEnfants());
-                pstmt.setString(12, vip.getSexe());
-                pstmt.setString(13, vip.getPathImage());
+                pstmt.setString(1, vip.getNom());
+                pstmt.setString(2, vip.getPrenomUsage());
+                pstmt.setString(3, vip.getPrenoms());
+                pstmt.setString(4, vip.getNationalite());
+                pstmt.setString(5, vip.getCivilité());
+                pstmt.setString(6, vip.getDateNaissance());
+                pstmt.setInt(7, vip.getAge());
+                pstmt.setString(8, vip.getLieuNaissance());
+                pstmt.setString(9, vip.getStatut());
+                pstmt.setInt(10, vip.getEnfants());
+                pstmt.setString(11, vip.getSexe());
+                pstmt.setString(12, vip.getPathImage());
 
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
@@ -438,12 +436,11 @@ public class AccesBD {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
 
-            String requete = "insert into photos (id_photo, num_vip, url_photo, date_ajout_photo) values(?, ?, ?, ?)";
+            String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, photo.getNumPhoto());
-                pstmt.setInt(2, vip.getId());
-                pstmt.setString(3, photo.getUrlPhoto());
-                pstmt.setString(4, photo.getDateAjoutPhoto());
+                pstmt.setInt(1, vip.getId());
+                pstmt.setString(2, photo.getUrlPhoto());
+                pstmt.setString(3, photo.getDateAjoutPhoto());
 
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
@@ -458,15 +455,14 @@ public class AccesBD {
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "insert into mariage (id_mariage, num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) values(?, ?, ?, ?, ?, ?, ?)";
+            String requete = "insert into mariage (num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) values(?, ?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, mariage.getNumMariage());
-                pstmt.setInt(2, mariage.getMarie1());
-                pstmt.setInt(3, mariage.getMarie2());
-                pstmt.setString(4, mariage.getLieuMariage());
-                pstmt.setString(5, mariage.getDateMariage());
-                pstmt.setBoolean(6, mariage.getDivorce());
-                pstmt.setString(7, mariage.getDateDivorce());
+                pstmt.setInt(1, mariage.getMarie1());
+                pstmt.setInt(2, mariage.getMarie2());
+                pstmt.setString(3, mariage.getLieuMariage());
+                pstmt.setString(4, mariage.getDateMariage());
+                pstmt.setBoolean(5, mariage.getDivorce());
+                pstmt.setString(6, mariage.getDateDivorce());
 
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
