@@ -42,7 +42,7 @@
 				shuffle($random);
 				foreach ($random as $pos) {
 					echo '<a href="profile.php?id='.$arrayId[$pos].'">';
-					echo '<img src="./files/'.$arrayPhotos[$pos].'" class="photos"/>';
+					echo '<img src="./files/photos/'.$arrayPhotos[$pos].'" class="photos"/>';
 					echo '</a>';
 				}
 			
@@ -55,7 +55,7 @@
 				$idVIP= $photos["num_vip"];
 				
 				echo '<a href="profile.php?id='.$idVIP.'">';
-				echo '<img src="./files/'.$urlPhotos.'" class="photos"/>';
+				echo '<img src="./files/photos/'.$urlPhotos.'" class="photos"/>';
 				echo '</a>';
 			
 			}
