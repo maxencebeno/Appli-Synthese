@@ -15,11 +15,11 @@
 	<?php include('vue/includes/header.php'); ?>
 
 	<div class="full_wrapper">
-
-		<h1>Photos récentes ajoutés</h1>
+            <div class="wrapper">
+		<h1>Derniers snaps</h1>
 		<a class="random" href="./picture.php?r=1"><img id="imgRand" src="assets/images/picture/random.png"><span>Random</span></a>
-		<div class="files-list-loading-overlay" style="display: none"></div>
-		<div id="photos">
+		
+                <div id="photos">
 		<?php
 		
 		if(isset($_GET["r"]) && ($_GET["r"] == 1)) {//on est en random
@@ -38,9 +38,11 @@
 				$random=range(0, $nbPhotos-1);
 				shuffle($random);
 				foreach ($random as $pos) {
-					echo '<a href="profile.php?id='.$arrayId[$pos].'">';
-					echo '<img src="./files/'.$arrayPhotos[$pos].'" class="photos"/>';
-					echo '</a>';
+                                    echo '<div class="pic_container">';
+                                    echo '<a href="profile.php?id='.$arrayId[$pos].'">';
+                                    echo '<img src="./files/'.$arrayPhotos[$pos].'" class="photos"/>';
+				    echo '</a>';
+                                    echo '</div>';
 				}
 			
 		}
@@ -50,15 +52,17 @@
 			
 				$urlPhotos = $photos["url_photo"];
 				$idVIP= $photos["num_vip"];
-				
+				echo '<div class="pic_container">';
 				echo '<a href="profile.php?id='.$idVIP.'">';
 				echo '<img src="./files/'.$urlPhotos.'" class="photos" alt />';
 				echo '</a>';
+                                echo '</div>';
 			
 			}
 		}
 		?>	
 		</div>
+            </div>
 	</div>
 </body>
 
