@@ -1,17 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Voicela | Affichage VIP</title>
+	<title>Voicela | Photos des VIP</title>
 	<link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/picture/style_picture.css" />
 
-	<!-- Beginning of JavasScript-->
 	<script src="./assets/js/jquery-1.9.1.js"></script>
-	<script src="./media/jquery.onepage-scroll.js"></script>
 	<script type="text/javascript" src="./assets/js/picture/random.js"></script>
-	<!-- End of JavasScript-->
 </head>
 
 <body>
@@ -55,7 +52,7 @@
 				$idVIP= $photos["num_vip"];
 				
 				echo '<a href="profile.php?id='.$idVIP.'">';
-				echo '<img src="./files/'.$urlPhotos.'" class="photos"/>';
+				echo '<img src="./files/'.$urlPhotos.'" class="photos" alt />';
 				echo '</a>';
 			
 			}
