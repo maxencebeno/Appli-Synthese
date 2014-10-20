@@ -62,18 +62,14 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
         } else {
             String nomVip2;
             nomVip2 = "Célibataire";
-            /*int numVip = 0;
-            try {
-                numVip = modif.searchVip(donnees.get(row).getNom(), donnees.get(row).getPrenomUsage());
-            } catch (Exception ex) {
-                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
+            int numVip = 0;
+            
+            /*try {
                 nomVip2 = modif.lireLesCouples(numVip);
             } catch (Exception ex) {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }*/
-            return nomVip2;
+            return numVip;
         }
     }
 
