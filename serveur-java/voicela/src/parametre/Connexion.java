@@ -13,9 +13,9 @@ public static java.sql.Connection conn;
         try{
             
         // parametres de connexion
-            String url="jdbc:mysql://localhost:3306/voicela";
-            String login="root";
-            String pass="root";
+            String url="jdbc:mysql://iutdoua-webetu.univ-lyon1.fr/p1201896";
+            String login="p1201896";
+            String pass="169657";
 
         // connexion
         Class.forName("com.mysql.jdbc.Driver").newInstance();
