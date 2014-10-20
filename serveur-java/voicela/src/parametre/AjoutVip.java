@@ -12,23 +12,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import org.imgscalr.Scalr;
 import metier.VIP;
 import org.imgscalr.Scalr.Method;
-import static java.nio.file.StandardCopyOption.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.TimeZone;
 import metier.Photographie;
-import vue.MonModele;
 
 /**
  *
@@ -289,7 +283,7 @@ public class AjoutVip extends javax.swing.JDialog {
     private void valider(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valider
         AccesBD bdd;
         bdd = new AccesBD();
-        String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP;
+        String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP, marieA = "Célibataire";
         String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
         int ageVIP = 0, nbEnfantsVIP;
         statutVIP = "";
@@ -418,7 +412,9 @@ public class AjoutVip extends javax.swing.JDialog {
         );
         if (result == javax.swing.JOptionPane.OK_OPTION) {
             VIP vip;
-            vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP);
+            vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP, marieA);
+            
+            
             try {
                 int resultPhoto = javax.swing.JOptionPane.showConfirmDialog(
                         this,

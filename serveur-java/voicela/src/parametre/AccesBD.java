@@ -12,6 +12,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import metier.Mariage;
+import metier.Maries;
 import metier.Photographie;
 import metier.VIP;
 
@@ -336,7 +337,7 @@ public class AccesBD {
 
     public ArrayList<VIP> lireLesVIP() throws Exception {
         // Affichage de tous les vip
-        
+
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -365,7 +366,7 @@ public class AccesBD {
                     String dateNaissance = rs.getString(7); // date de naissance
                     int nbEnfants = rs.getInt(11);   // nombre d'enfants
                     String nationalite = rs.getString(5); // nationalité
-                    
+
                     v.setNom(nom);
                     v.setPrenomUsage(prenomUsage);
                     v.setPrenoms(prenom);
@@ -401,7 +402,7 @@ public class AccesBD {
         }
         return Appli.vVIP;
     }
-    
+
     public void insererUnVip(VIP vip) throws SQLException {
         Connection connection = null;
         try {
@@ -430,13 +431,13 @@ public class AccesBD {
             throw e;
         }
     } // insererVip
-    
+
     public void ajoutPhoto(Photographie photo, VIP vip) throws SQLException {
         Connection connection = null;
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            
+
             String requete = "insert into photos (id_photo, num_vip, url_photo, date_ajout_photo) values(?, ?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
                 pstmt.setInt(1, photo.getNumPhoto());
@@ -451,7 +452,7 @@ public class AccesBD {
             throw e;
         }
     } // ajoutPhoto
-    
+
     public void insererUnMariage(Mariage mariage) throws SQLException {
         Connection connection = null;
         try {
@@ -474,13 +475,13 @@ public class AccesBD {
             throw e;
         }
     } // insererVip
-    
+
     public boolean searchMariage(int vip1, int vip2) throws Exception {
         // Affichage de tous les vip
         Connection connection = null;
         ResultSet rs = null;
         boolean bonAMarier = true;
-        
+
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
@@ -514,13 +515,13 @@ public class AccesBD {
         }
         return bonAMarier;
     }
-    
+
     public boolean searchDejaMarie(int vip) throws Exception {
         // Affichage de tous les vip
         Connection connection = null;
         ResultSet rs = null;
         boolean bonAMarier = true;
-        
+
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
@@ -552,10 +553,10 @@ public class AccesBD {
         }
         return bonAMarier;
     }
-    
+
     public ArrayList<Mariage> lireLesMariages() throws Exception {
         // Affichage de tous les vip
-        
+
         PreparedStatement pstmt = null;
         Connection connection = null;
         ResultSet rs = null;
@@ -602,5 +603,5 @@ public class AccesBD {
         }
         return Appli.vMariage;
     }
-    
+
 }

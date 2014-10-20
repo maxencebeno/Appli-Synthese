@@ -17,11 +17,13 @@ import parametre.AccesBD;
  */
 public class MonModele extends javax.swing.table.AbstractTableModel {
 
-    private String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants"};
+    private final String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants", "Marié à"};
     public java.util.ArrayList<VIP> donnees;
+    public java.util.ArrayList<Maries> donneesCouple;
     public AccesBD modif = new AccesBD();
 
-    public MonModele(java.util.ArrayList<VIP> vVIP) {
+    public MonModele(java.util.ArrayList<VIP> vVIP, java.util.ArrayList<Maries> vCouples) {
+        donneesCouple = vCouples;
         donnees = vVIP;
         // ajout  d'un écouteur perso pour espionner les modif
         // this.addTableModelListener( new MonEcouteurTable() );
@@ -35,6 +37,14 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     @Override
     public int getRowCount() {
         return donnees.size();
+    }
+    
+    public int getColumnCountCouple() {
+        return 1;
+    }
+
+    public int getRowCountCouple() {
+        return donneesCouple.size();
     }
 
     @Override
@@ -57,19 +67,45 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
             return donnees.get(row).getAge();
         } else if (col == 8) {
             return donnees.get(row).getStatut();
-        } else {
+        } else if (col == 9) {
             return donnees.get(row).getEnfants();
-        } 
+        } else {
+            String nomVip2;
+            nomVip2 = "test";
+            int numVip = 0;
+            try {
+                numVip = modif.searchVip(donnees.get(row).getNom(), donnees.get(row).getPrenomUsage());
+            } catch (Exception ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            for (Maries m : donneesCouple) {
+                if(numVip == m.getNumVip1()) {
+                    nomVip2 = m.getNomVip2();
+                    return nomVip2;
+                } else {
+                    return "Célibataire";
+                }
+            }
+            return nomVip2;
+        }
     }
 
     @Override
     public String getColumnName(int col) {
         return col >= 0 ? nomsColonnes[col] : null;
     }
+    
+    public String getColumnNameCouple(int col) {
+        return "Marie à";
+    }
 
     @Override
     public Class getColumnClass(int c) {
         return getValueAt(0, c).getClass();
+    }
+    
+    public Class getColumnClassCouple(int c) {
+        return getValueAt(0, 10).getClass();
     }
 
     @Override

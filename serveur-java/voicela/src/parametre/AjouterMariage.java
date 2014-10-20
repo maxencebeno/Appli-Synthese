@@ -7,10 +7,12 @@ package parametre;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Mariage;
+import metier.Maries;
 
 /**
  *
@@ -21,10 +23,10 @@ public class AjouterMariage extends javax.swing.JDialog {
     /**
      * Creates new form ModifierMariage
      */
-    public AjouterMariage(java.awt.Frame parent, boolean modal) {
+    public AjouterMariage(java.awt.Frame parent, boolean modal, ArrayList<Maries> vCouples) {
         super(parent, modal);
         initComponents();
-
+        AjouterMariage.vCouples = vCouples;
         listModelVIP1 = new javax.swing.DefaultListModel<>();
         listvip1.setModel(listModelVIP1);
         try {
@@ -134,7 +136,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         String[] vipArray2;
         String nomVip1, nomVip2, prenomVip1, prenomVip2;
         int numVip1 = 0, numVip2 = 0;
-        boolean verifMariage = false, mariageSolo = false, dejaMarie = true;
+        boolean verifMariage = false, mariageSolo = false;
 
         lieuMariage = lieu.getText();
         if (lieuMariage == null) {
@@ -184,22 +186,11 @@ public class AjouterMariage extends javax.swing.JDialog {
             Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        try {
-            dejaMarie = ajout.searchDejaMarie(numVip1);
-        } catch (Exception ex) {
-            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            dejaMarie = ajout.searchDejaMarie(numVip2);
-        } catch (Exception ex) {
-            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         if(numVip1 == numVip2) {
             mariageSolo = true;
         }
-        if (verifMariage == true && mariageSolo == false && dejaMarie == false) {
+        if (verifMariage == true && mariageSolo == false) {
             int result = javax.swing.JOptionPane.showConfirmDialog(
                     this,
                     "Voici le mariage que vous êtes sur le point d'insérer : \n"
@@ -225,13 +216,24 @@ public class AjouterMariage extends javax.swing.JDialog {
                 mariage.setDateMariage(dateMariage);
                 mariage.setLieuMariage(lieuMariage);
                 mariage.setDateDivorce(null);
+                
+                Maries couple;
+                couple = new Maries();
+                
+                couple.setNumVip1(numVip1);
+                couple.setNumVip2(numVip2);
+                couple.setNomVip1(nomVip1);
+                couple.setNomVip2(nomVip2);
+                
+                vCouples.add(couple);
+                
                 try {
                     ajout.insererUnMariage(mariage);
                 } catch (SQLException ex) {
                     Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } else if(verifMariage == false && mariageSolo == false || dejaMarie == true) {
+        } else if(verifMariage == false && mariageSolo == false) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Erreur, ces VIPs sont déjà mariés.",
@@ -264,4 +266,5 @@ public class AjouterMariage extends javax.swing.JDialog {
     javax.swing.DefaultListModel<String> listModelVIP1;
     javax.swing.DefaultListModel<String> listModelVIP2;
     AccesBD ajout = new AccesBD();
+    static ArrayList<Maries> vCouples;
 }

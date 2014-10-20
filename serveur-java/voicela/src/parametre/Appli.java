@@ -6,11 +6,10 @@
 package parametre;
 
 import metier.VIP;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Mariage;
+import metier.Maries;
 import vue.MonModele;
 
 /**
@@ -21,6 +20,7 @@ public final class Appli extends javax.swing.JFrame {
 
     public static java.sql.Connection conn;
     public static java.util.ArrayList<VIP> vVIP;
+    public static java.util.ArrayList<Maries> vCouples;
     public static java.util.ArrayList<Mariage> vMariage;
     
     /**
@@ -30,6 +30,7 @@ public final class Appli extends javax.swing.JFrame {
      */
     public Appli() throws Exception {
         vVIP = new java.util.ArrayList<>();
+        vCouples = new java.util.ArrayList<>();
         vMariage = new java.util.ArrayList<>();
         initComponents();
 
@@ -111,7 +112,7 @@ public final class Appli extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
 
-        table.setModel(new MonModele(vVIP));
+        table.setModel(new MonModele(vVIP, vCouples));
         jScrollPane1.setViewportView(table);
 
         actualiser.setText("Actualiser");
@@ -202,7 +203,7 @@ public final class Appli extends javax.swing.JFrame {
 
     private void boutonMenuModifierMariageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuModifierMariageActionPerformed
         AjouterMariage BddAjouterMariage;
-        BddAjouterMariage = new AjouterMariage(this, true);
+        BddAjouterMariage = new AjouterMariage(this, true, vCouples);
         BddAjouterMariage.setLocation(250, 150);
         BddAjouterMariage.setVisible(true);
     }//GEN-LAST:event_boutonMenuModifierMariageActionPerformed
