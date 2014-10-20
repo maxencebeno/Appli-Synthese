@@ -28,6 +28,11 @@
             
             echo '<div class="pres">';
             echo '<img src="files/films/'.$photo.'"/>';
+            echo '<span class="info">
+                    '.$titre_film.'
+                    '.$date_sortie.'
+                    '.$genre.'
+                 </span>';
 
 
             echo '</div>';
