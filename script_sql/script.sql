@@ -10,6 +10,10 @@ CREATE TABLE vip (
 	date_naissance_vip date,
 	lieu_naissance_vip varchar2(255),
 	statut_vip varchar2(255),
+	age_vip number(10),
+	nb_enfants number(10),
+	sexe_vip varchar(255),
+	chemin_phto varchar(255),
 	constraint pk_vip primary key (num_vip),
 	constraint ck_vip_statut_vip check (statut_vip IN ('Acteur', 'Realisateur', 'null'))
 );
@@ -54,10 +58,5 @@ ALTER TABLE photos add constraint fk_photos_vip foreign key (num_vip) references
 
 
 alter table mariage add constraint fk_maruage_num_vip1 foreign key (num_vip1) references vip (num_vip);
-alter table mariage add constraint fk_maruage_num_vip2 foreign key (num_vip2) references vip (num_vip);
-
-
-
-insert into vip values ('','De Palmas', 'Gérard', 'Gérard fimon', 'Espagnole', 'homme', '16/09/75', 'Madrid', 'rien'); 
-insert into vip values ('','Luers', 'Fimon', 'fimon la pute', 'Coréene', 'homme', '1994-05-10', 'nul part', 'acteur'); 
+alter table mariage add constraint fk_maruage_num_vip2 foreign key (num_vip2) references vip (num_vip); 
 

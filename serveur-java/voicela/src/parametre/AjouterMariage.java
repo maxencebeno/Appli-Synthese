@@ -23,10 +23,9 @@ public class AjouterMariage extends javax.swing.JDialog {
     /**
      * Creates new form ModifierMariage
      */
-    public AjouterMariage(java.awt.Frame parent, boolean modal, ArrayList<Maries> vCouples) {
+    public AjouterMariage(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        AjouterMariage.vCouples = vCouples;
         listModelVIP1 = new javax.swing.DefaultListModel<>();
         listvip1.setModel(listModelVIP1);
         try {
@@ -217,16 +216,6 @@ public class AjouterMariage extends javax.swing.JDialog {
                 mariage.setLieuMariage(lieuMariage);
                 mariage.setDateDivorce(null);
                 
-                Maries couple;
-                couple = new Maries();
-                
-                couple.setNumVip1(numVip1);
-                couple.setNumVip2(numVip2);
-                couple.setNomVip1(nomVip1);
-                couple.setNomVip2(nomVip2);
-                
-                vCouples.add(couple);
-                
                 try {
                     ajout.insererUnMariage(mariage);
                 } catch (SQLException ex) {
@@ -266,5 +255,4 @@ public class AjouterMariage extends javax.swing.JDialog {
     javax.swing.DefaultListModel<String> listModelVIP1;
     javax.swing.DefaultListModel<String> listModelVIP2;
     AccesBD ajout = new AccesBD();
-    static ArrayList<Maries> vCouples;
 }

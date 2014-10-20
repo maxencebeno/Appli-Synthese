@@ -19,11 +19,9 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
 
     private final String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants", "Marié à"};
     public java.util.ArrayList<VIP> donnees;
-    public java.util.ArrayList<Maries> donneesCouple;
     public AccesBD modif = new AccesBD();
 
-    public MonModele(java.util.ArrayList<VIP> vVIP, java.util.ArrayList<Maries> vCouples) {
-        donneesCouple = vCouples;
+    public MonModele(java.util.ArrayList<VIP> vVIP) {
         donnees = vVIP;
         // ajout  d'un écouteur perso pour espionner les modif
         // this.addTableModelListener( new MonEcouteurTable() );
@@ -37,14 +35,6 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     @Override
     public int getRowCount() {
         return donnees.size();
-    }
-
-    public int getColumnCountCouple() {
-        return 1;
-    }
-
-    public int getRowCountCouple() {
-        return donneesCouple.size();
     }
 
     @Override
@@ -72,7 +62,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
         } else {
             String nomVip2;
             nomVip2 = "Célibataire";
-            int numVip = 0;
+            /*int numVip = 0;
             try {
                 numVip = modif.searchVip(donnees.get(row).getNom(), donnees.get(row).getPrenomUsage());
             } catch (Exception ex) {
@@ -82,7 +72,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 nomVip2 = modif.lireLesCouples(numVip);
             } catch (Exception ex) {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             return nomVip2;
         }
     }

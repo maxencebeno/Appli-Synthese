@@ -624,6 +624,7 @@ public class AccesBD {
             }
 
         }
+        System.out.print(nomVipMarie);
         return nomVipMarie;
     }
 
