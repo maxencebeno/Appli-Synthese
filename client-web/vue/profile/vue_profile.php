@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
         <title>Profil VIP - Voicela</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <script src="assets/js/profile/switch.js"></script>
     </head>
 
     <body>
