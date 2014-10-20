@@ -47,7 +47,9 @@
                 </div>
             </div>
             <div class="bandeau_2">
-                <div id="images_list">
+                <div class="container">
+                    <button id="switch">Voir sa filmographie</button></div>
+                <div id="images_list" class="list">
                     <h2>Dernières photos</h2>
                     <?php
                     $reqVip = getAllImages($num_vip);
@@ -62,6 +64,9 @@
                         echo '<p>Aucune image à montrer</p>';
                     }
                     ?>
+                </div>
+                <div id="films_list" class="list" style="display: none">
+                    <h2>Filmographie</h2>
                 </div>
             </div>
         </div>
