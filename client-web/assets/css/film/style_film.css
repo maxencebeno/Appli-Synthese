@@ -2,6 +2,10 @@
     margin-top:50px;
 }
 
+body {
+    overflow-X:hidden;
+}
+
 .img_container{
     display: inline-block;
     width: 200px;
@@ -19,8 +23,74 @@
     width:200px;
     display: inline-block;
     border: 1px solid rgba(0, 0, 0, 0.12);
+    margin-right: 50px;
+    margin-bottom: 50px;
 }
 
 .film_wrapper{
     width: 1000px;
+     margin: auto;
+    margin-bottom: 70px;
+    position: relative;
+}
+
+.desc {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    width: 950px;
+    height: 500px;
+    position: absolute;
+    display : block;
+    top:50px;
+    background-color: white;
+    position: fixed;
+    margin-top: 50px;
+    z-index: 99999;
+
+
+}
+
+#off {
+    position:absolute;
+    right: 0;
+}
+
+.img_film{
+    width: 350px;
+    height: 350px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+}
+
+.info_film{
+    position: absolute;
+    display: block;
+    top: 50px;
+    margin-left: 400px;
+}
+
+h2 {
+    margin-bottom: 0px;
+}
+
+#sousTitre {
+    margin-top: -10px;
+}
+
+#fade { /*--Masque opaque noir de fond--*/
+    display: none; /*--masqué par défaut--*/
+    background: #000;
+    position: fixed; left: 0; top: 0;
+    width: 100%; height: 100%;
+    opacity: .80;
+    z-index: 9999;
+}
+
+*html #fade {
+position: absolute;
 }

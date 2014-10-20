@@ -10,3 +10,11 @@ function getAllFilms(){
     return $req;
 }
 
+function getFilm($id){
+
+    $bdd= connexion();
+    $req = $bdd->prepare('SELECT * FROM films WHERE id_film = ?');
+    $req->execute(array($id));
+
+    return $req;
+}
