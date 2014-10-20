@@ -11,10 +11,46 @@
 
     <body>
         <?php include('vue/includes/header.php'); ?>
-        <div class="container">
-        
+        <div class="full_wrapper">
         <h1>Films</h1>
 
+        <div class="film_container">
+
+        <?php
+        while($films= $reqFilms->fetch()){
+            $id_film = $films["id_film"];
+            $titre_film = $films["titre_film"];
+            $date_sortie = $films["date_sortie"];
+            $genre = $films["genre"];
+            $num_visa = $films["num_visa"];
+            $photo = $films["url_photo"];
+
+            
+            echo '<div class="pres">';
+            echo '<img src="files/films/'.$photo.'"/>';
+
+
+            echo '</div>';
+
+            echo '<div class="desc">';
+
+
+
+
+            echo '</div>';
+            
+
+
+        }
+
+
+        ?>
+
+
         </div>
+
+
+        </div>
+
     </body>
 </html>
