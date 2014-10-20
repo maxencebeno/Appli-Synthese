@@ -21,7 +21,7 @@ public class Photographie {
     protected String urlPhoto;
     protected String dateAjoutPhoto;
     
-    private static int dernierNumeroAttribue = 45;
+    private static int dernierNumeroAttribue = 0;
     
     // Constructeurs
     public Photographie(int numVIP, String urlPhoto, String dateAjoutPhoto) {

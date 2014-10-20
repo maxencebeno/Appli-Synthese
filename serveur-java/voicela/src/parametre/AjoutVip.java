@@ -450,7 +450,6 @@ public class AjoutVip extends javax.swing.JDialog {
                              * Use format method of SimpleDateFormat class to format the date.
                              */
                             String dateAjoutPhoto = sdf.format(date);
-
                             Photographie photo;
                             photo = new Photographie(vip.getId(), vip.getNom() + ".jpg", dateAjoutPhoto);
                             bdd.ajoutPhoto(photo, vip);
