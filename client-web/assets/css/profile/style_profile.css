@@ -72,7 +72,7 @@
     background-color: #188dc7;
 }
 
-#images_list{
+.list{
     width: 700px;
     margin-left: auto;
     margin-right: auto;
@@ -87,7 +87,7 @@
     margin-bottom: 35px;
 }
 
-#images_list h2{
+.bandeau_2 h2{
     font-size: 22px;
     font-weight: normal;
     text-align: left;
@@ -104,4 +104,22 @@
     font-weight: bold;
     padding-left: 5%;
     margin-bottom: 5px;
+}
+
+#switch{
+    width: 700px;
+    border: 2px solid white;
+    height: 40px;
+    color: white;
+    background: transparent;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 245px;
+}
+
+#switch:hover{
+    background-color: white;
+    color: #188dc7;
 }
