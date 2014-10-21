@@ -34,7 +34,7 @@
             echo'<div class="film_desc">';
 
             echo '<div class="pres" id="pres" >';
-            echo '<img class="img_film" id="img_container" src="files/films/'.$photo.'"/><br/>';
+            echo '<div class="img_film" id="img_container" style="background-image: url(files/films/'.$photo.')"/><br/>';
             echo '<span class="info_film">
                     <h2>'.$titre_film.'</h2><br/>
                     <p id="sousTitre">'.$date.'

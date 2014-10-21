@@ -25,7 +25,7 @@
             $num_visa = $films["num_visa"];
             $photo = $films["url_photo"];
 
-            echo'<div class="films_container">';
+            echo'<div class="films_container" id="film_'.$id_film.'">';
 
             echo '<div class="pres" id="pres" onClick="affichePres('.$id_film.');" >';
             echo '<div class="img_container" style="background-image:url(files/films/'.$photo.')"></div><br/>';
@@ -43,9 +43,7 @@
 
 
         ?>
-        <div class="desc" id="desc" style="display:none;">
-        </div>
-
+       <div class="desc" id="desc" style="display:none;">
         </div>
 
         </div>
