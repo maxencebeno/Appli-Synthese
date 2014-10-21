@@ -553,7 +553,7 @@ public class AccesBD {
     public String lireLesCouples(int numVip) throws Exception {
         // Affichage de tous les vip
         String nomVipMarie = null;
-        int numVip2 = 0;
+        int numVip2;
         PreparedStatement pstmt = null;
         PreparedStatement pstmt2 = null;
         PreparedStatement pstmt3 = null;
@@ -589,8 +589,7 @@ public class AccesBD {
                 String requete3 = "SELECT num_vip1 FROM mariage where num_vip2 = ? and divorce = 0";
                 pstmt3 = connection.prepareStatement(requete3);
                 pstmt3.setInt(1, numVip);
-                rs3 = pstmt.executeQuery();
-
+                rs3 = pstmt3.executeQuery();
                 if (rs3.next()) {
                     numVip2 = rs3.getInt(1);
 
@@ -604,6 +603,8 @@ public class AccesBD {
                     } else {
                         return "Célibataire";
                     }
+                } else {
+                    return "Célibataire";
                 }
             }
         } catch (Exception e) {
@@ -641,7 +642,6 @@ public class AccesBD {
                 e.printStackTrace();
             }
         }
-
         return nomVipMarie;
 
     }

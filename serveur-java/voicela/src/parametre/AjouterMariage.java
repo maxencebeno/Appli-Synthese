@@ -248,6 +248,7 @@ public class AjouterMariage extends javax.swing.JDialog {
                 } catch (SQLException ex) {
                     Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                dispose();
             }
         } else if(verifMariage == false && mariageSolo == false) {
             javax.swing.JOptionPane.showMessageDialog(

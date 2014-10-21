@@ -61,21 +61,19 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
             return donnees.get(row).getStatut();
         } else if (col == 10) {
             return donnees.get(row).getEnfants();
-        } else if (col == 11) {
+        } else {
             String nomVip2;
             nomVip2 = "Célibataire";
             int numVip = 0;
             numVip = donnees.get(row).getId();
-            
+
             try {
                 nomVip2 = modif.lireLesCouples(numVip);
             } catch (Exception ex) {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
             return nomVip2;
-        } else {
-            return 0;
-        }
+        } 
     }
 
     @Override
@@ -84,8 +82,9 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     }
 
     @Override
-    public Class getColumnClass(int c) {
-        return getValueAt(0, c).getClass();
+    public Class getColumnClass(int column) {
+        Object value = this.getValueAt(0, column);
+        return (value == null ? Object.class : value.getClass());
     }
 
     @Override
