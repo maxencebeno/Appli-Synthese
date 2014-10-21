@@ -297,11 +297,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Acteur"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="acteurActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="realisateur">
       <Properties>
         <Property name="text" type="java.lang.String" value="R&#xe9;alisateur "/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="realisateurActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="rien">
       <Properties>

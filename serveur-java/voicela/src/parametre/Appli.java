@@ -9,7 +9,6 @@ import metier.VIP;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Mariage;
-import metier.Maries;
 import vue.MonModele;
 
 /**

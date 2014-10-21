@@ -12,7 +12,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import metier.Mariage;
-import metier.Maries;
 import metier.Photographie;
 import metier.VIP;
 
@@ -589,37 +588,7 @@ public class AccesBD {
             }
 
         }
-        try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
-            String requete2 = "SELECT nom_vip FROM vip where num_vip = ?";
-            pstmt = connection.prepareStatement(requete2);
-            pstmt.setInt(1, numVip2);
-            rs = pstmt.executeQuery(); // Exécuter la requête
-
-            if (rs.next()) {
-                nomVipMarie = rs.getString(1);
-            } else {
-                return nomVipMarie = "Célibataire";
-            }
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            try {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-        }
+        
         return nomVipMarie;
     }
 

@@ -7,12 +7,10 @@ package parametre;
 
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Mariage;
-import metier.Maries;
 
 /**
  *
@@ -65,6 +63,8 @@ public class AjouterMariage extends javax.swing.JDialog {
         listvip2 = new javax.swing.JList();
         lieu = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        dateMariage = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("AJOUTER UN MARIAGE");
@@ -88,6 +88,8 @@ public class AjouterMariage extends javax.swing.JDialog {
 
         jLabel3.setText("Lieu du mariage : ");
 
+        jLabel4.setText("jLabel4");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,6 +97,7 @@ public class AjouterMariage extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(85, 85, 85)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -103,7 +106,8 @@ public class AjouterMariage extends javax.swing.JDialog {
                     .addComponent(jButton1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                    .addComponent(lieu))
+                    .addComponent(lieu)
+                    .addComponent(dateMariage))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,17 +117,21 @@ public class AjouterMariage extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addComponent(jLabel4)
+                    .addComponent(dateMariage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(40, 40, 40))
+                .addContainerGap())
         );
 
         pack();
@@ -146,7 +154,18 @@ public class AjouterMariage extends javax.swing.JDialog {
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
         }
-
+        
+        String dateDuMariage;
+        dateDuMariage = dateMariage.getText();
+        if (dateDuMariage == null) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Erreur : vous n'avez pas entré de date pour ce mariage",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+        }
+        
         vip1 = listvip1.getSelectedValue().toString();
         vip2 = listvip2.getSelectedValue().toString();
 
@@ -158,15 +177,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         nomVip2 = vipArray2[0];
         prenomVip2 = vipArray2[1];
 
-        Date date = new Date();
-        // Specify the desired date format
-        String DATE_FORMAT = "yyyy/MM/dd";
-        // Create object of SimpleDateFormat and pass the desired date format.
-        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-        /*
-         * Use format method of SimpleDateFormat class to format the date.
-         */
-        String dateMariage = sdf.format(date);
+        
         try {
             numVip1 = ajout.searchVip(nomVip1, prenomVip1);
         } catch (Exception ex) {
@@ -198,7 +209,7 @@ public class AjouterMariage extends javax.swing.JDialog {
                     + nomVip2 + " "
                     + prenomVip2 + ".\n"
                     + "Ils se sont mariés le : "
-                    + dateMariage
+                    + dateDuMariage
                     + " à "
                     + lieuMariage
                     + ".\nEtes vous sur de ceci?",
@@ -212,7 +223,7 @@ public class AjouterMariage extends javax.swing.JDialog {
                 mariage.setDivorce(false);
                 mariage.setMarie1(numVip1);
                 mariage.setMarie2(numVip2);
-                mariage.setDateMariage(dateMariage);
+                mariage.setDateMariage(dateDuMariage);
                 mariage.setLieuMariage(lieuMariage);
                 mariage.setDateDivorce(null);
                 
@@ -242,10 +253,12 @@ public class AjouterMariage extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField dateMariage;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField lieu;

@@ -17,7 +17,7 @@ import parametre.AccesBD;
  */
 public class MonModele extends javax.swing.table.AbstractTableModel {
 
-    private final String[] nomsColonnes = {"Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants", "Marié à"};
+    private final String[] nomsColonnes = {"Numéro", "Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants", "Marié à"};
     public java.util.ArrayList<VIP> donnees;
     public AccesBD modif = new AccesBD();
 
@@ -40,36 +40,43 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     @Override
     public Object getValueAt(int row, int col) {
         if (col == 0) {
-            return donnees.get(row).getNom();
+            return donnees.get(row).getId();
         } else if (col == 1) {
-            return donnees.get(row).getPrenomUsage();
+            return donnees.get(row).getNom();
         } else if (col == 2) {
-            return donnees.get(row).getNationalite();
+            return donnees.get(row).getPrenomUsage();
         } else if (col == 3) {
-            return donnees.get(row).getCivilité();
+            return donnees.get(row).getNationalite();
         } else if (col == 4) {
-            return donnees.get(row).getSexe();
+            return donnees.get(row).getCivilité();
         } else if (col == 5) {
-            return donnees.get(row).getDateNaissance();
+            return donnees.get(row).getSexe();
         } else if (col == 6) {
-            return donnees.get(row).getLieuNaissance();
+            return donnees.get(row).getDateNaissance();
         } else if (col == 7) {
-            return donnees.get(row).getAge();
+            return donnees.get(row).getLieuNaissance();
         } else if (col == 8) {
-            return donnees.get(row).getStatut();
+            return donnees.get(row).getAge();
         } else if (col == 9) {
+            return donnees.get(row).getStatut();
+        } else if (col == 10) {
             return donnees.get(row).getEnfants();
         } else {
             String nomVip2;
             nomVip2 = "Célibataire";
             int numVip = 0;
+            /*try {
+                numVip = modif.searchVip(donnees.get(row).getNom(), donnees.get(row).getPrenomUsage());
+            } catch (Exception ex) {
+                Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
+            }*/
             
             /*try {
                 nomVip2 = modif.lireLesCouples(numVip);
             } catch (Exception ex) {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }*/
-            return numVip;
+            return nomVip2;
         }
     }
 
@@ -94,13 +101,13 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     @Override
     // toutes les cellules sont modifiables
     public boolean isCellEditable(int row, int col) {
-        return ((col == 0 || col == 1 || col == 2 || col == 3 || col == 4 || col == 5 || col == 6 || col == 7 || col == 8 || col == 9) ? true : false);
+        return ((col == 1 || col == 2 || col == 3 || col == 4 || col == 5 || col == 6 || col == 7 || col == 8 || col == 9 || col == 10) ? true : false);
     }
 
     @Override
     // seules les cellules des colonnes 2(sport) et 4(vegetarien) sont modifiables
     public void setValueAt(Object value, int row, int col) {
-        if (col == 0) {
+        if (col == 1) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setNom((String) value);
@@ -110,7 +117,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 1) {
+        if (col == 2) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setPrenomUsage((String) value);
@@ -120,7 +127,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 2) {
+        if (col == 3) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setNationalite((String) value);
@@ -130,7 +137,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 3) {
+        if (col == 4) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setCivilité((String) value);
@@ -140,7 +147,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 4) {
+        if (col == 5) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setSexe((String) value);
@@ -150,7 +157,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 5) {
+        if (col == 6) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setDateNaissance((String) value);
@@ -160,7 +167,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 6) {
+        if (col == 7) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setLieuNaissance((String) value);
@@ -170,7 +177,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 7) {
+        if (col == 8) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setAge((int) value);
@@ -180,7 +187,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 8) {
+        if (col == 9) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setStatut((String) value);
@@ -190,7 +197,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
                 Logger.getLogger(MonModele.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (col == 9) {
+        if (col == 10) {
             String name = donnees.get(row).getNom();
             String surname = donnees.get(row).getPrenomUsage();
             donnees.get(row).setEnfants((int) value);

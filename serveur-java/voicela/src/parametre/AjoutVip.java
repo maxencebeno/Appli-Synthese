@@ -120,8 +120,18 @@ public class AjoutVip extends javax.swing.JDialog {
         civilite.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Mr", "Mme", "Mlle" }));
 
         acteur.setText("Acteur");
+        acteur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acteurActionPerformed(evt);
+            }
+        });
 
         realisateur.setText("Réalisateur ");
+        realisateur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                realisateurActionPerformed(evt);
+            }
+        });
 
         rien.setText("Aucun");
         rien.addActionListener(new java.awt.event.ActionListener() {
@@ -523,20 +533,26 @@ public class AjoutVip extends javax.swing.JDialog {
         }
 
         avancement++;
-        System.out.print(avancement);
 
     }//GEN-LAST:event_gestionDate
 
     private void rienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rienActionPerformed
         if (acteur.isSelected() || realisateur.isSelected()) {
             rien.setSelected(false);
-        } else {
-            if (rien.isSelected()) {
-                acteur.setSelected(false);
-                realisateur.setSelected(false);
-            }
-        }
+        } 
     }//GEN-LAST:event_rienActionPerformed
+
+    private void realisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realisateurActionPerformed
+        if(rien.isSelected()) {
+            realisateur.setSelected(false);
+        }
+    }//GEN-LAST:event_realisateurActionPerformed
+
+    private void acteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acteurActionPerformed
+        if(rien.isSelected()) {
+            acteur.setSelected(false);
+        }
+    }//GEN-LAST:event_acteurActionPerformed
 
     public static void copyFileUsingStream(File source, File dest) throws IOException {
         InputStream is = null;
