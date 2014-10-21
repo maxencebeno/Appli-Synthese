@@ -55,13 +55,6 @@ public class VIP {
     
     // Getters
     public int getId() {
-        AccesBD bdd;
-        bdd = new AccesBD();
-        try {
-            id = bdd.searchVip(this.getNom(), this.getPrenomUsage());
-        } catch (Exception ex) {
-            Logger.getLogger(VIP.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return id;
     }
 

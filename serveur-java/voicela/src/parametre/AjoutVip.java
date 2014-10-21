@@ -495,7 +495,11 @@ public class AjoutVip extends javax.swing.JDialog {
                 }
                 
                 photo = new Photographie(numVip, vip.getNom() + ".jpg", dateAjoutPhoto);
-                bdd.ajoutPhoto(photo, vip);
+                try {
+                    bdd.ajoutPhoto(photo, numVip);
+                } catch (Exception ex) {
+                    Logger.getLogger(AjoutVip.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
             }

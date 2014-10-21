@@ -88,7 +88,7 @@ public class AjouterMariage extends javax.swing.JDialog {
 
         jLabel3.setText("Lieu du mariage : ");
 
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("Date du mariage : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,8 +227,24 @@ public class AjouterMariage extends javax.swing.JDialog {
                 mariage.setLieuMariage(lieuMariage);
                 mariage.setDateDivorce(null);
                 
+                Mariage mariage2;
+                mariage2 = new Mariage();
+
+                mariage2.setDivorce(false);
+                mariage2.setMarie1(numVip2);
+                mariage2.setMarie2(numVip1);
+                mariage2.setDateMariage(dateDuMariage);
+                mariage2.setLieuMariage(lieuMariage);
+                mariage2.setDateDivorce(null);
+                
                 try {
                     ajout.insererUnMariage(mariage);
+                } catch (SQLException ex) {
+                    Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                try {
+                    ajout.insererUnMariage(mariage2);
                 } catch (SQLException ex) {
                     Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
                 }

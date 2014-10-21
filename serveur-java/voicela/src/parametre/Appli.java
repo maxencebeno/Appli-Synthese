@@ -8,6 +8,7 @@ package parametre;
 import metier.VIP;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
 import metier.Mariage;
 import vue.MonModele;
 
@@ -20,7 +21,7 @@ public final class Appli extends javax.swing.JFrame {
     public static java.sql.Connection conn;
     public static java.util.ArrayList<VIP> vVIP;
     public static java.util.ArrayList<Mariage> vMariage;
-    
+
     /**
      * Creates new form Appli
      *
@@ -33,9 +34,15 @@ public final class Appli extends javax.swing.JFrame {
 
         // Les 3 prochaines lignes permettent de mettre l'application en plein écran
         this.pack();
-        setDefaultLookAndFeelDecorated(true);
-        this.setExtendedState(MAXIMIZED_BOTH);
+         setDefaultLookAndFeelDecorated(true);
+         this.setExtendedState(MAXIMIZED_BOTH);
         monModele = (MonModele) table.getModel();
+        javax.swing.table.TableColumn column;
+        for (int i = 0; i < 11; i++) {
+            column = table.getColumnModel().getColumn(i);
+            column.setPreferredWidth(20);
+        }
+
         AccesBD vip = new AccesBD();
         vVIP = vip.lireLesVIP();
         setLocation(250, 150);
@@ -177,13 +184,12 @@ public final class Appli extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(846, Short.MAX_VALUE)
                 .addComponent(actualiser)
                 .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,7 +245,6 @@ public final class Appli extends javax.swing.JFrame {
         BddVip.setVisible(true);
     }//GEN-LAST:event_ajouterPhoto
 
-    
     // Connexion
     //public static java.sql.Connection conn;
 
@@ -259,5 +264,5 @@ public final class Appli extends javax.swing.JFrame {
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
     private final MonModele monModele;
-    
+
 }

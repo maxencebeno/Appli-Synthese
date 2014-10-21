@@ -289,9 +289,9 @@ public class AccesBD {
                 rs = pstmt.executeQuery(); // Exécuter la requête
 
                 if (rs.next()) {
-
                     numVip = rs.getInt(1); // nom
-
+                } else {
+                    return 0;
                 }
             }
 
@@ -353,6 +353,7 @@ public class AccesBD {
                 VIP v;
                 v = new VIP();
                 for (int i = 1; i <= columns; i++) {
+                    int numVip = rs.getInt(1);
                     String nom = rs.getString(2); // nom
                     String prenomUsage = rs.getString(3); // prenom usage
                     String prenom = rs.getString(4); // prenom
@@ -365,6 +366,7 @@ public class AccesBD {
                     int nbEnfants = rs.getInt(11);   // nombre d'enfants
                     String nationalite = rs.getString(5); // nationalité
 
+                    v.setId(numVip);
                     v.setNom(nom);
                     v.setPrenomUsage(prenomUsage);
                     v.setPrenoms(prenom);
@@ -429,15 +431,14 @@ public class AccesBD {
         }
     } // insererVip
 
-    public void ajoutPhoto(Photographie photo, VIP vip) throws SQLException {
+    public void ajoutPhoto(Photographie photo, int numVip) throws SQLException, Exception {
         Connection connection = null;
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-
             String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
             try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
-                pstmt.setInt(1, vip.getId());
+                pstmt.setInt(1, numVip);
                 pstmt.setString(2, photo.getUrlPhoto());
                 pstmt.setString(3, photo.getDateAjoutPhoto());
 
@@ -554,21 +555,56 @@ public class AccesBD {
         String nomVipMarie = null;
         int numVip2 = 0;
         PreparedStatement pstmt = null;
+        PreparedStatement pstmt2 = null;
+        PreparedStatement pstmt3 = null;
+        PreparedStatement pstmt4 = null;
         Connection connection = null;
         ResultSet rs = null;
+        ResultSet rs2 = null;
+        ResultSet rs3 = null;
+        ResultSet rs4 = null;
 
         try {
             Connexion cnx = new Connexion();
             connection = cnx.Connecter();
-            String requete = "SELECT num_vip2 FROM mariage where num_vip1 = ?";
+            String requete = "SELECT num_vip2 FROM mariage where num_vip1 = ? and divorce = 0";
             pstmt = connection.prepareStatement(requete);
             pstmt.setInt(1, numVip);
             rs = pstmt.executeQuery(); // Exécuter la requête
 
             if (rs.next()) {
                 numVip2 = rs.getInt(1);
+
+                String requete2 = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
+                pstmt2 = connection.prepareStatement(requete2);
+                pstmt2.setInt(1, numVip2);
+                rs2 = pstmt2.executeQuery(); // Exécuter la requête
+
+                if (rs2.next()) {
+                    nomVipMarie = rs2.getString(1) + " " + rs2.getString(2);
+                } else {
+                    return "Célibataire";
+                }
             } else {
-                nomVipMarie = "Célibataire";
+                String requete3 = "SELECT num_vip1 FROM mariage where num_vip2 = ? and divorce = 0";
+                pstmt3 = connection.prepareStatement(requete3);
+                pstmt3.setInt(1, numVip);
+                rs3 = pstmt.executeQuery();
+
+                if (rs3.next()) {
+                    numVip2 = rs3.getInt(1);
+
+                    String requete4 = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
+                    pstmt4 = connection.prepareStatement(requete4);
+                    pstmt4.setInt(1, numVip2);
+                    rs4 = pstmt4.executeQuery(); // Exécuter la requête
+
+                    if (rs4.next()) {
+                        nomVipMarie = rs4.getString(1) + " " + rs4.getString(2);
+                    } else {
+                        return "Célibataire";
+                    }
+                }
             }
         } catch (Exception e) {
             throw e;
@@ -580,16 +616,34 @@ public class AccesBD {
                 if (pstmt != null) {
                     pstmt.close();
                 }
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (pstmt2 != null) {
+                    pstmt2.close();
+                }
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (pstmt3 != null) {
+                    pstmt3.close();
+                }
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (pstmt4 != null) {
+                    pstmt4.close();
+                }
                 if (connection != null) {
                     connection.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
-        
+
         return nomVipMarie;
+
     }
 
 }
