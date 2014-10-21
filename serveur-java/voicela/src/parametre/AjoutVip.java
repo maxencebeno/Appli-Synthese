@@ -535,9 +535,6 @@ public class AjoutVip extends javax.swing.JDialog {
         } else {
             evt.consume();
         }
-
-        avancement++;
-
     }//GEN-LAST:event_gestionDate
 
     private void rienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rienActionPerformed
