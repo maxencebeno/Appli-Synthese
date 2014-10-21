@@ -123,3 +123,40 @@
     background-color: white;
     color: #188dc7;
 }
+
+.film_box{
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    position: relative;
+    margin-bottom: 25px;
+    height: 180px;
+}
+
+.cover_film{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 130px;
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+
+.infos_films{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 500px;
+    height: 100%;
+    padding: 20px;
+    padding-top: 0!important;
+    text-align: left;
+    font-size: 15px;
+}
+
+.see_film{
+    text-align: right;
+}

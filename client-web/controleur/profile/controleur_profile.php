@@ -27,9 +27,6 @@ if(isset($_GET['id']) AND $_GET['id'] != ""){
     // On vérifie si le VIP est marié. Si oui, on retourne son nom sinon on retourne "none"
     $vip_marie = getMariageVIP($num_vip);
     
-    // On envoie aussi à la vue tous les films liés à cet acteur
-    $films_list_vip = getFilmOfVIP($num_vip);
-    
     // Si pas de résultat, on redirige vers 404 error
     if($resultat_vide == true){
         header('Location: search-home.php');

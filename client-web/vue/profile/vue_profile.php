@@ -82,9 +82,20 @@
                 <div id="films_list" class="list" style="display: none">
                     <h2>Filmographie</h2>
                     <?php
-                    while($donnees2 = $films_list_vip->fetch()){
-                        echo $donnees2['titre_film'];
-                    }
+                        $films_list_vip = getFilmOfVIP($num_vip);
+                        while($donnees2 = $films_list_vip->fetch()){
+                        ?>
+                        <div class="film_box">
+                            <div class="cover_film" style="background-image: url(files/films/<?php echo $donnees2['url_photo']; ?>)"></div>
+                            <div class="infos_films">
+                                <p><?php echo $donnees2['titre_film']; ?></p>
+                                <p><?php echo $donnees2['date_sortie']; ?></p>
+                                <p><?php echo $donnees2['genre']; ?></p>
+                                <p class="see_film"><a href="film_desc.php?id=<?php echo $donnees2['id_film']; ?>">Voir ce film</a></p>
+                            </div>
+                        </div>
+                        <?php
+                        }
                     ?>
                 </div>
             </div>
