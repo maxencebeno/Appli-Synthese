@@ -40,10 +40,36 @@
                     <p id="sousTitre">'.$date.'
                      - '.$genre.'
                      - Visa D\'exploitation : '.$num_visa.' 
-                    </p>
-                 </span>';
+                    </p>';
+                 
 
+            echo '<h3>Réalisateur</h3>';
+            $reqRea = getRealisateur($id_film);
+            while($reali = $reqRea->fetch()){
+                $reqInfoRea= getInfoVip($reali['num_vip']);
+                if($vip=$reqInfoRea->fetch()){
+                    echo $vip['nom_vip']. ' '. $vip['prenom_usuel_vip']; 
+                }
+            }
+            if($reali == null) {
+                echo 'Non renseigné';
+            }
 
+            echo '<h3>Acteurs</h3>';
+            $reqAct = getActeurs($id_film);//récupérer acteur du film couranr
+            $acteur = $reqAct->fetchAll();
+            if (count($acteur) == 0) {//si pas d'acteur
+                echo 'Non renseigné';
+            } else {
+                foreach ($acteur as $ligne) {//sinon
+                    $reqInfoAct= getInfoVip($ligne['num_vip']);//on récupère les nfo du VIP acteur
+                    if($vip=$reqInfoAct->fetch()){//si on a les infos
+                    echo $vip['nom_vip']. ' '. $vip['prenom_usuel_vip'].'<br/>'; //echo les infos 
+                    }
+                }
+            }
+
+            echo '</span>';
             echo '</div>';
 
 
