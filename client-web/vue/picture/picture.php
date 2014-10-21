@@ -19,12 +19,11 @@
 
 	<div class="full_wrapper">
             <div class="wrapper">
-		<h1>Photos récentes ajoutés</h1>
-		<a class="random" href="./picture.php?r=1"><img id="imgRand" src="assets/images/picture/random.png"><span>Random</span></a>
+		<h1>Photos récemment ajoutées</h1>
+		<a class="random" href="./picture.php?r=1"><img id="imgRand" src="assets/images/picture/random.png" alt /><span>Random</span></a>
 		<div class="files-list-loading-overlay" style="display: none"></div>
 		<div id="photos">
 		<?php
-		
 		if(isset($_GET["r"]) && ($_GET["r"] == 1)) {//on est en random
 			$nbPhotos= countPhotos();
 			$arrayPhotos[]=0;

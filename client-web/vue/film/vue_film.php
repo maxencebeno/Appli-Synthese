@@ -44,14 +44,9 @@
 
         ?>
         <div class="desc" id="desc" style="display:none;">
-
-
-
         </div>
 
-
         </div>
-
 
         </div>
         <script src="assets/js/film/film.js"></script>

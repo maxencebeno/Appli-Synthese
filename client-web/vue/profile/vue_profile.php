@@ -18,7 +18,19 @@
                     
                     <div id="bio">
                         <h3><?php echo $prenom_vip; ?> <?php echo $nom_vip; ?></h3>
-                        <p><?php echo $statut_vip; ?>, <?php echo $nationalité_vip; ?></p>
+                        <p><?php 
+                                if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Femme'){
+                                    echo 'Actrice';
+                                }else{
+                                    echo $donnees['statut_vip'];
+                                }
+                                
+                                if($donnees['statut_vip'] == 'Réalisateur' && $donnees['sexe_vip'] == 'Femme'){
+                                    echo 'Réalisatrice';
+                                }else{
+                                    echo $donnees['statut_vip'];
+                                }
+                                ?>, <?php echo $nationalité_vip; ?></p>
                         <p><?php if($sexe_vip == 'Femme'){echo 'Née';}else{echo 'Né';}?> le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
                         
                         <?php 
