@@ -91,7 +91,7 @@
                                 <p><?php echo $donnees2['titre_film']; ?></p>
                                 <p><?php echo $donnees2['date_sortie']; ?></p>
                                 <p><?php echo $donnees2['genre']; ?></p>
-                                <p class="see_film"><a href="film_desc.php?id=<?php echo $donnees2['id_film']; ?>">Voir ce film</a></p>
+                               <?php echo '<p class="see_film"><div id="see_film" onClick="affichePres('.$donnees2['id_film'].');">Voir ce film</div></p> ';?>
                             </div>
                         </div>
                         <?php
@@ -99,6 +99,9 @@
                     ?>
                 </div>
             </div>
+            <div class="desc" id="desc" style="display:none;">
+            </div>
+
         </div>
         <script src="assets/js/core.js"></script>
         <script src="assets/js/profile/switch.js"></script>

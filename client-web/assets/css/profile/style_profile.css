@@ -160,3 +160,36 @@
 .see_film{
     text-align: right;
 }
+
+#see_film{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+/*---------------------- CSS boite film */
+.desc {
+    position: fixed;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    width: 950px;
+    height: 500px;
+    display : block;
+    top: 50px;
+    left:20%;
+    background-color: white;
+    margin-top: 50px;
+    z-index: 99999;
+}
+
+#fade { /*--Masque opaque noir de fond--*/
+    display: none; /*--masqué par défaut--*/
+    background: #000;
+    position: fixed; left: 0; top: 0;
+    width: 100%; height: 100%;
+    opacity: .80;
+    z-index: 9999;
+}
+
+*html #fade {
+position: absolute;
+}

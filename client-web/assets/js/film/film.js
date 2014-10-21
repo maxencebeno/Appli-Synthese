@@ -13,8 +13,8 @@ function affichePres(id){
 	    'overflow': 'hidden',
 	    'height': '100%'
 		});
-		$('html, body').animate({
-        scrollTop: $('#film_'+id).offset().top
+	$('html, body').animate({
+    scrollTop: $('#film_'+id).offset().top
     }, 2000);
 }
 

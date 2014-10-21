@@ -64,7 +64,7 @@
                 foreach ($acteur as $ligne) {//sinon
                     $reqInfoAct= getInfoVip($ligne['num_vip']);//on récupère les nfo du VIP acteur
                     if($vip=$reqInfoAct->fetch()){//si on a les infos
-                    echo $vip['nom_vip']. ' '. $vip['prenom_usuel_vip'].'<br/>'; //echo les infos 
+                    echo '<a href="profile.php?id='.$vip["num_vip"].'">'.$vip["nom_vip"]. ' '. $vip["prenom_usuel_vip"].'</a><br/>'; //echo les infos 
                     }
                 }
             }
