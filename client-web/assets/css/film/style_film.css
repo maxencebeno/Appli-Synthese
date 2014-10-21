@@ -3,33 +3,33 @@
 }
 
 body {
-    overflow-X:hidden;
+    overflow-x:hidden;
 }
 
 .img_container{
     display: inline-block;
     width: 200px;
-    height: 200px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    height: 300px;
     box-sizing: border-box;
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
+    background-size: cover;
+    background-position: center top;
 }
 
 .films_container{
-    width:200px;
     display: inline-block;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    width: 200px;
+    height: 400px;
     margin-right: 50px;
     margin-bottom: 50px;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    cursor: pointer;
 }
 
 .film_wrapper{
     width: 1000px;
-     margin: auto;
+    margin: auto;
     margin-bottom: 70px;
     position: relative;
 }
@@ -45,8 +45,6 @@ body {
     position: fixed;
     margin-top: 50px;
     z-index: 99999;
-
-
 }
 
 #off {
@@ -63,7 +61,7 @@ body {
     border: 1px solid rgba(0, 0, 0, 0.12);
     box-sizing: border-box;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center center;
 }
 
@@ -93,4 +91,20 @@ h2 {
 
 *html #fade {
 position: absolute;
+}
+
+.info{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #128fdc;
+    height: 80px;
+}
+
+.info:hover{
+    text-decoration: underline;
 }

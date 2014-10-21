@@ -13,10 +13,8 @@
     <body class="body">
         <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
-        <h1>Films</h1>
-
         <div class="film_wrapper">
-
+        <h1>Films</h1>
         <?php
         while($films= $reqFilms->fetch()){
             $id_film = $films["id_film"];
@@ -30,17 +28,13 @@
             echo'<div class="films_container">';
 
             echo '<div class="pres" id="pres" onClick="affichePres('.$id_film.');" >';
-            echo '<img class="img_container" id="img_container" src="files/films/'.$photo.'"/><br/>';
-            echo '<p class="info">
+            echo '<div class="img_container" style="background-image:url(files/films/'.$photo.')"></div><br/>';
+            echo '<div class="info">
                     '.$titre_film.'<br/>
                     '.$date.'
                      - '.$genre.'
-                 </p>';
-
-
+                 </div>';
             echo '</div>';
-
-
             echo '</div>';
             
 
