@@ -14,7 +14,7 @@
         <?php include('vue/includes/header.php'); ?>
         <div class="full_wrapper">
         <div class="film_wrapper">
-        <h1>Films</h1>
+        <h1>Tous nos films</h1>
         <?php
         while($films= $reqFilms->fetch()){
             $id_film = $films["id_film"];

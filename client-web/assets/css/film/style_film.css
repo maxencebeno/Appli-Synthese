@@ -108,3 +108,11 @@ position: absolute;
 .info:hover{
     text-decoration: underline;
 }
+
+.film_wrapper h1{
+    color: #128fdc;
+    font-size: 35px;
+    font-weight: normal;
+    padding-top: 20px;
+    margin-bottom: 20px!important;
+}
