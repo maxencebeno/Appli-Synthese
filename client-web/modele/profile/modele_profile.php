@@ -56,3 +56,12 @@ function getAllimages($id_vip){
     // On retourne les images.
     return $req;
 }
+
+// Fonction qui retourne tous les films associés à un VIP.
+function getFilmOfVIP($id_vip){
+    $bdd= connexion();
+    $req = $bdd->prepare('SELECT * FROM films JOIN casting ON casting.id_film = film.id_film WHERE casting.num_vip = ?');
+    $req->execute(array($id_vip));
+
+    return $req;
+}

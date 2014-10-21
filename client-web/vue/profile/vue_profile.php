@@ -81,6 +81,11 @@
                 </div>
                 <div id="films_list" class="list" style="display: none">
                     <h2>Filmographie</h2>
+                    <?php
+                    while($donnees2 = $films_list_vip->fetch()){
+                        echo $donnees2['titre_film'];
+                    }
+                    ?>
                 </div>
             </div>
         </div>
