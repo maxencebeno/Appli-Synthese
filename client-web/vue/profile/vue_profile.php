@@ -21,16 +21,14 @@
                         <p><?php 
                                 if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Femme'){
                                     echo 'Actrice';
-                                }else{
+                                }else if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Homme'){
                                     echo $donnees['statut_vip'];
                                 }
                                 
-                                if($donnees['statut_vip'] == 'Réalisateur' && $donnees['sexe_vip'] == 'Femme'){
-                                    echo 'Réalisatrice';
-                                }else{
+                                else{
                                     echo $donnees['statut_vip'];
                                 }
-                                ?>, <?php echo $nationalité_vip; ?></p>
+                                ?>, <?php echo $nationalité_vip.'.'; ?></p>
                         <p><?php if($sexe_vip == 'Femme'){echo 'Née';}else{echo 'Né';}?> le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
                         
                         <?php 
@@ -40,19 +38,23 @@
                             }else{
                                 echo '<p>'.$nb_enfants_vip.' enfants</p>';
                             }
+                        }else{
+                            echo '<p>Pas d\'enfants connus.</p>';
                         }
                         ?>
                         
                         <?php
-                        if($vip_marie != 'none'){
-                            if($sexe_vip == 'Femme'){
-                                $mot_marie = 'mariée';
-                            }else{
-                                $mot_marie = 'marié';
-                            }
-                            echo '<p>Actuellement '.$mot_marie.' avec '.$vip_marie.'.</p>'; 
+                        if($sexe_vip == 'Femme'){
+                            $mot_marie = 'mariée';
                         }else{
-                            echo '<p>Pas encore marié.</p>';
+                             $mot_marie = 'marié';
+                        }
+                        
+                        if($vip_marie != 'none'){
+                            echo '<p>Actuellement '.$mot_marie.' avec '.$vip_marie.'.</p>';
+                        }
+                        else{
+                            echo '<p>Pas encore '.$mot_marie.'.</p>';
                         }
                         ?>
                     </div>
