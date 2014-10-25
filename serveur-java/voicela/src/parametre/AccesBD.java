@@ -327,9 +327,9 @@ public class AccesBD {
 
             String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
             try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
-                pstmt.setInt(2, photo.getNumVIP());
-                pstmt.setString(3, photo.getUrlPhoto());
-                pstmt.setString(4, photo.getDateAjoutPhoto());
+                pstmt.setInt(1, photo.getNumVIP());
+                pstmt.setString(2, photo.getUrlPhoto());
+                pstmt.setString(3, photo.getDateAjoutPhoto());
 
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
@@ -515,6 +515,40 @@ public class AccesBD {
 
         }
         return bonAMarier;
+    }
+    
+    public String RecupDateDuMariage(int numVip, int numVip2) throws Exception {
+        // Affichage de tous les vip
+        ResultSet rs = null;
+        String dateDuMariage = null;
+
+        try {
+            String requete = "SELECT date_mariage FROM mariage WHERE (num_vip1 = ? and num_vip2 = ?) or (num_vip2 = ? and num_vip1 = ?)";
+            try (PreparedStatement pstmt = connect.prepareStatement(requete);) {
+                pstmt.setInt(1, numVip);
+                pstmt.setInt(2, numVip2);
+                pstmt.setInt(3, numVip2);
+                pstmt.setInt(4, numVip);
+                rs = pstmt.executeQuery(); // Exécuter la requête
+
+                if (rs.next()) {
+                    dateDuMariage = rs.getString(1);
+                }
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        return dateDuMariage;
     }
 
     public boolean searchDejaMarie(int vip) throws Exception {
