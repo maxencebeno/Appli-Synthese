@@ -62,8 +62,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
         } else if (col == 10) {
             return donnees.get(row).getEnfants();
         } else {
-            String nomVip2;
-            nomVip2 = "Célibataire";
+            String nomVip2 = null;
             int numVip = 0;
             numVip = donnees.get(row).getId();
 
