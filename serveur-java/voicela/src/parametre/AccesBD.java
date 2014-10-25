@@ -599,9 +599,6 @@ public class AccesBD {
                 if (pstmt4 != null) {
                     pstmt4.close();
                 }
-                if (connect != null) {
-                    connect.close();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

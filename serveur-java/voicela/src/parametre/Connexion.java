@@ -17,7 +17,7 @@ public static java.sql.Connection conn;
         // connexion
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         conn = java.sql.DriverManager.getConnection(url+"?user="+login+"&password="+pass);
-        
+        System.out.print("Connexion réussie\n");
         }
 
         catch(Exception e){
