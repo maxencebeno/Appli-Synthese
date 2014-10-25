@@ -65,7 +65,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
             String nomVip2 = null;
             int numVip = 0;
             numVip = donnees.get(row).getId();
-
+            
             try {
                 nomVip2 = modif.lireLesCouples(numVip);
             } catch (Exception ex) {

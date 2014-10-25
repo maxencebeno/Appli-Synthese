@@ -17,7 +17,6 @@ import vue.MonModele;
  */
 public final class Appli extends javax.swing.JFrame {
 
-    public static java.sql.Connection conn;
     public static java.util.ArrayList<VIP> vVIP;
     public static java.util.ArrayList<Mariage> vMariage;
 
@@ -33,8 +32,8 @@ public final class Appli extends javax.swing.JFrame {
 
         // Les 3 prochaines lignes permettent de mettre l'application en plein écran
         this.pack();
-         setDefaultLookAndFeelDecorated(true);
-         this.setExtendedState(MAXIMIZED_BOTH);
+        setDefaultLookAndFeelDecorated(true);
+        this.setExtendedState(MAXIMIZED_BOTH);
         monModele = (MonModele) table.getModel();
 
         AccesBD vip = new AccesBD();
@@ -50,9 +49,9 @@ public final class Appli extends javax.swing.JFrame {
             Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // fixer l'éditeur pour la colonne numéro 3 (civilite)
+        // fixer l'éditeur pour la colonne numéro 4 (civilite)
         javax.swing.table.TableColumn colcivilite
-                = table.getColumnModel().getColumn(3);
+                = table.getColumnModel().getColumn(4);
         colcivilite.setCellEditor(new javax.swing.DefaultCellEditor(comboBoxCivilite));
 
         // associer une ComboBox  à la colonne SEXE
@@ -64,9 +63,9 @@ public final class Appli extends javax.swing.JFrame {
             Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // fixer l'éditeur pour la colonne numéro 4 (sexe)
+        // fixer l'éditeur pour la colonne numéro 5 (sexe)
         javax.swing.table.TableColumn colsexe
-                = table.getColumnModel().getColumn(4);
+                = table.getColumnModel().getColumn(5);
         colsexe.setCellEditor(new javax.swing.DefaultCellEditor(comboBoxSexe));
 
         // associer une ComboBox  à la colonne statut
@@ -78,9 +77,9 @@ public final class Appli extends javax.swing.JFrame {
             Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        // fixer l'éditeur pour la colonne numéro 3 (statut)
+        // fixer l'éditeur pour la colonne numéro 9 (statut)
         javax.swing.table.TableColumn colstatut
-                = table.getColumnModel().getColumn(8);
+                = table.getColumnModel().getColumn(9);
         colstatut.setCellEditor(new javax.swing.DefaultCellEditor(comboBoxStatut));
     }
 

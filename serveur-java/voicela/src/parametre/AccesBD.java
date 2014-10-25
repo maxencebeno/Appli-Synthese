@@ -590,13 +590,7 @@ public class AccesBD {
         String nomVipMarie = null;
         int numVip2;
         PreparedStatement pstmt = null;
-        PreparedStatement pstmt2 = null;
-        PreparedStatement pstmt3 = null;
-        PreparedStatement pstmt4 = null;
         ResultSet rs = null;
-        ResultSet rs2 = null;
-        ResultSet rs3 = null;
-        ResultSet rs4 = null;
 
         try {
             String requete = "SELECT num_vip2 FROM mariage where num_vip1 = ? and divorce = 0";
@@ -607,40 +601,19 @@ public class AccesBD {
             if (rs.next()) {
                 numVip2 = rs.getInt(1);
 
-                String requete2 = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
-                pstmt2 = connect.prepareStatement(requete2);
-                pstmt2.setInt(1, numVip2);
-                rs2 = pstmt2.executeQuery(); // Exécuter la requête
+                requete = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
+                pstmt = connect.prepareStatement(requete);
+                pstmt.setInt(1, numVip2);
+                rs = pstmt.executeQuery(); // Exécuter la requête
 
-                if (rs2.next()) {
-                    nomVipMarie = rs2.getString(1) + " " + rs2.getString(2);
+                if (rs.next()) {
+                    nomVipMarie = rs.getString(1) + " " + rs.getString(2);
                 } else {
                     nomVipMarie = "Célibataire";
                     return nomVipMarie;
                 }
             } else {
-                String requete3 = "SELECT num_vip1 FROM mariage where num_vip2 = ? and divorce = 0";
-                pstmt3 = connect.prepareStatement(requete3);
-                pstmt3.setInt(1, numVip);
-                rs3 = pstmt3.executeQuery();
-                if (rs3.next()) {
-                    numVip2 = rs3.getInt(1);
-
-                    String requete4 = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
-                    pstmt4 = connect.prepareStatement(requete4);
-                    pstmt4.setInt(1, numVip2);
-                    rs4 = pstmt4.executeQuery(); // Exécuter la requête
-
-                    if (rs4.next()) {
-                        nomVipMarie = rs4.getString(1) + " " + rs4.getString(2);
-                    } else {
-                        nomVipMarie = "Célibataire";
-                        return nomVipMarie;
-                    }
-                } else {
-                    nomVipMarie = "Célibataire";
-                    return nomVipMarie;
-                }
+                nomVipMarie = "Célibataire";
             }
         } catch (Exception e) {
             throw e;
@@ -651,24 +624,6 @@ public class AccesBD {
                 }
                 if (pstmt != null) {
                     pstmt.close();
-                }
-                if (rs2 != null) {
-                    rs2.close();
-                }
-                if (pstmt2 != null) {
-                    pstmt2.close();
-                }
-                if (rs3 != null) {
-                    rs3.close();
-                }
-                if (pstmt3 != null) {
-                    pstmt3.close();
-                }
-                if (rs4 != null) {
-                    rs4.close();
-                }
-                if (pstmt4 != null) {
-                    pstmt4.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
