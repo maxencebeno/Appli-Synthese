@@ -467,12 +467,13 @@ public class AccesBD {
     public void insererUnDivorce(Divorce divorce) throws SQLException {
         
         try {
-            String requete = "update table mariage set divorce = ?, date_divorce = ? where num_vip1 = ?";
+            String requete = "update mariage set divorce = ?, date_divorce = ? where num_vip1 = ? and num_vip2 = ?";
             
             try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
-                pstmt.setInt(1, 1);
+                pstmt.setBoolean(1, true);
                 pstmt.setString(2, divorce.getDateDivorce());
                 pstmt.setInt(3, divorce.getDivorce1());
+                pstmt.setInt(4, divorce.getDivorce2());
 
                 // exécution de l'ordre SQL
                 pstmt.executeUpdate();
