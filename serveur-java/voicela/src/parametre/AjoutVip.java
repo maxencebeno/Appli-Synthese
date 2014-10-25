@@ -156,6 +156,8 @@ public class AjoutVip extends javax.swing.JDialog {
             }
         });
 
+        nbEnfantsAffiche.setText("0");
+
         jLabel11.setText("Au format AAAA-MM-JJ");
 
         jLabel13.setText("Age de votre VIP : ");
@@ -302,8 +304,9 @@ public class AjoutVip extends javax.swing.JDialog {
         bdd = new AccesBD();
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP, marieA = "Célibataire";
         String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
-        int ageVIP = 0, nbEnfantsVIP;
+        int ageVIP = 0, nbEnfantsVIP = 0;
         statutVIP = "";
+        boolean ajoutVip = false;
 
         dateNaissanceVIP = dateNaissance.getText();
         nationaliteVIP = nationalite.getText();
@@ -330,6 +333,7 @@ public class AjoutVip extends javax.swing.JDialog {
                     "Erreur",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
+            ajoutVip = false;
         }
         if (sexeHomme.isSelected()) {
             sexeVIP = sexeHomme.getText();
@@ -338,21 +342,23 @@ public class AjoutVip extends javax.swing.JDialog {
         }
 
         // Début vérification des champs bien remplis
-        if (dateNaissanceVIP == null && nationaliteVIP == null && prenoms == null && prenomsUsage == null && nomVIP == null && lieuNaissanceVIP == null) {
+        if (dateNaissanceVIP.compareTo("") == 0 && nationaliteVIP.compareTo("") == 0 && prenoms.compareTo("") == 0 && prenomsUsage.compareTo("") == 0 && nomVIP.compareTo("") == 0 && lieuNaissanceVIP.compareTo("") == 0) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
+                    "Vous n'avez rempli aucun champs",
                     "Erreur",
-                    "Vous n'avez pas rempli tous les champs",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
+            ajoutVip = false;
         } else {
-            if (dateNaissanceVIP == null) {
+            if (dateNaissanceVIP.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Vous n'avez pas rentré de date de naissance",
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutVip = false;
             } else {
                 String aaaa = dateNaissanceVIP.substring(0, 4);
                 int anneeNaissanceVIP = Integer.parseInt(aaaa);
@@ -363,151 +369,159 @@ public class AjoutVip extends javax.swing.JDialog {
                 jLabel12.setText(aaaa);
             }
 
-            if (nationaliteVIP.isEmpty()) {
+            if (nationaliteVIP.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Vous n'avez pas rentré de nationalite",
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutVip = false;
             }
 
-            if (prenoms.isEmpty()) {
+            if (prenoms.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Vous n'avez pas rentré de prénom",
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutVip = false;
             }
 
-            if (prenomsUsage.isEmpty()) {
+            if (prenomsUsage.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Vous n'avez pas rentré de prénom d'usage",
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutVip = false;
             }
 
-            if (nomVIP.isEmpty()) {
+            if (nomVIP.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Vous n'avez pas rentré de nom",
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutVip = false;
             }
 
-            if (lieuNaissanceVIP.isEmpty()) {
+            if (lieuNaissanceVIP.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
                         "Vous n'avez pas rentré de lieu de naissance",
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutVip = false;
             }
+            ajoutVip = true;
             // Fin vérification des champs bien remplis
         }
 
-        int result = javax.swing.JOptionPane.showConfirmDialog(
-                this,
-                "Voici le vip que vous êtes sur le point d'insérer : \n"
-                + "Nom : " + nomVIP + "\n"
-                + "Prénoms : " + prenoms + "\n"
-                + "Prénom usage : " + prenomsUsage + "\n"
-                + "Sexe : " + sexeVIP + "\n"
-                + "Civilité : " + civiliteVIP + "\n"
-                + "Age : " + ageVIP + "\n"
-                + "Statut : " + statutVIP + "\n"
-                + "Lieu de naissance : " + lieuNaissanceVIP + "\n"
-                + "Date de naissance : " + dateNaissanceVIP + "\n"
-                + "Nationalité : " + nationaliteVIP + "\n"
-                + "Nombre d'enfants : " + nbEnfantsVIP + "\n",
-                "Confirmation VIP",
-                javax.swing.JOptionPane.OK_CANCEL_OPTION
-        );
-        if (result == javax.swing.JOptionPane.OK_OPTION) {
-            VIP vip;
-            vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP, marieA);
+        if (ajoutVip == true) {
+            int result = javax.swing.JOptionPane.showConfirmDialog(
+                    this,
+                    "Voici le vip que vous êtes sur le point d'insérer : \n"
+                    + "Nom : " + nomVIP + "\n"
+                    + "Prénoms : " + prenoms + "\n"
+                    + "Prénom usage : " + prenomsUsage + "\n"
+                    + "Sexe : " + sexeVIP + "\n"
+                    + "Civilité : " + civiliteVIP + "\n"
+                    + "Age : " + ageVIP + "\n"
+                    + "Statut : " + statutVIP + "\n"
+                    + "Lieu de naissance : " + lieuNaissanceVIP + "\n"
+                    + "Date de naissance : " + dateNaissanceVIP + "\n"
+                    + "Nationalité : " + nationaliteVIP + "\n"
+                    + "Nombre d'enfants : " + nbEnfantsVIP + "\n",
+                    "Confirmation VIP",
+                    javax.swing.JOptionPane.OK_CANCEL_OPTION
+            );
+            if (result == javax.swing.JOptionPane.OK_OPTION) {
+                VIP vip;
+                vip = new VIP(nomVIP, prenomsUsage, prenoms, sexeVIP, civiliteVIP, ageVIP, statutVIP, lieuNaissanceVIP, dateNaissanceVIP, nbEnfantsVIP, nationaliteVIP, marieA);
 
-            try {
-                int resultPhoto = javax.swing.JOptionPane.showConfirmDialog(
-                        this,
-                        "Voulez vous ajouter une photo à votre vip ?",
-                        "Ajout Photo",
-                        javax.swing.JOptionPane.OK_CANCEL_OPTION
-                );
-                if (resultPhoto == javax.swing.JOptionPane.OK_OPTION) {
-                    javax.swing.JFileChooser filechooser = new javax.swing.JFileChooser();
-                    filechooser.setDialogTitle("Choisissez la photo");
-                    filechooser.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
-                    //below codes for select  the file 
-                    int returnval = filechooser.showOpenDialog(this);
-                    if (returnval == javax.swing.JFileChooser.APPROVE_OPTION) {
-                        File file = filechooser.getSelectedFile();
+                try {
+                    int resultPhoto = javax.swing.JOptionPane.showConfirmDialog(
+                            this,
+                            "Voulez vous ajouter une photo à votre vip ?",
+                            "Ajout Photo",
+                            javax.swing.JOptionPane.OK_CANCEL_OPTION
+                    );
+                    if (resultPhoto == javax.swing.JOptionPane.OK_OPTION) {
+                        javax.swing.JFileChooser filechooser = new javax.swing.JFileChooser();
+                        filechooser.setDialogTitle("Choisissez la photo");
+                        filechooser.setFileSelectionMode(javax.swing.JFileChooser.FILES_ONLY);
+                        //below codes for select  the file
+                        int returnval = filechooser.showOpenDialog(this);
+                        if (returnval == javax.swing.JFileChooser.APPROVE_OPTION) {
+                            File file = filechooser.getSelectedFile();
 
-                        BufferedImage bi;
+                            BufferedImage bi;
 
-                        try {   //display the image in jlabel
-                            bi = ImageIO.read(file);
-                            copyFileUsingStream(file, new File("../../client-web/files/photos/" + vip.getNom() + ".jpg"));
-                            pathPicture = "files/photos/" + vip.getNom() + ".jpg";
-                            vip.setPathImage(pathPicture);
-                            BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
-                            ImageIO.write(bISmallImage, "jpg", file);
+                            try {   //display the image in jlabel
+                                bi = ImageIO.read(file);
+                                copyFileUsingStream(file, new File("../../client-web/files/photos/" + vip.getNom() + ".jpg"));
+                                pathPicture = "files/photos/" + vip.getNom() + ".jpg";
+                                vip.setPathImage(pathPicture);
+                                BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
+                                ImageIO.write(bISmallImage, "jpg", file);
 
-                            Date date = new Date();
-                            // Specify the desired date format
-                            String DATE_FORMAT = "yyyy/MM/dd";
-                            // Create object of SimpleDateFormat and pass the desired date format.
-                            SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-                            /*
-                             * Use format method of SimpleDateFormat class to format the date.
-                             */
-                            String dateAjoutPhoto = sdf.format(date);
+                                Date date = new Date();
+                                // Specify the desired date format
+                                String DATE_FORMAT = "yyyy/MM/dd";
+                                // Create object of SimpleDateFormat and pass the desired date format.
+                                SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+                                /*
+                                 * Use format method of SimpleDateFormat class to format the date.
+                                 */
+                                String dateAjoutPhoto = sdf.format(date);
 
-                        } catch (IOException e) {
+                            } catch (IOException e) {
 
+                            }
+                            this.pack();
                         }
-                        this.pack();
+                    } else {
+                        vip.setPathImage(pathPicture);
                     }
-                } else {
-                    vip.setPathImage(pathPicture);
-                }
 
-                Date date = new Date();
-                // Specify the desired date format
-                String DATE_FORMAT = "yyyy/MM/dd";
-                // Create object of SimpleDateFormat and pass the desired date format.
-                SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-                /*
-                 * Use format method of SimpleDateFormat class to format the date.
-                 */
-                String dateAjoutPhoto = sdf.format(date);
+                    Date date = new Date();
+                    // Specify the desired date format
+                    String DATE_FORMAT = "yyyy/MM/dd";
+                    // Create object of SimpleDateFormat and pass the desired date format.
+                    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+                    /*
+                     * Use format method of SimpleDateFormat class to format the date.
+                     */
+                    String dateAjoutPhoto = sdf.format(date);
 
-                bdd.insererUnVip(vip);
-                monModele.ajoutLigne(vip);
-                Photographie photo;
-                
-                int numVip = 0;
-                try {
-                    numVip = bdd.searchVip(vip.getNom(), vip.getPrenomUsage());
-                } catch (Exception ex) {
-                    Logger.getLogger(AjoutVip.class.getName()).log(Level.SEVERE, null, ex);
+                    bdd.insererUnVip(vip);
+                    monModele.ajoutLigne(vip);
+                    Photographie photo;
+
+                    int numVip = 0;
+                    try {
+                        numVip = bdd.searchVip(vip.getNom(), vip.getPrenomUsage());
+                    } catch (Exception ex) {
+                        Logger.getLogger(AjoutVip.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    photo = new Photographie(numVip, vip.getNom() + ".jpg", dateAjoutPhoto);
+                    try {
+                        bdd.ajoutPhoto(photo, numVip);
+                    } catch (Exception ex) {
+                        Logger.getLogger(AjoutVip.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
-                photo = new Photographie(numVip, vip.getNom() + ".jpg", dateAjoutPhoto);
-                try {
-                    bdd.ajoutPhoto(photo, numVip);
-                } catch (Exception ex) {
-                    Logger.getLogger(AjoutVip.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
             }
+            this.dispose();
         }
-        this.dispose();
     }//GEN-LAST:event_valider
 
     private void nbEnfantsSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_nbEnfantsSliderStateChanged
@@ -522,7 +536,6 @@ public class AjoutVip extends javax.swing.JDialog {
 
     private void gestionDate(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gestionDate
         char c = evt.getKeyChar();
-        int jj, mm, aaaa;
 
         if (dateNaissance.getDocument().getLength() < 10) {
             if (!Character.isDigit(c)) {
@@ -543,17 +556,17 @@ public class AjoutVip extends javax.swing.JDialog {
     private void rienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rienActionPerformed
         if (acteur.isSelected() || realisateur.isSelected()) {
             rien.setSelected(false);
-        } 
+        }
     }//GEN-LAST:event_rienActionPerformed
 
     private void realisateurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_realisateurActionPerformed
-        if(rien.isSelected()) {
+        if (rien.isSelected()) {
             realisateur.setSelected(false);
         }
     }//GEN-LAST:event_realisateurActionPerformed
 
     private void acteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acteurActionPerformed
-        if(rien.isSelected()) {
+        if (rien.isSelected()) {
             acteur.setSelected(false);
         }
     }//GEN-LAST:event_acteurActionPerformed
