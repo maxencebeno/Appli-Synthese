@@ -159,7 +159,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         boolean verifMariage = false, mariageSolo = false, dejaMarie = false;
 
         lieuMariage = lieu.getText();
-        if (lieuMariage == null) {
+        if (lieuMariage.compareTo("") == 0) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Erreur : vous n'avez pas entré de lieu pour ce mariage",
@@ -170,7 +170,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         
         String dateDuMariage;
         dateDuMariage = dateMariage.getText();
-        if (dateDuMariage == null) {
+        if (dateDuMariage.compareTo("") == 0) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Erreur : vous n'avez pas entré de date pour ce mariage",
