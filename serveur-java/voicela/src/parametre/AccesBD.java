@@ -285,9 +285,6 @@ public class AccesBD {
                 if (rs != null) {
                     rs.close();
                 }
-                if (connect != null) {
-                    connect.close();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -368,9 +365,6 @@ public class AccesBD {
                 }
                 if (pstmt != null) {
                     pstmt.close();
-                }
-                if (connect != null) {
-                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -468,9 +462,6 @@ public class AccesBD {
                 if (rs != null) {
                     rs.close();
                 }
-                if (connect != null) {
-                    connect.close();
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -502,9 +493,6 @@ public class AccesBD {
             try {
                 if (rs != null) {
                     rs.close();
-                }
-                if (connect != null) {
-                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
