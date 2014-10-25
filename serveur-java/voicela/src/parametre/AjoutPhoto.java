@@ -156,7 +156,7 @@ public class AjoutPhoto extends javax.swing.JDialog {
                         }
                         this.pack();
                     }
-        
+        dispose();
         
         
     }//GEN-LAST:event_ajout
