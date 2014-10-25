@@ -533,6 +533,8 @@ public class AccesBD {
 
                 if (rs.next()) {
                     dateDuMariage = rs.getString(1);
+                } else {
+                    dateDuMariage = "aucun";
                 }
             }
 

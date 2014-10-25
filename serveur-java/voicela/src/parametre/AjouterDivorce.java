@@ -147,14 +147,6 @@ public class AjouterDivorce extends javax.swing.JDialog {
 
         String dateDuDivorce;
         dateDuDivorce = dateDivorce.getText();
-        if (dateDuDivorce == null) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Erreur : vous n'avez pas entré de date pour ce mariage",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-        }
 
         vip1 = divorce1.getSelectedValue().toString();
         vip2 = divorce2.getSelectedValue().toString();
@@ -186,20 +178,39 @@ public class AjouterDivorce extends javax.swing.JDialog {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = null;
         try {
-            date1 = sdf.parse(dateDuDivorce);
+            if (dateDuDivorce.compareTo("") == 0) {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Erreur : vous n'avez pas entré de date pour ce divorce",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            } else {
+                date1 = sdf.parse(dateDuDivorce);
+            }
         } catch (ParseException ex) {
             Logger.getLogger(AjouterDivorce.class.getName()).log(Level.SEVERE, null, ex);
         }
         Date date2 = null;
+        String dateDuMariage;
         try {
-            date2 = sdf.parse(ajout.RecupDateDuMariage(numVip1, numVip2));
+            dateDuMariage = ajout.RecupDateDuMariage(numVip1, numVip2);
+            if (dateDuMariage.compareTo("aucun") != 0) {
+                date2 = sdf.parse(dateDuMariage);
+                if (date1.compareTo(date2) < 0) {
+                    dateFausse = true;
+                }
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(
+                        this,
+                        "Erreur : la date recherchée n'existe pas. Les Vips ne sont surement pas mariés entre eux",
+                        "Erreur",
+                        javax.swing.JOptionPane.ERROR_MESSAGE
+                );
+            }
         } catch (Exception ex) {
             Logger.getLogger(AjouterDivorce.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        if (date1.compareTo(date2) < 0) {
-            dateFausse = true;
-        } 
 
         if (divorceSolo == false && dateFausse == false) {
             int result = javax.swing.JOptionPane.showConfirmDialog(
@@ -250,8 +261,7 @@ public class AjouterDivorce extends javax.swing.JDialog {
                     "Conflits de divorce",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
-        } 
-        else {
+        } else {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Erreur, un vip ne peut pas se marier avec lui-même.",
