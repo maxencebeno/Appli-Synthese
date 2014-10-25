@@ -23,6 +23,7 @@ import org.imgscalr.Scalr.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import metier.Photographie;
+import vue.MonModele;
 
 /**
  *
@@ -33,9 +34,10 @@ public class AjoutVip extends javax.swing.JDialog {
     /**
      * Creates new form AjoutVip
      */
-    public AjoutVip(java.awt.Frame parent, boolean modal) {
+    public AjoutVip(java.awt.Frame parent, boolean modal, MonModele monModele) {
         super(parent, modal);
         initComponents();
+        AjoutVip.monModele = monModele;
     }
 
     public AjoutVip() {
@@ -485,6 +487,7 @@ public class AjoutVip extends javax.swing.JDialog {
                 String dateAjoutPhoto = sdf.format(date);
 
                 bdd.insererUnVip(vip);
+                monModele.ajoutLigne(vip);
                 Photographie photo;
                 
                 int numVip = 0;
@@ -605,5 +608,5 @@ public class AjoutVip extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
     static final int NB_ENFANTS_MIN = 0;
     static final int NB_ENFANTS_MAX = 10;
-    int avancement = 0;
+    static MonModele monModele;
 }

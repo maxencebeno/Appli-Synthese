@@ -8,7 +8,6 @@ package parametre;
 import metier.VIP;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JTable;
 import metier.Mariage;
 import vue.MonModele;
 
@@ -37,11 +36,6 @@ public final class Appli extends javax.swing.JFrame {
          setDefaultLookAndFeelDecorated(true);
          this.setExtendedState(MAXIMIZED_BOTH);
         monModele = (MonModele) table.getModel();
-        javax.swing.table.TableColumn column;
-        for (int i = 0; i < 12; i++) {
-            column = table.getColumnModel().getColumn(i);
-            column.setPreferredWidth(10);
-        }
 
         AccesBD vip = new AccesBD();
         vVIP = vip.lireLesVIP();
@@ -221,7 +215,7 @@ public final class Appli extends javax.swing.JFrame {
 
     private void ajoutVIP(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutVIP
         AjoutVip BddVip;
-        BddVip = new AjoutVip(this, true);
+        BddVip = new AjoutVip(this, true, monModele);
         BddVip.setLocation(250, 150);
         BddVip.setVisible(true);
     }//GEN-LAST:event_ajoutVIP

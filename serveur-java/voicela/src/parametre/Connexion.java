@@ -1,15 +1,12 @@
 package parametre;
 
 import java.sql.*;
-import java.io.*;
-import java.util.*;
-import static parametre.Appli.conn;
 
 public class Connexion {
 
 public static java.sql.Connection conn;
 
-    public Connection Connecter() {
+    public static Connection Connecter() {
         try{
             
         // parametres de connexion
@@ -20,7 +17,6 @@ public static java.sql.Connection conn;
         // connexion
         Class.forName("com.mysql.jdbc.Driver").newInstance();
         conn = java.sql.DriverManager.getConnection(url+"?user="+login+"&password="+pass);
-        System.out.println("\n connection reussie \n");
         
         }
 

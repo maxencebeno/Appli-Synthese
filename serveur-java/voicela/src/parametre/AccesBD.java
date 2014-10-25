@@ -14,13 +14,20 @@ import java.util.ArrayList;
 import metier.Mariage;
 import metier.Photographie;
 import metier.VIP;
-
 /**
  *
  * @author maxencebeno
  */
 public class AccesBD {
-
+    
+    public Connection connect = Connexion.Connecter();
+    
+    
+    
+    public AccesBD() {
+        
+    }
+    
     public javax.swing.JComboBox afficherComboBoxCivilite(javax.swing.JComboBox combobox) throws Exception {
 
         combobox.addItem("Mr");
@@ -49,13 +56,11 @@ public class AccesBD {
     }
 
     public void modifNom(String newName, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set nom_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newName);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -68,13 +73,11 @@ public class AccesBD {
     } // modifNom
 
     public void modifPrenomUsage(String newPrenom, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set prenom_usuel_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newPrenom);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -87,13 +90,11 @@ public class AccesBD {
     } // modifPrenomUsuel
 
     public void modifNationalite(String newNationalite, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set nationalite_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newNationalite);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -106,13 +107,11 @@ public class AccesBD {
     } // modifNationalite
 
     public void modifCivilite(String newCivilite, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set civilite_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newCivilite);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -125,13 +124,11 @@ public class AccesBD {
     } // modifCivilite
 
     public void modifSexe(String newSexe, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set sexe_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newSexe);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -144,13 +141,11 @@ public class AccesBD {
     } // modifSexe
 
     public void modifDateNaissance(String newDateNaissance, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set date_naissance_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newDateNaissance);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -169,13 +164,11 @@ public class AccesBD {
     } // modifDateNaissance
 
     public void modifLieuNaissance(String newLieuNaissance, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set lieu_naissance_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newLieuNaissance);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -188,13 +181,11 @@ public class AccesBD {
     } // modifLieuNaissance
 
     public void modifAge(int newAge, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set age_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setInt(1, newAge);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -207,13 +198,11 @@ public class AccesBD {
     } // modifAge
 
     public void modifStatut(String newStatut, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set statut_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, newStatut);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -226,13 +215,11 @@ public class AccesBD {
     } // modifLieuNaissance
 
     public void modifNbEnfants(int newNbEnfants, String name, String surname) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "update vip set nb_enfants = ? where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setInt(1, newNbEnfants);
                 pstmt.setString(2, name);
                 pstmt.setString(3, surname);
@@ -245,13 +232,11 @@ public class AccesBD {
     } // modifNbEnfants
 
     public javax.swing.DefaultListModel<String> alimenterListeVIP(javax.swing.DefaultListModel<String> listvip) throws Exception {
-        Connection connection = null;
+        
         ResultSet rs = null;
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "select nom_vip, prenom_usuel_vip from vip";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 rs = pstmt.executeQuery();
                 while (rs.next()) {
                     listvip.addElement(rs.getString(1) + " " + rs.getString(2));
@@ -275,15 +260,13 @@ public class AccesBD {
 
     public int searchVip(String name, String surname) throws Exception {
         // Affichage de tous les vip
-        Connection connection = null;
+        
         ResultSet rs = null;
         int numVip = 0;
 
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "SELECT num_vip FROM vip where nom_vip = ? and prenom_usuel_vip = ?";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete);) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete);) {
                 pstmt.setString(1, name);
                 pstmt.setString(2, surname);
                 rs = pstmt.executeQuery(); // Exécuter la requête
@@ -302,8 +285,8 @@ public class AccesBD {
                 if (rs != null) {
                     rs.close();
                 }
-                if (connection != null) {
-                    connection.close();
+                if (connect != null) {
+                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -314,13 +297,11 @@ public class AccesBD {
     }
 
     public void ajoutPhotoVip(Photographie photo) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
 
             String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setInt(2, photo.getNumVIP());
                 pstmt.setString(3, photo.getUrlPhoto());
                 pstmt.setString(4, photo.getDateAjoutPhoto());
@@ -335,16 +316,12 @@ public class AccesBD {
 
     public ArrayList<VIP> lireLesVIP() throws Exception {
         // Affichage de tous les vip
-
         PreparedStatement pstmt = null;
-        Connection connection = null;
         ResultSet rs = null;
 
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "SELECT * FROM vip";
-            pstmt = connection.prepareStatement(requete);
+            pstmt = connect.prepareStatement(requete);
             rs = pstmt.executeQuery(); // Exécuter la requête
             ResultSetMetaData md = rs.getMetaData();
             int columns = md.getColumnCount();
@@ -392,8 +369,8 @@ public class AccesBD {
                 if (pstmt != null) {
                     pstmt.close();
                 }
-                if (connection != null) {
-                    connection.close();
+                if (connect != null) {
+                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -404,12 +381,9 @@ public class AccesBD {
     }
 
     public void insererUnVip(VIP vip) throws SQLException {
-        Connection connection = null;
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setString(1, vip.getNom());
                 pstmt.setString(2, vip.getPrenomUsage());
                 pstmt.setString(3, vip.getPrenoms());
@@ -432,12 +406,10 @@ public class AccesBD {
     } // insererVip
 
     public void ajoutPhoto(Photographie photo, int numVip) throws SQLException, Exception {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setInt(1, numVip);
                 pstmt.setString(2, photo.getUrlPhoto());
                 pstmt.setString(3, photo.getDateAjoutPhoto());
@@ -451,12 +423,10 @@ public class AccesBD {
     } // ajoutPhoto
 
     public void insererUnMariage(Mariage mariage) throws SQLException {
-        Connection connection = null;
+        
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "insert into mariage (num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) values(?, ?, ?, ?, ?, ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete)) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setInt(1, mariage.getMarie1());
                 pstmt.setInt(2, mariage.getMarie2());
                 pstmt.setString(3, mariage.getLieuMariage());
@@ -474,15 +444,12 @@ public class AccesBD {
 
     public boolean searchMariage(int vip1, int vip2) throws Exception {
         // Affichage de tous les vip
-        Connection connection = null;
         ResultSet rs = null;
         boolean bonAMarier = true;
 
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "SELECT divorce FROM mariage WHERE (num_vip1 = ? and num_vip2 = ?) or (num_vip2 = ? and num_vip1 = ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete);) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete);) {
                 pstmt.setInt(1, vip1);
                 pstmt.setInt(2, vip2);
                 pstmt.setInt(3, vip1);
@@ -501,8 +468,8 @@ public class AccesBD {
                 if (rs != null) {
                     rs.close();
                 }
-                if (connection != null) {
-                    connection.close();
+                if (connect != null) {
+                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -514,15 +481,12 @@ public class AccesBD {
 
     public boolean searchDejaMarie(int vip) throws Exception {
         // Affichage de tous les vip
-        Connection connection = null;
         ResultSet rs = null;
         boolean bonAMarier = true;
 
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "SELECT num_vip1, num_vip2 FROM mariage WHERE (num_vip1 = ? and num_vip2 = ?) or (num_vip2 = ? and num_vip1 = ?)";
-            try (PreparedStatement pstmt = connection.prepareStatement(requete);) {
+            try (PreparedStatement pstmt = connect.prepareStatement(requete);) {
                 pstmt.setInt(1, vip);
                 pstmt.setInt(2, vip);
                 rs = pstmt.executeQuery(); // Exécuter la requête
@@ -539,8 +503,8 @@ public class AccesBD {
                 if (rs != null) {
                     rs.close();
                 }
-                if (connection != null) {
-                    connection.close();
+                if (connect != null) {
+                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -558,17 +522,14 @@ public class AccesBD {
         PreparedStatement pstmt2 = null;
         PreparedStatement pstmt3 = null;
         PreparedStatement pstmt4 = null;
-        Connection connection = null;
         ResultSet rs = null;
         ResultSet rs2 = null;
         ResultSet rs3 = null;
         ResultSet rs4 = null;
 
         try {
-            Connexion cnx = new Connexion();
-            connection = cnx.Connecter();
             String requete = "SELECT num_vip2 FROM mariage where num_vip1 = ? and divorce = 0";
-            pstmt = connection.prepareStatement(requete);
+            pstmt = connect.prepareStatement(requete);
             pstmt.setInt(1, numVip);
             rs = pstmt.executeQuery(); // Exécuter la requête
 
@@ -576,35 +537,38 @@ public class AccesBD {
                 numVip2 = rs.getInt(1);
 
                 String requete2 = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
-                pstmt2 = connection.prepareStatement(requete2);
+                pstmt2 = connect.prepareStatement(requete2);
                 pstmt2.setInt(1, numVip2);
                 rs2 = pstmt2.executeQuery(); // Exécuter la requête
 
                 if (rs2.next()) {
                     nomVipMarie = rs2.getString(1) + " " + rs2.getString(2);
                 } else {
-                    return "Célibataire";
+                    nomVipMarie = "Célibataire";
+                    return nomVipMarie;
                 }
             } else {
                 String requete3 = "SELECT num_vip1 FROM mariage where num_vip2 = ? and divorce = 0";
-                pstmt3 = connection.prepareStatement(requete3);
+                pstmt3 = connect.prepareStatement(requete3);
                 pstmt3.setInt(1, numVip);
                 rs3 = pstmt3.executeQuery();
                 if (rs3.next()) {
                     numVip2 = rs3.getInt(1);
 
                     String requete4 = "SELECT nom_vip, prenom_usuel_vip FROM vip where num_vip = ?";
-                    pstmt4 = connection.prepareStatement(requete4);
+                    pstmt4 = connect.prepareStatement(requete4);
                     pstmt4.setInt(1, numVip2);
                     rs4 = pstmt4.executeQuery(); // Exécuter la requête
 
                     if (rs4.next()) {
                         nomVipMarie = rs4.getString(1) + " " + rs4.getString(2);
                     } else {
-                        return "Célibataire";
+                        nomVipMarie = "Célibataire";
+                        return nomVipMarie;
                     }
                 } else {
-                    return "Célibataire";
+                    nomVipMarie = "Célibataire";
+                    return nomVipMarie;
                 }
             }
         } catch (Exception e) {
@@ -635,8 +599,8 @@ public class AccesBD {
                 if (pstmt4 != null) {
                     pstmt4.close();
                 }
-                if (connection != null) {
-                    connection.close();
+                if (connect != null) {
+                    connect.close();
                 }
             } catch (Exception e) {
                 e.printStackTrace();

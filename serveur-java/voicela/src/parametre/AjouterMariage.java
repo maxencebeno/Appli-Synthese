@@ -155,7 +155,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         String[] vipArray2;
         String nomVip1, nomVip2, prenomVip1, prenomVip2;
         int numVip1 = 0, numVip2 = 0;
-        boolean verifMariage = false, mariageSolo = false;
+        boolean verifMariage = false, mariageSolo = false, dejaMarie = false;
 
         lieuMariage = lieu.getText();
         if (lieuMariage == null) {
@@ -207,12 +207,27 @@ public class AjouterMariage extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
         }
+        String nomMarie = null;
+        String nomMarie2 = null;
+        try {
+            nomMarie = ajout.lireLesCouples(numVip1);
+        } catch (Exception ex) {
+            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            nomMarie2 = ajout.lireLesCouples(numVip1);
+        } catch (Exception ex) {
+            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(nomMarie.compareTo("Célibataire") == 0 || nomMarie2.compareTo("Célibataire") == 0) {
+            dejaMarie = true;
+        }
         
         
         if(numVip1 == numVip2) {
             mariageSolo = true;
         }
-        if (verifMariage == true && mariageSolo == false) {
+        if (verifMariage == true && mariageSolo == false && dejaMarie == false) {
             int result = javax.swing.JOptionPane.showConfirmDialog(
                     this,
                     "Voici le mariage que vous êtes sur le point d'insérer : \n"
@@ -262,7 +277,7 @@ public class AjouterMariage extends javax.swing.JDialog {
                 }
                 dispose();
             }
-        } else if(verifMariage == false && mariageSolo == false) {
+        } else if(verifMariage == false && mariageSolo == false || dejaMarie == true) {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
                     "Erreur, ces VIPs sont déjà mariés.",

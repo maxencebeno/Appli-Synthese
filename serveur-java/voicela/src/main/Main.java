@@ -6,13 +6,6 @@
 package main;
 
 import parametre.Admin;
-import parametre.Appli;
-import parametre.Connexion;
-import java.io.IOException;
-import java.sql.SQLException;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import vue.MonModele;
 
 /**
  *
