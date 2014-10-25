@@ -32,7 +32,7 @@
 
 .desc {
     position: fixed;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    //border: 1px solid rgba(0, 0, 0, 0.12);
     width: 950px;
     height: 500px;
     display : block;
@@ -44,7 +44,15 @@
 
 #off {
     position:absolute;
-    right: 0;
+    right: 10px;
+    top: 10px;
+    font-size: 19px;
+    cursor: pointer;
+    color: #66757f;
+}
+
+#off:hover{
+    color: #d12b00;
 }
 
 .img_film{
@@ -109,4 +117,8 @@ position: absolute;
     font-weight: normal;
     padding-top: 20px;
     margin-bottom: 20px!important;
+}
+
+.desc h2, .desc h3{
+    color: #128fdc;
 }

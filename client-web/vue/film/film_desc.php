@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/film/style_film.css" />
-        <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
-        <title>Films - Voicela</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-        
-    </head>
 
-    <body>
     <div class="general">
-
-        <p id="off" onClick="fermer();">fermer</p>
+        <span id="off" onClick="fermer();"><i class="glyphicon glyphicon-remove"></i></span>
     <?php
     
 
@@ -83,6 +70,3 @@
     ?>
 
     </div>
-    <script src="assets/js/film/film.js"></script>
-    </body>
-</html>
