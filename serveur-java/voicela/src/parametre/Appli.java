@@ -206,7 +206,10 @@ public final class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonMenuModifierMariageActionPerformed
 
     private void boutonMenuAjouterDivorceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAjouterDivorceActionPerformed
-        // TODO add your handling code here:
+        AjouterDivorce BddAjouterDivorce;
+        BddAjouterDivorce = new AjouterDivorce(this, true);
+        BddAjouterDivorce.setLocation(250, 150);
+        BddAjouterDivorce.setVisible(true);
     }//GEN-LAST:event_boutonMenuAjouterDivorceActionPerformed
 
     private void boutonMenuAProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAProposActionPerformed

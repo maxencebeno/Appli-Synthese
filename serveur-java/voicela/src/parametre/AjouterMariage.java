@@ -6,8 +6,6 @@
 package parametre;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Mariage;
@@ -74,7 +72,7 @@ public class AjouterMariage extends javax.swing.JDialog {
 
         jLabel2.setText("Nom du vip 2 : ");
 
-        jButton1.setText("Ajouter");
+        jButton1.setText("Marier");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ajouterMariage(evt);
@@ -112,7 +110,6 @@ public class AjouterMariage extends javax.swing.JDialog {
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                     .addComponent(lieu)
@@ -120,6 +117,10 @@ public class AjouterMariage extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(257, 257, 257)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +220,7 @@ public class AjouterMariage extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if(nomMarie.compareTo("Célibataire") == 0 || nomMarie2.compareTo("Célibataire") == 0) {
+        if(nomMarie.compareTo("Célibataire") != 0 || nomMarie2.compareTo("Célibataire") != 0) {
             dejaMarie = true;
         }
         

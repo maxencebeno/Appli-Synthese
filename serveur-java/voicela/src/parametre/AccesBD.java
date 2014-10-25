@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import metier.Divorce;
 import metier.Mariage;
 import metier.Photographie;
 import metier.VIP;
@@ -257,6 +258,33 @@ public class AccesBD {
         }
         return listvip;
     }
+    
+    public javax.swing.DefaultListModel<String> alimenterListeDivorce(javax.swing.DefaultListModel<String> listvip) throws Exception {
+        
+        ResultSet rs = null;
+        try {
+            String requete = "select nom_vip, prenom_usuel_vip from vip, mariage where vip.num_vip = mariage.num_vip1 and divorce = 0";
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
+                rs = pstmt.executeQuery();
+                while (rs.next()) {
+                    listvip.addElement(rs.getString(1) + " " + rs.getString(2));
+                }
+            }
+
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return listvip;
+    }
 
     public int searchVip(String name, String surname) throws Exception {
         // Affichage de tous les vip
@@ -434,7 +462,25 @@ public class AccesBD {
         } catch (Exception e) {
             throw e;
         }
-    } // insererVip
+    } // insererDivorce
+    
+    public void insererUnDivorce(Divorce divorce) throws SQLException {
+        
+        try {
+            String requete = "update table mariage set divorce = ?, date_divorce = ? where num_vip1 = ?";
+            
+            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
+                pstmt.setInt(1, 1);
+                pstmt.setString(2, divorce.getDateDivorce());
+                pstmt.setInt(3, divorce.getDivorce1());
+
+                // exécution de l'ordre SQL
+                pstmt.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    } // insererDivorce
 
     public boolean searchMariage(int vip1, int vip2) throws Exception {
         // Affichage de tous les vip

@@ -6,24 +6,18 @@
 
 package metier;
 
-import java.util.Date;
-import java.util.*;
-import java.io.*;
-
-/**
- *
- * @author Vincent
- */
 public class Divorce {
     // Attributs
     protected int numDivorce;
     protected int divorce1;
-    protected Date dateDivorce;
+    protected int divorce2;
+    protected String dateDivorce;
     
     // Constructeurs
-    public Divorce(int numDivorce, int divorce1, Date dateDivorce) {
+    public Divorce(int numDivorce, int divorce1, int divorce2, String dateDivorce) {
         this.numDivorce = numDivorce;
         this.divorce1 = divorce1;
+        this.divorce2 = divorce2;
         this.dateDivorce = dateDivorce;
     }
     
@@ -40,9 +34,15 @@ public class Divorce {
         return divorce1;
     }
 
-    public Date getDateDivorce() {
+    public String getDateDivorce() {
         return dateDivorce;
     }
+
+    public int getDivorce2() {
+        return divorce2;
+    }
+    
+    
     
     // Setters
     public void setNumDivorce(int numDivorce) {
@@ -53,8 +53,13 @@ public class Divorce {
         this.divorce1 = divorce1;
     }
 
-    public void setDateDivorce(Date dateDivorce) {
+    public void setDateDivorce(String dateDivorce) {
         this.dateDivorce = dateDivorce;
     }
+
+    public void setDivorce2(int divorce2) {
+        this.divorce2 = divorce2;
+    }
+    
     
 }
