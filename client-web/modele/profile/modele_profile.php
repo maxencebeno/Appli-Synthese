@@ -18,7 +18,7 @@ function getMariageVIP($id_vip){
     // BDD !
     $bdd = connexion();
 
-    $req = $bdd->prepare('SELECT * FROM mariage WHERE num_vip1 = ? OR num_vip2 = ? AND divorce = 0');
+    $req = $bdd->prepare('SELECT * FROM mariage WHERE (num_vip1 = ? OR num_vip2 = ?) AND divorce = 0');
     $req->execute(array($id_vip, $id_vip));
 
     if($donnees = $req->fetch()){
