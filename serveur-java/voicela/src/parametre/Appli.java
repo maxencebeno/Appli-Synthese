@@ -107,7 +107,7 @@ public final class Appli extends javax.swing.JFrame {
         boutonMenuAPropos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Voicela");
+        setTitle("Voicela KeepControl");
 
         table.setModel(new MonModele(vVIP));
         jScrollPane1.setViewportView(table);
@@ -219,7 +219,7 @@ public final class Appli extends javax.swing.JFrame {
     private void boutonMenuAProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAProposActionPerformed
         javax.swing.JOptionPane.showMessageDialog(
             this,
-            "Version 1.0.1\n\nCréé par Maxence BENO, Vincent MORAL et Etienne TROUILLET\n\n © 2014",
+            "Voicela KeepControl - Version 1.0.1\n\nCréé par Maxence BENO, Vincent MORAL et Etienne TROUILLET\n\n Copyright © 2014",
             "A propos",
             javax.swing.JOptionPane.INFORMATION_MESSAGE
         );
@@ -252,7 +252,12 @@ public final class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_ajouterPhoto
 
     private void boutonMenuAideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAideActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Toutes les actions dont vous pouvez avoir besoin pour l'administration de cette base de données\n sont regroupées dans le menu en haut à gauche (bouton \"Fichier\").",
+            "Aide",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
     }//GEN-LAST:event_boutonMenuAideActionPerformed
 
     // Connexion
