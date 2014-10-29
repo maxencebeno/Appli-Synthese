@@ -158,6 +158,11 @@ public final class Appli extends javax.swing.JFrame {
         jMenu2.setText("A propos");
 
         boutonMenuAide.setText("Aide");
+        boutonMenuAide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonMenuAideActionPerformed(evt);
+            }
+        });
         jMenu2.add(boutonMenuAide);
 
         boutonMenuAPropos.setText("A propos de voicela");
@@ -212,7 +217,12 @@ public final class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonMenuAjouterDivorceActionPerformed
 
     private void boutonMenuAProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAProposActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Version 1.0.1\n\nCréé par Maxence BENO, Vincent MORAL et Etienne TROUILLET\n\n © 2014",
+            "A propos",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
     }//GEN-LAST:event_boutonMenuAProposActionPerformed
 
     private void ajoutVIP(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutVIP
@@ -240,6 +250,10 @@ public final class Appli extends javax.swing.JFrame {
         BddVip.setLocation(250, 150);
         BddVip.setVisible(true);
     }//GEN-LAST:event_ajouterPhoto
+
+    private void boutonMenuAideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAideActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boutonMenuAideActionPerformed
 
     // Connexion
     //public static java.sql.Connection conn;
