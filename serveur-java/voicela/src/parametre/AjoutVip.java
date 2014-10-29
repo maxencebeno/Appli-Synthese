@@ -350,6 +350,14 @@ public class AjoutVip extends javax.swing.JDialog {
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
             ajoutVip = false;
+        } else if (dateNaissanceVIP.compareTo("") == 0 && nationaliteVIP.compareTo("") == 0 && prenoms.compareTo("") == 0 && prenomsUsage.compareTo("") == 0 && nomVIP.compareTo("") == 0 && lieuNaissanceVIP.compareTo("") == 0) {
+            javax.swing.JOptionPane.showMessageDialog(
+                    this,
+                    "Vous n'avez rempli aucun champs",
+                    "Erreur",
+                    javax.swing.JOptionPane.ERROR_MESSAGE
+            );
+            ajoutVip = false;
         } else {
             if (dateNaissanceVIP.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
