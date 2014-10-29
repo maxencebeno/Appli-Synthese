@@ -47,6 +47,11 @@
         </div>
 
         </div>
-        <script src="assets/js/film/film.js"></script>
+            <script src="assets/js/film/film.js"></script>
+        <?php if(isset($_GET['id']) && $_GET['id'] == 24){
+            echo '<script>affichePres(24);</script>';
+        }
+        ?>
+        
     </body>
 </html>

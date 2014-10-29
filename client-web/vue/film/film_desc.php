@@ -12,7 +12,9 @@
             $id_film = $film["id_film"];
             $titre_film = $film["titre_film"];
             $date_sortie =  date_create($film["date_sortie"]);
-            $date = date_format($date_sortie, "Y");
+            $anneeSortie = date_format($date_sortie, "Y");
+            $moisSortie = date_format($date_sortie, "m");
+            $jourSortie = date_format($date_sortie, "d");
             $genre = $film["genre"];
             $num_visa = $film["num_visa"];
             $photo = $film["url_photo"];
@@ -24,21 +26,24 @@
             echo '<div class="img_film" id="img_container" style="background-image: url(files/films/'.$photo.')"/><br/>';
             echo '<span class="info_film">
                     <h2>'.$titre_film.'</h2><br/>
-                    <p id="sousTitre">'.$date.'
-                     - '.$genre.'
-                     - Visa D\'exploitation : '.$num_visa.' 
+                    <p id="sousTitre">
+                     <strong>Sorti le :</strong> '.$jourSortie.'/'.$moisSortie.'/'.$anneeSortie.'<br />
+                     <strong>Genre :</strong> '.$genre.'<br />
+                     <strong>Visa D\'exploitation :</strong> '.$num_visa.' 
                     </p>';
                  
 
             echo '<h3>Réalisateur</h3>';
             $reqRea = getRealisateur($id_film);
+            $result_ok = false;
             while($reali = $reqRea->fetch()){
                 $reqInfoRea= getInfoVip($reali['num_vip']);
                 if($vip=$reqInfoRea->fetch()){
                     echo $vip['nom_vip']. ' '. $vip['prenom_usuel_vip']; 
                 }
+                $result_ok = true;
             }
-            if($reali == null) {
+            if($result_ok == false) {
                 echo 'Non renseigné';
             }
 

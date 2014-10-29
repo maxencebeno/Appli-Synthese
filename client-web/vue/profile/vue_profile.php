@@ -89,9 +89,7 @@
                         <div class="film_box">
                             <div class="cover_film" style="background-image: url(files/films/<?php echo $donnees2['url_photo']; ?>)"></div>
                             <div class="infos_films">
-                                <p><?php echo $donnees2['titre_film']; ?></p>
-                                <p><?php echo $donnees2['date_sortie']; ?></p>
-                                <p><?php echo $donnees2['genre']; ?></p>
+                                <p><?php echo '<strong>'.$donnees2['titre_film'].'</strong> <br /><br />Genre : '.$donnees2['genre']; ?></p>
                                <?php echo '<p class="see_film"><div id="see_film" onClick="affichePres('.$donnees2['id_film'].');">Voir ce film</div></p> ';?>
                             </div>
                         </div>

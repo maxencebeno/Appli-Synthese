@@ -14,11 +14,11 @@
         <div class="full_wrapper">
             <section id="section_one">
                 <div class="section_content">
-                    <h1>Suivez au plus près l'actualité people.</h1>
+                    <a href="film.php?id=24"><h1>Découvrez <i>Fury</i>, le dernier film de Brad Pitt.</h1></a>
                 </div>
             </section>
             <section style="height: 800px;">
-                <p>Classe</p>
+                <h1>Utiliser les onglets de navigation ou recherchez un VIP grâce à notre moteur de recherche.</h1>
             </section>
             
 
