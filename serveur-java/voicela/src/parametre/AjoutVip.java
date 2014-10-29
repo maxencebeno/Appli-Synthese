@@ -305,7 +305,7 @@ public class AjoutVip extends javax.swing.JDialog {
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP, marieA = "Célibataire";
         String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
         int ageVIP = 0, nbEnfantsVIP = 0;
-        statutVIP = "";
+        statutVIP = "Rien";
         boolean ajoutVip = false;
 
         dateNaissanceVIP = dateNaissance.getText();
@@ -350,15 +350,7 @@ public class AjoutVip extends javax.swing.JDialog {
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
             ajoutVip = false;
-        } /*else if (dateNaissanceVIP.compareTo("") == 0 && nationaliteVIP.compareTo("") == 0 && prenoms.compareTo("") == 0 && prenomsUsage.compareTo("") == 0 && nomVIP.compareTo("") == 0 && lieuNaissanceVIP.compareTo("") == 0) {
-            javax.swing.JOptionPane.showMessageDialog(
-                    this,
-                    "Vous n'avez rempli aucun champs",
-                    "Erreur",
-                    javax.swing.JOptionPane.ERROR_MESSAGE
-            );
-            ajoutVip = false;
-        }*/ else {
+        } else {
             if (dateNaissanceVIP.compareTo("") == 0) {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
