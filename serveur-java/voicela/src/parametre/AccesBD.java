@@ -15,20 +15,19 @@ import metier.Divorce;
 import metier.Mariage;
 import metier.Photographie;
 import metier.VIP;
+
 /**
  *
  * @author maxencebeno
  */
 public class AccesBD {
-    
+
     public Connection connect = Connexion.Connecter();
-    
-    
-    
+
     public AccesBD() {
-        
+
     }
-    
+
     public javax.swing.JComboBox afficherComboBoxCivilite(javax.swing.JComboBox combobox) throws Exception {
 
         combobox.addItem("Mr");
@@ -57,7 +56,7 @@ public class AccesBD {
     }
 
     public void modifNom(String newName, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set nom_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -74,7 +73,7 @@ public class AccesBD {
     } // modifNom
 
     public void modifPrenomUsage(String newPrenom, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set prenom_usuel_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -91,7 +90,7 @@ public class AccesBD {
     } // modifPrenomUsuel
 
     public void modifNationalite(String newNationalite, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set nationalite_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -108,7 +107,7 @@ public class AccesBD {
     } // modifNationalite
 
     public void modifCivilite(String newCivilite, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set civilite_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -125,7 +124,7 @@ public class AccesBD {
     } // modifCivilite
 
     public void modifSexe(String newSexe, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set sexe_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -142,7 +141,7 @@ public class AccesBD {
     } // modifSexe
 
     public void modifDateNaissance(String newDateNaissance, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set date_naissance_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -165,7 +164,7 @@ public class AccesBD {
     } // modifDateNaissance
 
     public void modifLieuNaissance(String newLieuNaissance, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set lieu_naissance_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -182,7 +181,7 @@ public class AccesBD {
     } // modifLieuNaissance
 
     public void modifAge(int newAge, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set age_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -199,7 +198,7 @@ public class AccesBD {
     } // modifAge
 
     public void modifStatut(String newStatut, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set statut_vip = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -216,7 +215,7 @@ public class AccesBD {
     } // modifLieuNaissance
 
     public void modifNbEnfants(int newNbEnfants, String name, String surname) throws SQLException {
-        
+
         try {
 
             String requete = "update vip set nb_enfants = ? where nom_vip = ? and prenom_usuel_vip = ?";
@@ -233,7 +232,7 @@ public class AccesBD {
     } // modifNbEnfants
 
     public javax.swing.DefaultListModel<String> alimenterListeVIP(javax.swing.DefaultListModel<String> listvip) throws Exception {
-        
+
         ResultSet rs = null;
         try {
             String requete = "select nom_vip, prenom_usuel_vip from vip";
@@ -258,9 +257,9 @@ public class AccesBD {
         }
         return listvip;
     }
-    
+
     public javax.swing.DefaultListModel<String> alimenterListeDivorce(javax.swing.DefaultListModel<String> listvip) throws Exception {
-        
+
         ResultSet rs = null;
         try {
             String requete = "select nom_vip, prenom_usuel_vip from vip, mariage where vip.num_vip = mariage.num_vip1 and divorce = 0";
@@ -288,7 +287,7 @@ public class AccesBD {
 
     public int searchVip(String name, String surname) throws Exception {
         // Affichage de tous les vip
-        
+
         ResultSet rs = null;
         int numVip = 0;
 
@@ -322,7 +321,7 @@ public class AccesBD {
     }
 
     public void ajoutPhotoVip(Photographie photo) throws SQLException {
-        
+
         try {
 
             String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
@@ -428,7 +427,7 @@ public class AccesBD {
     } // insererVip
 
     public void ajoutPhoto(Photographie photo, int numVip) throws SQLException, Exception {
-        
+
         try {
             String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
             try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
@@ -445,7 +444,7 @@ public class AccesBD {
     } // ajoutPhoto
 
     public void insererUnMariage(Mariage mariage) throws SQLException {
-        
+
         try {
             String requete = "insert into mariage (num_vip1, num_vip2, lieu_mariage, date_mariage, divorce, date_divorce) values(?, ?, ?, ?, ?, ?)";
             try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
@@ -463,12 +462,12 @@ public class AccesBD {
             throw e;
         }
     } // insererDivorce
-    
+
     public void insererUnDivorce(Divorce divorce) throws SQLException {
-        
+
         try {
             String requete = "update mariage set divorce = ?, date_divorce = ? where num_vip1 = ? and num_vip2 = ?";
-            
+
             try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 pstmt.setBoolean(1, true);
                 pstmt.setString(2, divorce.getDateDivorce());
@@ -516,7 +515,7 @@ public class AccesBD {
         }
         return bonAMarier;
     }
-    
+
     public String RecupDateDuMariage(int numVip, int numVip2) throws Exception {
         // Affichage de tous les vip
         ResultSet rs = null;
@@ -633,4 +632,46 @@ public class AccesBD {
 
     }
 
+    public void supprimerVip(ArrayList<VIP> lesVipsASupprimer) throws Exception {
+
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        for (VIP vip : lesVipsASupprimer) {
+
+            try {
+                String requete = "DELETE FROM vip WHERE num_vip = ?";
+                pstmt = connect.prepareStatement(requete);
+                pstmt.setInt(1, vip.getId());
+                pstmt.executeUpdate(); // Exécuter la requête
+
+                String requete2 = "DELETE FROM photos where num_vip = ?";
+                pstmt = connect.prepareStatement(requete2);
+                pstmt.setInt(1, vip.getId());
+                pstmt.executeUpdate();
+
+                String requete3 = "DELETE FROM mariage where num_vip1 = ?";
+                pstmt = connect.prepareStatement(requete3);
+                pstmt.setInt(1, vip.getId());
+                pstmt.executeUpdate();
+
+                String requete4 = "DELETE FROM mariage where num_vip2 = ?";
+                pstmt = connect.prepareStatement(requete4);
+                pstmt.setInt(1, vip.getId());
+                pstmt.executeUpdate();
+
+            } catch (Exception e) {
+                throw e;
+            } finally {
+                try {
+                    if (pstmt != null) {
+                        pstmt.close();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+    }
 }

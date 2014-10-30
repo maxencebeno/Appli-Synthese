@@ -6,6 +6,7 @@
 package vue;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.*;
@@ -18,13 +19,13 @@ import parametre.AccesBD;
 public class MonModele extends javax.swing.table.AbstractTableModel {
 
     private final String[] nomsColonnes = {"Numéro", "Nom", "Prénom", "Nationalité", "Civilité", "Sexe", "Date de naissance", "Lieu de naissance", "Age", "Statut", "Nombre d'enfants", "Marié à"};
-    public java.util.ArrayList<VIP> donnees;
+    public ArrayList<VIP> donnees;
+    private ArrayList<VIP> donneesSupprimees;
     public AccesBD modif = new AccesBD();
 
-    public MonModele(java.util.ArrayList<VIP> vVIP) {
+    public MonModele(ArrayList<VIP> vVIP, ArrayList<VIP> donneesASupprimer) {
         donnees = vVIP;
-        // ajout  d'un écouteur perso pour espionner les modif
-        // this.addTableModelListener( new MonEcouteurTable() );
+        donneesSupprimees = donneesASupprimer;
     }
 
     @Override
@@ -211,7 +212,7 @@ public class MonModele extends javax.swing.table.AbstractTableModel {
     public void suppLigne(int[] lesLignes) {
         int nb = lesLignes.length;
         if (nb != 0) {
-            java.util.ArrayList<VIP> donneesSupprimees = new java.util.ArrayList<VIP>();
+            
             for (int i = 0; i < nb; i++) {
                 donneesSupprimees.add(donnees.get(lesLignes[i]));
             }

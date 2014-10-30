@@ -5,6 +5,7 @@
  */
 package parametre;
 
+import java.util.ArrayList;
 import metier.VIP;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +29,7 @@ public final class Appli extends javax.swing.JFrame {
     public Appli() throws Exception {
         vVIP = new java.util.ArrayList<>();
         vMariage = new java.util.ArrayList<>();
+        donneesASupprimer = new ArrayList<>();
         initComponents();
 
         // Les 3 prochaines lignes permettent de mettre l'application en plein écran
@@ -96,6 +98,7 @@ public final class Appli extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         actualiser = new javax.swing.JButton();
+        supprimer = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         boutonMenuModifierVIP = new javax.swing.JMenu();
         boutonMenuAjouterVIP = new javax.swing.JMenuItem();
@@ -109,13 +112,20 @@ public final class Appli extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Voicela");
 
-        table.setModel(new MonModele(vVIP));
+        table.setModel(new MonModele(vVIP, donneesASupprimer));
         jScrollPane1.setViewportView(table);
 
         actualiser.setText("Actualiser");
         actualiser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualiser(evt);
+            }
+        });
+
+        supprimer.setText("Supprimer");
+        supprimer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                supprimer(evt);
             }
         });
 
@@ -177,11 +187,13 @@ public final class Appli extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(846, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(supprimer)
+                .addGap(28, 28, 28)
                 .addComponent(actualiser)
                 .addGap(147, 147, 147))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1052, Short.MAX_VALUE)
                 .addGap(48, 48, 48))
         );
         layout.setVerticalGroup(
@@ -190,7 +202,9 @@ public final class Appli extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(actualiser)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(actualiser)
+                    .addComponent(supprimer))
                 .addGap(154, 154, 154))
         );
 
@@ -241,8 +255,17 @@ public final class Appli extends javax.swing.JFrame {
         BddVip.setVisible(true);
     }//GEN-LAST:event_ajouterPhoto
 
-    // Connexion
-    //public static java.sql.Connection conn;
+    private void supprimer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supprimer
+        int [] lesLignes;
+        lesLignes = table.getSelectedRows();
+        monModele.suppLigne(lesLignes);
+        AccesBD bdd = new AccesBD();
+        try {
+            bdd.supprimerVip(donneesASupprimer);
+        } catch (Exception ex) {
+            Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_supprimer
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualiser;
@@ -257,8 +280,9 @@ public final class Appli extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton supprimer;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
     private final MonModele monModele;
-
+    public ArrayList<VIP> donneesASupprimer;
 }
