@@ -110,7 +110,7 @@ public final class Appli extends javax.swing.JFrame {
         boutonMenuAPropos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Voicela");
+        setTitle("Voicela KeepControl");
 
         table.setModel(new MonModele(vVIP, donneesASupprimer));
         jScrollPane1.setViewportView(table);
@@ -168,6 +168,11 @@ public final class Appli extends javax.swing.JFrame {
         jMenu2.setText("A propos");
 
         boutonMenuAide.setText("Aide");
+        boutonMenuAide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boutonMenuAideActionPerformed(evt);
+            }
+        });
         jMenu2.add(boutonMenuAide);
 
         boutonMenuAPropos.setText("A propos de voicela");
@@ -226,7 +231,12 @@ public final class Appli extends javax.swing.JFrame {
     }//GEN-LAST:event_boutonMenuAjouterDivorceActionPerformed
 
     private void boutonMenuAProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAProposActionPerformed
-        // TODO add your handling code here:
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Voicela KeepControl - Version 1.0.1\n\nCréé par Maxence BENO, Vincent MORAL et Etienne TROUILLET\n\n Copyright © 2014",
+            "A propos",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
     }//GEN-LAST:event_boutonMenuAProposActionPerformed
 
     private void ajoutVIP(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutVIP
@@ -266,6 +276,16 @@ public final class Appli extends javax.swing.JFrame {
             Logger.getLogger(Appli.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_supprimer
+
+    private void boutonMenuAideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonMenuAideActionPerformed
+        javax.swing.JOptionPane.showMessageDialog(
+            this,
+            "Toutes les actions dont vous pouvez avoir besoin pour l'administration de cette base de données\n sont regroupées dans le menu en haut à gauche (bouton \"Fichier\").",
+            "Aide",
+            javax.swing.JOptionPane.INFORMATION_MESSAGE
+        );
+    }//GEN-LAST:event_boutonMenuAideActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actualiser;
