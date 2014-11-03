@@ -15,7 +15,9 @@ import metier.Divorce;
 
 /**
  *
- * @author maxencebeno
+ * Cette classe permet le divorce de deux vips, après toutes les vérifications
+ * Les deux liste regroupes les vips déjà mariés.
+ * Pour les divorcer, il faut regarder dans la jTable le partenanire d'un vip
  */
 public class AjouterDivorce extends javax.swing.JDialog {
 

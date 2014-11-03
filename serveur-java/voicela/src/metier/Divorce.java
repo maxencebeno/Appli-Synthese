@@ -6,6 +6,7 @@
 
 package metier;
 
+// On crée ici la classe Divorce dans laquelle on va communiquer les numéros des vips concernés et la date de divorce
 public class Divorce {
     // Attributs
     protected int numDivorce;

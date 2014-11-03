@@ -12,7 +12,9 @@ import java.io.*;
 
 /**
  *
- * @author Vincent
+ * Cette classe représente tous les mariages des vips.
+ * On intègre aussi une variable divorce afin de savoir si les vips ont divorcé ou non. 
+ * Cela permet d'avoir un historique de leur mariage
  */
 public class Mariage {
     // Attributs

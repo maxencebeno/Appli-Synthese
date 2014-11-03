@@ -21,7 +21,7 @@ import static parametre.AjoutVip.copyFileUsingStream;
 
 /**
  *
- * @author maxencebeno
+ * Cette classe permet d'ajouter une photo pour un vip en plus de sa photo de profil
  */
 public class AjoutPhoto extends javax.swing.JDialog {
 

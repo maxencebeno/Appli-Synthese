@@ -22,12 +22,12 @@ import metier.VIP;
  */
 public class AccesBD {
 
-    public Connection connect = Connexion.Connecter();
+    public Connection connect = Connexion.Connecter(); // On récupère la connexion globale une fois l'utilisateur connecté
 
     public AccesBD() {
 
     }
-
+    // Les trois fonctions qui suivent servent à l'affichage des combo box dans la jTable de VIPs
     public javax.swing.JComboBox afficherComboBoxCivilite(javax.swing.JComboBox combobox) throws Exception {
 
         combobox.addItem("Mr");
@@ -54,7 +54,8 @@ public class AccesBD {
 
         return combobox;
     }
-
+    
+    // les fonctions qui suivent permette l'update de la table vip en fonction des modifications enrigistrée via la jTable
     public void modifNom(String newName, String name, String surname) throws SQLException {
 
         try {
@@ -231,6 +232,7 @@ public class AccesBD {
         }
     } // modifNbEnfants
 
+    // Cette fonction aliment les jList de la classe Ajouter un Mariage
     public javax.swing.DefaultListModel<String> alimenterListeVIP(javax.swing.DefaultListModel<String> listvip) throws Exception {
 
         ResultSet rs = null;
@@ -258,6 +260,8 @@ public class AccesBD {
         return listvip;
     }
 
+    // Comme pour marier les Vip, nous créons une liste pour les divorcer.
+    // La seule difference est que pour cette liste, nous récupérons seulement les vip mariés.
     public javax.swing.DefaultListModel<String> alimenterListeDivorce(javax.swing.DefaultListModel<String> listvip) throws Exception {
 
         ResultSet rs = null;
@@ -284,7 +288,8 @@ public class AccesBD {
         }
         return listvip;
     }
-
+    
+    // On récupère le vip cherché
     public int searchVip(String name, String surname) throws Exception {
         // Affichage de tous les vip
 
@@ -320,6 +325,7 @@ public class AccesBD {
         return numVip;
     }
 
+    // Cette fonction permet l'ajout d'une photo pour un vip
     public void ajoutPhotoVip(Photographie photo) throws SQLException {
 
         try {
@@ -338,6 +344,7 @@ public class AccesBD {
         }
     } // ajoutPhoto
 
+    // Ici on lit les vips pour alimenter la jTable
     public ArrayList<VIP> lireLesVIP() throws Exception {
         // Affichage de tous les vip
         PreparedStatement pstmt = null;
@@ -401,6 +408,7 @@ public class AccesBD {
         return Appli.vVIP;
     }
 
+    // Cette fonction sert à l'insertion d'un vip
     public void insererUnVip(VIP vip) throws SQLException {
         try {
             String requete = "insert into vip (nom_vip, prenom_usuel_vip, prenoms_vip, nationalite_vip, civilite_vip, date_naissance_vip, age_vip, lieu_naissance_vip, statut_vip, nb_enfants, sexe_vip, chemin_photo) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -426,6 +434,7 @@ public class AccesBD {
         }
     } // insererVip
 
+    // Cette fonction sert à l'ajout de photo d'un vip en plus de celle de profil
     public void ajoutPhoto(Photographie photo, int numVip) throws SQLException, Exception {
 
         try {
@@ -443,6 +452,7 @@ public class AccesBD {
         }
     } // ajoutPhoto
 
+    // Cette fonction sert à l'insertion du mariage de 2 vip après vérification
     public void insererUnMariage(Mariage mariage) throws SQLException {
 
         try {
@@ -463,6 +473,7 @@ public class AccesBD {
         }
     } // insererDivorce
 
+    // Ici on divorce des vips mariés
     public void insererUnDivorce(Divorce divorce) throws SQLException {
 
         try {
@@ -482,6 +493,7 @@ public class AccesBD {
         }
     } // insererDivorce
 
+    // Ici on regarde si le vip est divorcé ou pas
     public boolean searchMariage(int vip1, int vip2) throws Exception {
         // Affichage de tous les vip
         ResultSet rs = null;
@@ -516,6 +528,7 @@ public class AccesBD {
         return bonAMarier;
     }
 
+    // Ici on récupère la date du mariage pour vérifier que le vip qui se marie n'est pas né après son mariage
     public String RecupDateDuMariage(int numVip, int numVip2) throws Exception {
         // Affichage de tous les vip
         ResultSet rs = null;
@@ -552,8 +565,8 @@ public class AccesBD {
         return dateDuMariage;
     }
 
+    // Ici on récupère les id des deux vip pour pouvoir les marier
     public boolean searchDejaMarie(int vip) throws Exception {
-        // Affichage de tous les vip
         ResultSet rs = null;
         boolean bonAMarier = true;
 
@@ -584,6 +597,7 @@ public class AccesBD {
         return bonAMarier;
     }
 
+    // Ici on récupère le ou la partenanire du vip pour afficher les couples dans la jTable
     public String lireLesCouples(int numVip) throws Exception {
         // Affichage de tous les vip
         String nomVipMarie = null;
@@ -632,6 +646,7 @@ public class AccesBD {
 
     }
 
+    // Ici pour supprimer un vip, on supprime dans la table vip, photo et mariage s'il est marié
     public void supprimerVip(ArrayList<VIP> lesVipsASupprimer) throws Exception {
 
         PreparedStatement pstmt = null;

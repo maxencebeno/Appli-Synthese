@@ -27,7 +27,7 @@ import vue.MonModele;
 
 /**
  *
- * @author maxencebeno
+ * Cette classe permet l'ajout d'un vip avec toutes les vérifications possibles
  */
 public class AjoutVip extends javax.swing.JDialog {
 
@@ -307,7 +307,7 @@ public class AjoutVip extends javax.swing.JDialog {
         String prenoms, prenomsUsage, nomVIP, civiliteVIP, statutVIP, lieuNaissanceVIP, marieA = "Célibataire";
         String sexeVIP, nbEnfantsRecup, nationaliteVIP, dateNaissanceVIP, pathPicture = "non renseigné";
         int ageVIP = 0, nbEnfantsVIP = 0;
-        statutVIP = "Rien";
+        statutVIP = "Aucun";
         boolean ajoutVip = false;
 
         dateNaissanceVIP = dateNaissance.getText();
@@ -319,15 +319,16 @@ public class AjoutVip extends javax.swing.JDialog {
         civiliteVIP = civilite.getSelectedItem().toString();
         nbEnfantsRecup = nbEnfantsAffiche.getText();
         nbEnfantsVIP = Integer.parseInt(nbEnfantsRecup);
+        
         // Assignation dans la varible civilité l'item sélectionné
-        if (acteur.isSelected()) {
+        if (acteur.isSelected() && !realisateur.isSelected()) {
             statutVIP = acteur.getText();
-        } else if (realisateur.isSelected()) {
+        } else if (realisateur.isSelected() && !acteur.isSelected()) {
             statutVIP = realisateur.getText();
         } else if (rien.isSelected()) {
             statutVIP = rien.getText();
         } else if (acteur.isSelected() && realisateur.isSelected()) {
-            statutVIP = "Les deux";
+            statutVIP = "Acteur/Réalisateur";
         } else {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
@@ -453,6 +454,7 @@ public class AjoutVip extends javax.swing.JDialog {
                             "Ajout Photo",
                             javax.swing.JOptionPane.OK_CANCEL_OPTION
                     );
+                    // Ici on propose à l'utilisateur d'ajouter une photo pour son vip
                     if (resultPhoto == javax.swing.JOptionPane.OK_OPTION) {
                         javax.swing.JFileChooser filechooser = new javax.swing.JFileChooser();
                         filechooser.setDialogTitle("Choisissez la photo");
@@ -477,9 +479,7 @@ public class AjoutVip extends javax.swing.JDialog {
                                 String DATE_FORMAT = "yyyy/MM/dd";
                                 // Create object of SimpleDateFormat and pass the desired date format.
                                 SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
-                                /*
-                                 * Use format method of SimpleDateFormat class to format the date.
-                                 */
+                                
                                 String dateAjoutPhoto = sdf.format(date);
 
                             } catch (IOException e) {

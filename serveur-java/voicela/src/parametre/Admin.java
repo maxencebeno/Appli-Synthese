@@ -122,6 +122,7 @@ public class Admin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_loginActionPerformed
     
+    // Cette fonction récupère le login et mot de passe pour vérifier la connexion
       public String verifIdentification(String id) throws Exception {
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -153,6 +154,7 @@ public class Admin extends javax.swing.JFrame {
     }
     
     private void login(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login
+        // Si le login et le mot de passe sont bons on connecte l'utilisateur, sinon on l'invite à recommencer
         try {
             String textLogin = login.getText();
             String passText = new String(motDePasse.getPassword());

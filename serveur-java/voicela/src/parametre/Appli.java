@@ -14,7 +14,10 @@ import vue.MonModele;
 
 /**
  *
- * @author Vincent
+ * Cette classe est la classe principale du logiciel
+ * Elle est composée d'une jTable listant tous les vips, d'un menu permettant l'ajout de vips, photos, mariages et divorce
+ * Les modifications se font directement en modifiant les champs dans la jTable
+ * La suppression se fait en sélectionnant une ou plusieurs lignes de la table et en cliquant sur supprimer
  */
 public final class Appli extends javax.swing.JFrame {
 

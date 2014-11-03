@@ -12,7 +12,8 @@ import metier.Mariage;
 
 /**
  *
- * @author maxencebeno
+ * Cette classe regroupe 2 listes alimentée avec les noms des vips
+ * l'utilisateur rentre le lieu du mariage et la date et sélectionne 2 vips pour les marier
  */
 public class AjouterMariage extends javax.swing.JDialog {
 

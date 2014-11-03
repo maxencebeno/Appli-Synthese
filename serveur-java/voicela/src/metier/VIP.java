@@ -6,14 +6,13 @@
 
 package metier;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import parametre.AccesBD;
-
 
 /**
  *
- * @author Vincent
+ * Cette classe est la classe principale des vips.
+ * On récupère toutes les informations les concernant. 
+ * Nous avons en plus ajouté un champ qui relie la classe à la base de données permettant
+ * de savoir si le vip est marié ou célibataire.
  */
 public class VIP {
     // Attributs de VIP
@@ -107,7 +106,7 @@ public class VIP {
     }
 
     public String getMarieA() {
-        return "Célibataire";
+        return "Célibataire"; // On défini au début le vip comme étant célibataire. 
     }
     
     

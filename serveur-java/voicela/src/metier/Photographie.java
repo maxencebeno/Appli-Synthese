@@ -12,7 +12,8 @@ import java.io.*;
 
 /**
  *
- * @author Vincent
+ * Cette classe sert à l'ajout des photos des vips, elle rassemble aussi leur photo de profil
+ * 
  */
 public class Photographie {
     // Attributs
