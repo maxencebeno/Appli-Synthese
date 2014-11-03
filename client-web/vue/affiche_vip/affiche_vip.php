@@ -6,7 +6,6 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/affiche_vip/style_affiche.css" />
-	<link rel="stylesheet" type="text/css" href="assets/css/search/style_search.css" />
 
 	<!-- Beginning of JavasScript-->
 	<script src="./media/jquery-1.9.1.js"></script>
@@ -16,11 +15,11 @@
 
 <body>
 	<?php include('vue/includes/header.php'); ?>
-		<h1>Affichage des VIP référencés</h1>
+		
 
 	<div class="full_wrapper">
     	<div class="second_wrapper">		
-
+    		<h1>Affichage des VIP référencés</h1>
 		<?php
 		$req=allVip(); //appelle fonction modèle
 		while($donnees = $req->fetch()){

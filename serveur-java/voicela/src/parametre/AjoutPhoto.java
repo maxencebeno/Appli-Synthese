@@ -125,14 +125,9 @@ public class AjoutPhoto extends javax.swing.JDialog {
                         File file = filechooser.getSelectedFile();
 
                         BufferedImage bi;
-
+                        String urlPhoto = null;
                         try {   //display the image in jlabel
                             bi = ImageIO.read(file);
-                            copyFileUsingStream(file, new File("../../client-web/files/" + split[0] + ".jpg"));
-                            pathPicture = "files/" + split[0] + ".jpg";
-                            BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
-                            ImageIO.write(bISmallImage, "jpg", file);
-
                             Date date = new Date();
                             // Specify the desired date format
                             String DATE_FORMAT = "yyyy/MM/dd";
@@ -142,9 +137,18 @@ public class AjoutPhoto extends javax.swing.JDialog {
                              * Use format method of SimpleDateFormat class to format the date.
                              */
                             String dateAjoutPhoto = sdf.format(date);
-
                             Photographie photo;
-                            photo = new Photographie(numVip, split[0] + ".jpg", dateAjoutPhoto);
+                            photo = new Photographie(numVip, split[0], dateAjoutPhoto);
+                            try {
+                                urlPhoto = ajout.RecupNbPhoto(photo);
+                            } catch (SQLException ex) {
+                                Logger.getLogger(AjoutPhoto.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            copyFileUsingStream(file, new File("../../client-web/files/photos/" + urlPhoto + ".jpg"));
+                            pathPicture = "files/photos/" + urlPhoto + ".jpg";
+                            BufferedImage bISmallImage = Scalr.resize(bi, Method.ULTRA_QUALITY, 300, 150); // after this line my dimensions in bISmallImage are correct!
+                            ImageIO.write(bISmallImage, "jpg", file);
+                            
                             try {
                                 ajout.ajoutPhotoVip(photo);
                             } catch (SQLException ex) {

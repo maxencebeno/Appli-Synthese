@@ -327,23 +327,62 @@ public class AccesBD {
 
     // Cette fonction permet l'ajout d'une photo pour un vip
     public void ajoutPhotoVip(Photographie photo) throws SQLException {
-
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        String urlPhoto = null;
         try {
-
-            String requete = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
-            try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
-                pstmt.setInt(1, photo.getNumVIP());
-                pstmt.setString(2, photo.getUrlPhoto());
-                pstmt.setString(3, photo.getDateAjoutPhoto());
+            String requete = "select count(id_photo) from photos where num_vip = ?";
+            pstmt = connect.prepareStatement(requete);
+            pstmt.setInt(1, photo.getNumVIP());
+            rs = pstmt.executeQuery(); // Exécuter la requête
+            
+            if(rs.next()) {
+                int nbPhoto = rs.getInt(1);
+                String nombrePhoto = Integer.toString(nbPhoto++);
+                urlPhoto = photo.getUrlPhoto() + nombrePhoto;
+            } else {
+                urlPhoto = photo.getUrlPhoto();
+            }
+            
+            String requete2 = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
+            try (PreparedStatement pstmt2 = connect.prepareStatement(requete2)) {
+                pstmt2.setInt(1, photo.getNumVIP());
+                pstmt2.setString(2, urlPhoto + ".jpg");
+                pstmt2.setString(3, photo.getDateAjoutPhoto());
 
                 // exécution de l'ordre SQL
-                pstmt.executeUpdate();
+                pstmt2.executeUpdate();
             }
         } catch (Exception e) {
             throw e;
         }
     } // ajoutPhoto
 
+    // Cette fonction permet l'ajout d'une photo pour un vip
+    public String RecupNbPhoto(Photographie photo) throws SQLException {
+        ResultSet rs = null;
+        PreparedStatement pstmt = null;
+        String urlPhoto = null;
+        try {
+            String requete = "select count(id_photo) from photos where num_vip = ?";
+            pstmt = connect.prepareStatement(requete);
+            pstmt.setInt(1, photo.getNumVIP());
+            rs = pstmt.executeQuery(); // Exécuter la requête
+            
+            if(rs.next()) {
+                int nbPhoto = rs.getInt(1);
+                String nombrePhoto = Integer.toString(nbPhoto++);
+                urlPhoto = photo.getUrlPhoto() + nombrePhoto;
+                return urlPhoto;
+            } else {
+                urlPhoto = photo.getUrlPhoto();
+                return urlPhoto;
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    } // ajoutPhoto
+    
     // Ici on lit les vips pour alimenter la jTable
     public ArrayList<VIP> lireLesVIP() throws Exception {
         // Affichage de tous les vip

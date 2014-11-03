@@ -1,67 +1,90 @@
-body{
-    width: 100%;
-    min-height: 100%;
-    background-color: white;
-    font-family: Tahoma;
-    color: grey;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-}
-
-header{
-    width: 95%;
-    height: 50px;   line-height: 50px;  
-    background-color: grey;
-    color: white;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding-left: 5%;
-    font-size: 20px;
-}
-
-h1{
-    font-size: 20px;
-    color: #cdyu8f;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-#table-ip{
-    width: 1000px;
-    border: 1px solid black;   
-    border-collapse: collapse;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#table-ip caption{
-    border: 1px solid silver;
-    padding-bottom: 20px !important;
-    padding: 4px;
-    font-weight: bold;
-    color: #d12b00;
-}
-#table-ip td, #table-ip th{   
-    border: 1px solid silver;
-    padding: 4px;
-    text-align: center;
-    height: 80px;
-}
-#table-ip th{   background-color: #b2b2b2;  color: #ffffff; height: 20px !important}#table-ip tr:hover{ background-color: #f6f6f6}
-.icone-navigateur, .icone-OS{
-    width: 60px;
+html, body {
+    height: 100%;
 }
 
 .full_wrapper{
-    margin-top:50px;
+    margin-top: 50px;
+    min-height: 100%;
 }
 
+.vip_found{
+    display: block;
+    width: 100%;
+    height: 150px;
+    border: 1px solid #bababa;
+    position: relative;
+    margin-bottom: 30px;
+}
 
+.vip_found_profile_details h3{
+    margin-left: 30px;
+    padding: 0;
+    width: auto;
+    color: #55acee;
+    font-weight: normal;
+    text-decoration: underline;
+    font-size: 19px;
+    cursor: pointer;
+}
 
+.vip_found_profile_pic{
+    width: 150px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center center;
+}
 
+.vip_found_profile_details{
+    width: 850px;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px;
+}
 
+#switch{
+    width: 700px;
+    border: 2px solid white;
+    height: 40px;
+    color: white;
+    background: transparent;
+    margin-bottom: 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    margin-left: 245px;
+}
 
+#switch:hover{
+    background-color: white;
+    color: #188dc7;
+}
 
+.container{
+    width: 1000px;
+    margin-left:-10%;
+    position: relative;
+}
+
+#vip_list, #film_list, #no_result {
+    background-color: white;
+    border-radius: 7px;
+    padding:15px;
+}
+
+#info{
+    margin-left:30px;
+}
+
+.desc {
+    position: fixed;
+    top: 50px;
+    left:20%;
+    background-color: white;
+    margin-top: 50px;
+    z-index: 99999;
+}
