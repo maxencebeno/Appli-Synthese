@@ -19,6 +19,7 @@
                     $req = searchVIP($_GET['q']);
                     $reqfilm = searchFilm($_GET['q']);
                     $resultat_vide = true;
+                    $resultatf_vide = true;
                     
                     ?>
                     <div class="container">
@@ -38,7 +39,7 @@
                                 if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Femme'){
                                     echo 'Actrice';
                                 }else{
-                                    echo $donnees['statut_vip'];
+                                    echo utf8_encode($donnees['statut_vip']);
                                 }
                                 ?>
                             </p>
@@ -76,9 +77,9 @@
                             </div>
                         </div>
                         <?php
-                        $resultat_vide = false;
+                        $resultatf_vide = false;
                     }
-                    if($resultat_vide == true){
+                    if($resultatf_vide == true){
                         echo '<div id="no_result">
                         <p>Aucun résultat ne correspond aux termes de recherche spécifiés (<strong>'.$_GET['q'].'</strong>).<br /><br />
                         Suggestions :</p>
