@@ -17,8 +17,22 @@
                     <a href="film.php?id=24"><h1>Découvrez <i>Fury</i>, le nouveau joyau de David Ayer.</h1></a>
                 </div>
             </section>
-            <section style="height: 800px;">
-                <h1><!--Utiliser les onglets de navigation ou recherchez un VIP grâce à notre moteur de recherche.--></h1>
+            
+            <section style="height: 800px;margin:auto;width: 1000px;padding-top: 50px;">
+                <h2>Derniers VIP ajoutés</h2>
+                <?php 
+                $bdd = connexion();
+                $nbResultat = 0;
+                
+                $req = $bdd->query('SELECT * FROM vip ORDER BY num_vip DESC');
+                
+                    while($donnees = $req->fetch()){
+                        if($nbResultat < 4){
+                            echo '<div class="last-vip">'.$donnees['prenom_usuel_vip'].' '.$donnees['nom_vip'].'</div>';
+                            $nbResultat++;
+                        }
+                    }
+            ?>
             </section>
             
 

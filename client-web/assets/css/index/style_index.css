@@ -33,3 +33,16 @@
 #section_one a:hover{
     text-decoration :underline;
 }
+
+.last-vip{
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+    border: 1px solid grey;
+    padding: 30px;
+    margin-left: 50px;
+}
+
+h2{
+    color: #0084b4
+}
