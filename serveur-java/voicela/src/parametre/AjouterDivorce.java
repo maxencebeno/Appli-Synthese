@@ -266,7 +266,7 @@ public class AjouterDivorce extends javax.swing.JDialog {
         } else {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
-                    "Erreur, un vip ne peut pas se marier avec lui-même.",
+                    "Erreur, un vip ne peut pas divorcer avec lui-même.",
                     "Conflits de divorce",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
