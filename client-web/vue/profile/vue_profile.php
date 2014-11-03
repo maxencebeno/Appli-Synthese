@@ -29,8 +29,8 @@
                                 else{
                                     echo utf8_encode($donnees['statut_vip']);
                                 }
-                                ?>, <?php echo $nationalité_vip.'.'; ?></p>
-                        <p><?php if($sexe_vip == 'Femme'){echo 'Née';}else{echo 'Né';}?> le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
+                                ?>, <?php echo utf8_encode($nationalité_vip).'.'; ?></p>
+                        <p><?php if($sexe_vip == 'Femme'){echo 'Née';}else{echo 'Né';}?> le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo utf8_encode($lieu_naissance_vip); ?>.</p>
                         
                         <?php 
                         if($nb_enfants_vip > 0){
@@ -55,8 +55,22 @@
                             echo '<p>Actuellement '.$mot_marie.' avec '.$vip_marie.'.</p>';
                         }
                         else{
-                            echo '<p>Pas encore '.$mot_marie.'.</p>';
+                            echo '<p>Célibataire.</p>';
                         }
+
+                        if($sexe_vip == 'Femme'){
+                            $mot_div = 'Divorcée';
+                        }else{
+                             $mot_div = 'Divorcé';
+                        }
+
+                        if($div_vip != 'none'){
+                            echo '<p>'.$mot_div.' de: '.$div_vip.'.</p>';
+                        }
+                        else{
+                            echo '<p>Jamais '.$mot_div.'.</p>';
+                        }
+
                         ?>
                     </div>
                 </div>
@@ -89,7 +103,7 @@
                         <div class="film_box">
                             <div class="cover_film" style="background-image: url(files/films/<?php echo $donnees2['url_photo']; ?>)"></div>
                             <div class="infos_films">
-                                <p><?php echo '<strong>'.$donnees2['titre_film'].'</strong> <br /><br />Genre : '.$donnees2['genre']; ?></p>
+                                <p><?php echo '<strong>'.utf8_encode($donnees2['titre_film']).'</strong> <br /><br />Genre : '.utf8_encode($donnees2['genre']); ?></p>
                                <?php echo '<p class="see_film"><div id="see_film" onClick="affichePres('.$donnees2['id_film'].');">Voir ce film</div></p> ';?>
                             </div>
                         </div>

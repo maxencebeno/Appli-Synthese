@@ -26,6 +26,8 @@ if(isset($_GET['id']) AND $_GET['id'] != ""){
 
     // On vérifie si le VIP est marié. Si oui, on retourne son nom sinon on retourne "none"
     $vip_marie = getMariageVIP($num_vip);
+    //divorces
+    $div_vip = getAnMariageVIP($num_vip);
     
     // Si pas de résultat, on redirige vers 404 error
     if($resultat_vide == true){

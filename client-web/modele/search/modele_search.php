@@ -48,9 +48,10 @@ function searchFilm($q){
         $nb_elem=count($tableau_mots_cles); 
 
         // On va incrémenter une requête sous forme de chaine de caractère pour incrémenter avec tous les mots clés
-        $requete = 'SELECT * FROM films WHERE titre_film LIKE "%'.$tableau_mots_cles[0].'%" ';
+        $requete = 'SELECT * FROM films WHERE titre_film LIKE "%'.$tableau_mots_cles[0].'%" OR num_visa LIKE "%'.$tableau_mots_cles[0].'%"';
         for($i=1 ; $i<$nb_elem; $i++) {
             $requete.='OR (titre_film LIKE "%'.$tableau_mots_cles[$i].'%")';
+            $requete.='OR (num_visa LIKE "%'.$tableau_mots_cles[$i].'%")';
         } 
         $requete .= 'ORDER BY titre_film';
         

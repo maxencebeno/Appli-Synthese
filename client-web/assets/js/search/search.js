@@ -29,7 +29,7 @@ function fermer(){
 
 	$('html, body').css({
     'overflow': 'auto',
-    'height': 'auto'
+    'height': '100%'
 	})
 }
 
