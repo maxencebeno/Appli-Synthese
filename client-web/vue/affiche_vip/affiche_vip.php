@@ -33,9 +33,9 @@
 		$req=allVip(); //appelle fonction modèle
 		while($donnee = $req->fetch()){
 			echo "<tr>";
-			echo "<td>".$donnee["nom_vip"]."</td>";
-			echo "<td>".$donnee["prenom_usuel_vip"]."</td>";
-			echo "<td>".$donnee["nationalite_vip"]."</td>";
+			echo "<td>".utf8_encode($donnee["nom_vip"])."</td>";
+			echo "<td>".utf8_encode($donnee["prenom_usuel_vip"])."</td>";
+			echo "<td>".utf8_encode($donnee["nationalite_vip"])."</td>";
 
 			//affichage sexe
 			if($donnee["civilite_vip"]== 'Mr'){
@@ -51,8 +51,8 @@
 			$date = new DateTime($donnee["date_naissance_vip"]);
 			echo "<td>".date_format($date, 'd-m-Y')."</td>";
 
-			echo "<td>".$donnee["lieu_naissance_vip"]."</td>";
-			echo "<td>".$donnee["statut_vip"]."</td>";
+			echo "<td>".utf8_encode($donnee["lieu_naissance_vip"])."</td>";
+			echo "<td>".utf8_encode($donnee["statut_vip"])."</td>";
 			echo '<td><a href="profile.php?id='.$donnee["num_vip"].'">Voir profil</a></td>';
 			echo "</tr>";
 		}

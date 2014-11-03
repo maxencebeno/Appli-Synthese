@@ -74,6 +74,10 @@
     margin-left: 400px;
 }
 
+.info_film h2 {
+    width:500px;
+}
+
 h2 {
     margin-bottom: 0px;
 }
