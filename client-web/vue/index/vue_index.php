@@ -28,11 +28,26 @@
                 
                     while($donnees = $req->fetch()){
                         if($nbResultat < 4){
-                            echo '<div class="last-vip">'.$donnees['prenom_usuel_vip'].' '.$donnees['nom_vip'].'</div>';
+                            echo '<div class="last-vip" title="'.$donnees['prenom_usuel_vip'].' '.$donnees['nom_vip'].'" style="background-image: url('.$donnees['chemin_photo'].')"></div>';
                             $nbResultat++;
                         }
                     }
-            ?>
+                ?>
+                
+                <h2 style="margin-top: 40px;">Derniers films ajoutés</h2>
+                <?php 
+                $bdd2 = connexion();
+                $nbResultat2 = 0;
+                
+                $req2 = $bdd2->query('SELECT * FROM films ORDER BY id_film DESC');
+                
+                    while($donnees2 = $req2->fetch()){
+                        if($nbResultat2 < 4){
+                            echo '<div class="last-vip" title="'.$donnees2['titre_film'].'" style="background-image: url(files/films/'.$donnees2['url_photo'].')"></div>';
+                            $nbResultat2++;
+                        }
+                    }
+                ?>
             </section>
             
 

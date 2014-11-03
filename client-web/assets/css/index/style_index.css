@@ -41,6 +41,8 @@
     border: 1px solid grey;
     padding: 30px;
     margin-left: 50px;
+    background-size: cover;
+    background-position: center center;
 }
 
 h2{
