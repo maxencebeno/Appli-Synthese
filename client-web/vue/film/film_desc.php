@@ -1,4 +1,4 @@
-
+﻿
     <div class="general">
         <span id="off" onClick="fermer();"><i class="glyphicon glyphicon-remove"></i></span>
     <?php
@@ -10,12 +10,12 @@
         if($film = $req->fetch()){
 
             $id_film = $film["id_film"];
-            $titre_film = $film["titre_film"];
+            $titre_film = utf8_encode($film["titre_film"]);
             $date_sortie =  date_create($film["date_sortie"]);
             $anneeSortie = date_format($date_sortie, "Y");
             $moisSortie = date_format($date_sortie, "m");
             $jourSortie = date_format($date_sortie, "d");
-            $genre = $film["genre"];
+            $genre = utf8_encode($film["genre"]);
             $num_visa = $film["num_visa"];
             $photo = $film["url_photo"];
 
@@ -39,7 +39,7 @@
             while($reali = $reqRea->fetch()){
                 $reqInfoRea= getInfoVip($reali['num_vip']);
                 if($vip=$reqInfoRea->fetch()){
-                    echo $vip['nom_vip']. ' '. $vip['prenom_usuel_vip']; 
+                    echo '<a href="profile.php?id='.$vip["num_vip"].'">'.utf8_encode($vip['nom_vip']). ' '. utf8_encode($vip['prenom_usuel_vip']).'</a><br/>'; 
                 }
                 $result_ok = true;
             }
@@ -56,7 +56,7 @@
                 foreach ($acteur as $ligne) {//sinon
                     $reqInfoAct= getInfoVip($ligne['num_vip']);//on récupère les nfo du VIP acteur
                     if($vip=$reqInfoAct->fetch()){//si on a les infos
-                    echo '<a href="profile.php?id='.$vip["num_vip"].'">'.$vip["nom_vip"]. ' '. $vip["prenom_usuel_vip"].'</a><br/>'; //echo les infos 
+                    echo '<a href="profile.php?id='.$vip["num_vip"].'">'.utf8_encode($vip["nom_vip"]). ' '. utf8_encode($vip["prenom_usuel_vip"]).'</a><br/>'; //echo les infos 
                     }
                 }
             }

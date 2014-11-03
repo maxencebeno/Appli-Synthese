@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -18,10 +18,10 @@
         <?php
         while($films= $reqFilms->fetch()){
             $id_film = $films["id_film"];
-            $titre_film = $films["titre_film"];
+            $titre_film = utf8_encode($films["titre_film"]);
             $date_sortie =  date_create($films["date_sortie"]);
             $date = date_format($date_sortie, "Y");
-            $genre = $films["genre"];
+            $genre = utf8_encode($films["genre"]);
             $num_visa = $films["num_visa"];
             $photo = $films["url_photo"];
 

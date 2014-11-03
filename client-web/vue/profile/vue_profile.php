@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -27,7 +27,7 @@
                                 }
                                 
                                 else{
-                                    echo $donnees['statut_vip'];
+                                    echo utf8_encode($donnees['statut_vip']);
                                 }
                                 ?>, <?php echo $nationalité_vip.'.'; ?></p>
                         <p><?php if($sexe_vip == 'Femme'){echo 'Née';}else{echo 'Né';}?> le <?php $date = new DateTime($date_naissance_vip);echo date_format($date, 'd-m-Y'); ?> à <?php echo $lieu_naissance_vip; ?>.</p>
