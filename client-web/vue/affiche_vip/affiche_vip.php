@@ -25,13 +25,13 @@
 		while($donnees = $req->fetch()){
 			?> <div class="vip_found">
                     <div class="vip_found_profile_pic" style="background-image: url(<?php echo $donnees['chemin_photo']; ?>);"></div>
-                    <div class="vip_found_profile_details"><a href="profile.php?id=<?php echo $donnees['num_vip']; ?>"><h3><?php echo $donnees['prenom_usuel_vip']; ?> <?php echo $donnees['nom_vip'];?></h3></a>
+                    <div class="vip_found_profile_details"><a href="profile.php?id=<?php echo $donnees['num_vip']; ?>"><h3><?php echo utf8_encode($donnees['prenom_usuel_vip']); ?> <?php echo utf8_encode($donnees['nom_vip']);?></h3></a>
                     <p>
                         <?php 
                             if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Femme'){
                                 echo 'Actrice';
                             }else{
-                                echo $donnees['statut_vip'];
+                                echo utf8_encode($donnees['statut_vip']);
                             }
                         ?>
                     </p>

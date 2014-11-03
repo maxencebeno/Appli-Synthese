@@ -18,7 +18,7 @@
                     <div id="profile_pic" style="background-image: url(<?php echo $chemin_photo_vip; ?>);"></div>
                     
                     <div id="bio">
-                        <h3><?php echo $prenom_vip; ?> <?php echo $nom_vip; ?></h3>
+                        <h3><?php echo utf8_encode($prenom_vip); ?> <?php echo utf8_encode($nom_vip); ?></h3>
                         <p><?php 
                                 if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Femme'){
                                     echo 'Actrice';
@@ -72,7 +72,7 @@
                         while($donnees = $reqVip->fetch()){
                         ?>
                             <span class="add_the_x">Ajoutée le : <?php echo $donnees['date_ajout_photo']; ?></span>
-                            <img src="files/<?php echo $donnees['url_photo'];?>" title="<?php echo $prenom_vip.' '.$nom_vip; ?>" alt />
+                            <img src="files/photos/<?php echo $donnees['url_photo'];?>" title="<?php echo $prenom_vip.' '.$nom_vip; ?>" alt />
                         <?php
                         }
                     }else{
