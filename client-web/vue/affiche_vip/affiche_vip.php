@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/universal.css" />
     <link rel="stylesheet" type="text/css" href="assets/css/glyphicon.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/affiche_vip/style_affiche.css" />
+	<link rel="stylesheet" type="text/css" href="assets/css/search/style_search.css" />
 
 	<!-- Beginning of JavasScript-->
 	<script src="./media/jquery-1.9.1.js"></script>
@@ -15,49 +16,32 @@
 
 <body>
 	<?php include('vue/includes/header.php'); ?>
-	<div class="full_wrapper">
 		<h1>Affichage des VIP référencés</h1>
 
-		<table id="table-ip">   
-			<tr>
-				<th>Nom VIP</th> 
-				<th>Prénom usuel</th>
-				<th>nationalité</th>
-				<th>Sexe</th>
-				<th>date_naissance</th>
-				<th>lieu naissance</th>
-				<th>statut</th>
-			</tr>
+	<div class="full_wrapper">
+    	<div class="second_wrapper">		
 
 		<?php
 		$req=allVip(); //appelle fonction modèle
-		while($donnee = $req->fetch()){
-			echo "<tr>";
-			echo "<td>".$donnee["nom_vip"]."</td>";
-			echo "<td>".$donnee["prenom_usuel_vip"]."</td>";
-			echo "<td>".$donnee["nationalite_vip"]."</td>";
-
-			//affichage sexe
-			if($donnee["civilite_vip"]== 'Mr'){
-				echo "<td>Homme</td>";
-			}
-			elseif($donnee["civilite_vip"]=="Mme"){
-				echo "<td>Femme</td>";
-			}
-			else {
-				echo "<td>".$donnee["civilite_vip"]."</td>";
-			}
-			//affochage bon format date
-			$date = new DateTime($donnee["date_naissance_vip"]);
-			echo "<td>".date_format($date, 'd-m-Y')."</td>";
-
-			echo "<td>".$donnee["lieu_naissance_vip"]."</td>";
-			echo "<td>".$donnee["statut_vip"]."</td>";
-			echo '<td><a href="profile.php?id='.$donnee["num_vip"].'">Voir profil</a></td>';
-			echo "</tr>";
+		while($donnees = $req->fetch()){
+			?> <div class="vip_found">
+                    <div class="vip_found_profile_pic" style="background-image: url(<?php echo $donnees['chemin_photo']; ?>);"></div>
+                    <div class="vip_found_profile_details"><a href="profile.php?id=<?php echo $donnees['num_vip']; ?>"><h3><?php echo $donnees['prenom_usuel_vip']; ?> <?php echo $donnees['nom_vip'];?></h3></a>
+                    <p>
+                        <?php 
+                            if($donnees['statut_vip'] == 'Acteur' && $donnees['sexe_vip'] == 'Femme'){
+                                echo 'Actrice';
+                            }else{
+                                echo $donnees['statut_vip'];
+                            }
+                        ?>
+                    </p>
+                    </div>
+                </div>
+                <?php
 		}
 		?>
-		</table>
+		</div>
 	</div>
 </body>
 
