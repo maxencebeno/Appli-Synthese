@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Divorce;
@@ -27,26 +28,23 @@ public class AjouterDivorce extends javax.swing.JDialog {
     public AjouterDivorce(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        verif = false; // Permet de dire que l'utilisateur à tapé un mois à 31 jours
+        fevrier = false; // Permet la vérification de février
+        mois31 = false; // Permet de savoir si le mois possède 31 jours ou non
+        novembre = false; // Novembre n'a que 30 jour et est un mois à 2 chiffre. Cela demande une autre vérification
+        
 
-        listModelVIP1 = new javax.swing.DefaultListModel<>();
-        divorce1.setModel(listModelVIP1);
+        listModelCouples = new javax.swing.DefaultListModel<>();
+        divorce1.setModel(listModelCouples);
         try {
-            ajout.alimenterListeDivorce(listModelVIP1);
+            ajout.lireLesCouplesDivorce(listModelCouples);
         } catch (Exception ex) {
             Logger.getLogger(AjoutPhoto.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         divorce1.setSelectedIndex(0);
 
-        listModelVIP2 = new javax.swing.DefaultListModel<>();
-        divorce2.setModel(listModelVIP2);
-        try {
-            ajout.alimenterListeDivorce(listModelVIP2);
-        } catch (Exception ex) {
-            Logger.getLogger(AjoutPhoto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        divorce2.setSelectedIndex(0);
+        
 
     }
 
@@ -63,23 +61,22 @@ public class AjouterDivorce extends javax.swing.JDialog {
         dateDivorce = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         divorce1 = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        divorce2 = new javax.swing.JList();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         divorcer = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Date du divorce : ");
 
+        dateDivorce.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                gestionDate(evt);
+            }
+        });
+
         jScrollPane1.setViewportView(divorce1);
 
-        jScrollPane2.setViewportView(divorce2);
-
-        jLabel2.setText("Nom du Vip 1 : ");
-
-        jLabel3.setText("Nom du Vip 2 : ");
+        jLabel2.setText("Nom du couple : ");
 
         divorcer.setText("Divorcer");
         divorcer.addActionListener(new java.awt.event.ActionListener() {
@@ -93,28 +90,22 @@ public class AjouterDivorce extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(divorcer)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111))
+                        .addGap(222, 222, 222)
+                        .addComponent(divorcer))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(155, 155, 155)
-                                .addComponent(jLabel3))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(40, 40, 40)
-                                .addComponent(dateDivorce, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(dateDivorce, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,15 +114,11 @@ public class AjouterDivorce extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(dateDivorce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
                 .addComponent(divorcer)
                 .addGap(29, 29, 29))
         );
@@ -140,41 +127,33 @@ public class AjouterDivorce extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void divorcer(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divorcer
-        String vip1, vip2;
+        String vip1;
         String[] vipArray1;
-        String[] vipArray2;
-        String nomVip1, nomVip2, prenomVip1, prenomVip2;
+        String nomVip1, prenomVip1, nomVip2, prenomVip2;
         int numVip1 = 0, numVip2 = 0;
-        boolean divorceSolo = false, dateFausse = false;
+        boolean dateFausse = false, ajoutDivorce = false;
 
         String dateDuDivorce;
         dateDuDivorce = dateDivorce.getText();
 
         vip1 = divorce1.getSelectedValue().toString();
-        vip2 = divorce2.getSelectedValue().toString();
 
         vipArray1 = vip1.split(" ");
         nomVip1 = vipArray1[0];
         prenomVip1 = vipArray1[1];
-
-        vipArray2 = vip2.split(" ");
-        nomVip2 = vipArray2[0];
-        prenomVip2 = vipArray2[1];
-
+        nomVip2 = vipArray1[4];
+        prenomVip2 = vipArray1[5];
+        
         try {
             numVip1 = ajout.searchVip(nomVip1, prenomVip1);
         } catch (Exception ex) {
             Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         try {
             numVip2 = ajout.searchVip(nomVip2, prenomVip2);
         } catch (Exception ex) {
             Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        if (numVip1 == numVip2) {
-            divorceSolo = true;
         }
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -189,6 +168,7 @@ public class AjouterDivorce extends javax.swing.JDialog {
                 );
             } else {
                 date1 = sdf.parse(dateDuDivorce);
+                ajoutDivorce = true;
             }
         } catch (ParseException ex) {
             Logger.getLogger(AjouterDivorce.class.getName()).log(Level.SEVERE, null, ex);
@@ -201,7 +181,12 @@ public class AjouterDivorce extends javax.swing.JDialog {
                 date2 = sdf.parse(dateDuMariage);
                 if (date1.compareTo(date2) < 0) {
                     dateFausse = true;
+                } else {
+                    ajoutDivorce = true;
+                    dateFausse = false;
                 }
+                ajoutDivorce = true;
+                dateFausse = false;
             } else {
                 javax.swing.JOptionPane.showMessageDialog(
                         this,
@@ -209,12 +194,13 @@ public class AjouterDivorce extends javax.swing.JDialog {
                         "Erreur",
                         javax.swing.JOptionPane.ERROR_MESSAGE
                 );
+                ajoutDivorce = false;
             }
         } catch (Exception ex) {
             Logger.getLogger(AjouterDivorce.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        if (divorceSolo == false && dateFausse == false) {
+        System.out.print(dateFausse);
+        if (dateFausse == false && ajoutDivorce == true) {
             int result = javax.swing.JOptionPane.showConfirmDialog(
                     this,
                     "Voici le divorce que vous êtes sur le point d'insérer : \n"
@@ -266,12 +252,128 @@ public class AjouterDivorce extends javax.swing.JDialog {
         } else {
             javax.swing.JOptionPane.showMessageDialog(
                     this,
-                    "Erreur, un vip ne peut pas divorcer avec lui-même.",
+                    "Une erreur s'est produite",
                     "Conflits de divorce",
                     javax.swing.JOptionPane.ERROR_MESSAGE
             );
         }
     }//GEN-LAST:event_divorcer
+
+    private void gestionDate(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_gestionDate
+        char c = evt.getKeyChar();
+
+        if (dateDivorce.getDocument().getLength() <= 10) { // Si l'utilisateur dépasse 10 caractère on s'arrête
+            if (!Character.isDigit(c)) { // On ne peut taper que des chiffress
+                evt.consume();
+            }
+            if (dateDivorce.getDocument().getLength() == 0) {
+                if (c == '3') { // Si on tape 3 il faudra surement vérifier les mois à 31 jours et Février
+                    verif = true;
+                    fevrier = true;
+                }
+                
+                if (c > '3') {
+                    evt.consume();
+                }
+                verif = false; 
+                fevrier = false;
+            }
+            if (dateDivorce.getDocument().getLength() == 1) {
+                if (verif == true) { // Les mois à plus de 31 jours n'existent pas
+                    if (c > '1') {
+                        evt.consume();
+                    }
+                    if (c == '1') { // L'utilisateur a tapé 31, il faudra vérifier si le mois correspond
+                        mois31 = true;
+                    } else {
+                        mois31 = false; 
+                    }
+                } else {
+                    verif = false;
+                    fevrier = false;
+                    mois31 = false;
+                }
+            }
+            if (dateDivorce.getDocument().getLength() == 2) {
+                evt.setKeyChar('/'); // On aide l'utilisateur en mettant directement un slash
+            }
+            if (dateDivorce.getDocument().getLength() == 3) {
+                if (c == '1') {
+                    verif = true;
+                    fevrier = false;
+                    novembre = true; // Novembre est le mois 11, seulement il n'a que 30 jour, on anticipe donc l'erreur
+                } else {
+                    verif = false;
+                    fevrier = false;
+                }
+                if (c > '1') {
+                    evt.consume();
+                }
+                if (c == '0') {
+                    fevrier = true;
+                    mois31 = true;
+                }
+            }
+            if (dateDivorce.getDocument().getLength() == 4) {
+                if (verif == true) {
+                    if (c > '2') {
+                        evt.consume();
+                    }
+                }
+                if (fevrier == true && c == '2') {
+                    evt.consume();
+                    jLabel2.setText("Le mois de Février n'a pas plus de 29 jours maximums!");
+                    dateDivorce.setText("");
+                }
+                jLabel2.setText("");
+                if (mois31 == true && verif == true) {
+                    if (c == '4' || c == '6' || c == '9') {
+                        evt.consume();
+                        jLabel2.setText("Ce mois ne possède que 30 jours!");
+                        dateDivorce.setText("");
+                    }
+                    jLabel2.setText("");
+                    if (novembre == true && verif == true) {
+                        if (c == '1') {
+                            evt.consume();
+                            jLabel2.setText("Ce mois ne possède que 30 jours!");
+                            dateDivorce.setText("");
+                        }
+                        jLabel2.setText("");
+                    }
+                }
+            }
+            if (dateDivorce.getDocument().getLength() == 5) {
+                evt.setKeyChar('/');
+            }
+            if (dateDivorce.getDocument().getLength() == 6) {
+                if (c > '2' || c < '1') { // On autorise les années entre 1000 et 2999
+                    evt.consume();
+                }
+                
+            }
+        }
+        try {
+            if (dateDivorce.getDocument().getLength() == 10) {
+                String dateString = dateDivorce.getText() + c;
+                Date tempDate;
+
+                tempDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+
+                String jourEnLettres = new SimpleDateFormat("EEEE", Locale.FRANCE).format(tempDate);
+
+                // On affiche le jour à l'utilisateur.
+                javax.swing.JOptionPane.showMessageDialog(
+                        null,
+                        dateString + " correspond à un " + jourEnLettres,
+                        "Date",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AjouterDivorce.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_gestionDate
 
     /**
      * @param args the command line arguments
@@ -318,16 +420,13 @@ public class AjouterDivorce extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField dateDivorce;
     private javax.swing.JList divorce1;
-    private javax.swing.JList divorce2;
     private javax.swing.JButton divorcer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
     javax.swing.DefaultListModel<String> listModelVIP1;
-    javax.swing.DefaultListModel<String> listModelVIP2;
     javax.swing.DefaultListModel<String> listModelCouples;
     AccesBD ajout = new AccesBD();
+    boolean verif, fevrier, mois31, novembre;
 }

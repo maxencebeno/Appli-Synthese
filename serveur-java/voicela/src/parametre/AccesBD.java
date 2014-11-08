@@ -27,6 +27,7 @@ public class AccesBD {
     public AccesBD() {
 
     }
+
     // Les trois fonctions qui suivent servent à l'affichage des combo box dans la jTable de VIPs
     public javax.swing.JComboBox afficherComboBoxCivilite(javax.swing.JComboBox combobox) throws Exception {
 
@@ -54,7 +55,7 @@ public class AccesBD {
 
         return combobox;
     }
-    
+
     // les fonctions qui suivent permette l'update de la table vip en fonction des modifications enrigistrée via la jTable
     public void modifNom(String newName, String name, String surname) throws SQLException {
 
@@ -262,16 +263,44 @@ public class AccesBD {
 
     // Comme pour marier les Vip, nous créons une liste pour les divorcer.
     // La seule difference est que pour cette liste, nous récupérons seulement les vip mariés.
-    public javax.swing.DefaultListModel<String> alimenterListeDivorce(javax.swing.DefaultListModel<String> listvip) throws Exception {
+    public javax.swing.DefaultListModel<String> lireLesCouplesDivorce(javax.swing.DefaultListModel<String> listvip) throws Exception {
 
         ResultSet rs = null;
+        ResultSet rs2 = null;
+        ResultSet rs3 = null;
+        int num_vip1 = 0, num_vip2 = 0;
+
         try {
-            String requete = "select nom_vip, prenom_usuel_vip from vip, mariage where vip.num_vip = mariage.num_vip1 and divorce = 0";
+            String requete = "select num_vip1, num_vip2 from mariage where divorce = 0 group by num_vip1";
             try (PreparedStatement pstmt = connect.prepareStatement(requete)) {
                 rs = pstmt.executeQuery();
                 while (rs.next()) {
-                    listvip.addElement(rs.getString(1) + " " + rs.getString(2));
+                    num_vip1 = rs.getInt(1);
+                    num_vip2 = rs.getInt(2);
+                    String requete2 = "select nom_vip, prenom_usuel_vip from vip where num_vip = ?";
+                    try (PreparedStatement pstmt2 = connect.prepareStatement(requete2)) {
+                        pstmt2.setInt(1, num_vip1);
+                        rs2 = pstmt2.executeQuery();
+                        while (rs2.next()) {
+                            String nomVip1 = rs2.getString(1);
+                            String prenomVip1 = rs2.getString(2);
+                            String requete3 = "select nom_vip, prenom_usuel_vip from vip where num_vip = ?";
+                            try (PreparedStatement pstmt3 = connect.prepareStatement(requete3)) {
+                                pstmt3.setInt(1, num_vip2);
+                                rs3 = pstmt3.executeQuery();
+                                while (rs3.next()) {
+                                    pstmt3.setInt(1, num_vip2);
+                                    String nomVip2 = rs3.getString(1);
+                                    String prenomVip2 = rs3.getString(2);
+
+                                    listvip.addElement(nomVip1 + " " + prenomVip1 + " marié à " + nomVip2 + " " + prenomVip2);
+                                }
+                            }
+                        }
+                    }
+
                 }
+
             }
 
         } catch (Exception e) {
@@ -288,7 +317,7 @@ public class AccesBD {
         }
         return listvip;
     }
-    
+
     // On récupère le vip cherché
     public int searchVip(String name, String surname) throws Exception {
         // Affichage de tous les vip
@@ -335,15 +364,15 @@ public class AccesBD {
             pstmt = connect.prepareStatement(requete);
             pstmt.setInt(1, photo.getNumVIP());
             rs = pstmt.executeQuery(); // Exécuter la requête
-            
-            if(rs.next()) {
+
+            if (rs.next()) {
                 int nbPhoto = rs.getInt(1);
                 String nombrePhoto = Integer.toString(nbPhoto++);
                 urlPhoto = photo.getUrlPhoto() + nombrePhoto;
             } else {
                 urlPhoto = photo.getUrlPhoto();
             }
-            
+
             String requete2 = "insert into photos (num_vip, url_photo, date_ajout_photo) values(?, ?, ?)";
             try (PreparedStatement pstmt2 = connect.prepareStatement(requete2)) {
                 pstmt2.setInt(1, photo.getNumVIP());
@@ -368,8 +397,8 @@ public class AccesBD {
             pstmt = connect.prepareStatement(requete);
             pstmt.setInt(1, photo.getNumVIP());
             rs = pstmt.executeQuery(); // Exécuter la requête
-            
-            if(rs.next()) {
+
+            if (rs.next()) {
                 int nbPhoto = rs.getInt(1);
                 String nombrePhoto = Integer.toString(nbPhoto++);
                 urlPhoto = photo.getUrlPhoto() + nombrePhoto;
@@ -382,7 +411,7 @@ public class AccesBD {
             throw e;
         }
     } // ajoutPhoto
-    
+
     // Ici on lit les vips pour alimenter la jTable
     public ArrayList<VIP> lireLesVIP() throws Exception {
         // Affichage de tous les vip

@@ -6,6 +6,10 @@
 package parametre;
 
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Mariage;
@@ -23,6 +27,12 @@ public class AjouterMariage extends javax.swing.JDialog {
     public AjouterMariage(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        verif = false; // Permet de dire que l'utilisateur à tapé un mois à 31 jours
+        fevrier = false; // Permet la vérification de février
+        mois31 = false; // Permet de savoir si le mois possède 31 jours ou non
+        novembre = false; // Novembre n'a que 30 jour et est un mois à 2 chiffre. Cela demande une autre vérification
+        
         listModelVIP1 = new javax.swing.DefaultListModel<>();
         listvip1.setModel(listModelVIP1);
         try {
@@ -299,21 +309,117 @@ public class AjouterMariage extends javax.swing.JDialog {
 
     private void dateMariageKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dateMariageKeyTyped
         char c = evt.getKeyChar();
-        int jj, mm, aaaa;
 
-        if (dateMariage.getDocument().getLength() < 10) {
-            if (!Character.isDigit(c)) {
+        if (dateMariage.getDocument().getLength() <= 10) { // Si l'utilisateur dépasse 10 caractère on s'arrête
+            if (!Character.isDigit(c)) { // On ne peut taper que des chiffress
                 evt.consume();
             }
+            if (dateMariage.getDocument().getLength() == 0) {
+                if (c == '3') { // Si on tape 3 il faudra surement vérifier les mois à 31 jours et Février
+                    verif = true;
+                    fevrier = true;
+                }
+                
+                if (c > '3') {
+                    evt.consume();
+                }
+                verif = false; 
+                fevrier = false;
+            }
+            if (dateMariage.getDocument().getLength() == 1) {
+                if (verif == true) { // Les mois à plus de 31 jours n'existent pas
+                    if (c > '1') {
+                        evt.consume();
+                    }
+                    if (c == '1') { // L'utilisateur a tapé 31, il faudra vérifier si le mois correspond
+                        mois31 = true;
+                    } else {
+                        mois31 = false; 
+                    }
+                } else {
+                    verif = false;
+                    fevrier = false;
+                    mois31 = false;
+                }
+            }
+            if (dateMariage.getDocument().getLength() == 2) {
+                evt.setKeyChar('/'); // On aide l'utilisateur en mettant directement un slash
+            }
+            if (dateMariage.getDocument().getLength() == 3) {
+                if (c == '1') {
+                    verif = true;
+                    fevrier = false;
+                    novembre = true; // Novembre est le mois 11, seulement il n'a que 30 jour, on anticipe donc l'erreur
+                } else {
+                    verif = false;
+                    fevrier = false;
+                }
+                if (c > '1') {
+                    evt.consume();
+                }
+                if (c == '0') {
+                    fevrier = true;
+                    mois31 = true;
+                }
+            }
             if (dateMariage.getDocument().getLength() == 4) {
-                evt.setKeyChar('-');
+                if (verif == true) {
+                    if (c > '2') {
+                        evt.consume();
+                    }
+                }
+                if (fevrier == true && c == '2') {
+                    evt.consume();
+                    jLabel2.setText("Le mois de Février n'a pas plus de 29 jours maximums!");
+                    dateMariage.setText("");
+                }
+                jLabel2.setText("");
+                if (mois31 == true && verif == true) {
+                    if (c == '4' || c == '6' || c == '9') {
+                        evt.consume();
+                        jLabel2.setText("Ce mois ne possède que 30 jours!");
+                        dateMariage.setText("");
+                    }
+                    jLabel2.setText("");
+                    if (novembre == true && verif == true) {
+                        if (c == '1') {
+                            evt.consume();
+                            jLabel2.setText("Ce mois ne possède que 30 jours!");
+                            dateMariage.setText("");
+                        }
+                        jLabel2.setText("");
+                    }
+                }
             }
-            if (dateMariage.getDocument().getLength() == 7) {
-                evt.setKeyChar('-');
+            if (dateMariage.getDocument().getLength() == 5) {
+                evt.setKeyChar('/');
             }
+            if (dateMariage.getDocument().getLength() == 6) {
+                if (c > '2' || c < '1') { // On autorise les années entre 1000 et 2999
+                    evt.consume();
+                }
+                
+            }
+        }
+        try {
+            if (dateMariage.getDocument().getLength() == 10) {
+                String dateString = dateMariage.getText() + c;
+                Date tempDate;
 
-        } else {
-            evt.consume();
+                tempDate = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
+
+                String jourEnLettres = new SimpleDateFormat("EEEE", Locale.FRANCE).format(tempDate);
+
+                // On affiche le jour à l'utilisateur.
+                javax.swing.JOptionPane.showMessageDialog(
+                        null,
+                        dateString + " correspond à un " + jourEnLettres,
+                        "Date",
+                        javax.swing.JOptionPane.INFORMATION_MESSAGE
+                );
+            }
+        } catch (ParseException ex) {
+            Logger.getLogger(AjouterMariage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_dateMariageKeyTyped
 
@@ -335,4 +441,5 @@ public class AjouterMariage extends javax.swing.JDialog {
     javax.swing.DefaultListModel<String> listModelVIP1;
     javax.swing.DefaultListModel<String> listModelVIP2;
     AccesBD ajout = new AccesBD();
+    boolean verif, fevrier, mois31, novembre;
 }
