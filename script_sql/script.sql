@@ -33,6 +33,7 @@ CREATE TABLE films (
 	date_sortie date,
 	genre varchar2(255),
 	num_visa varchar2(255),
+	url_photo varchar2(255),
 	constraint pk_films primary key (id_film)
 );
 
@@ -47,16 +48,28 @@ CREATE TABLE mariage (
 	constraint pk_mariage primary key (id_mariage)
 );
 
-create table maries (
-	id_mariage number(10),
+create table casting (
+	id number(10),
 	num_vip number(10),
-	constraint pk_maries primary key (id_mariage, num_vip)
+	id_film number(10),
+	acteur boolean,
+	realisateur boolean,
+	constraint pk_mcasting primary key (id)
+);
+
+create table admin (
+	id_conn number(10),
+	identifiant varchar2(255),
+	password varchar2(255),
+	contraint pk_admin primary kay (id_conn)
 );
 
 
 ALTER TABLE photos add constraint fk_photos_vip foreign key (num_vip) references vip (num_vip); 
 
 
-alter table mariage add constraint fk_maruage_num_vip1 foreign key (num_vip1) references vip (num_vip);
-alter table mariage add constraint fk_maruage_num_vip2 foreign key (num_vip2) references vip (num_vip); 
+alter table mariage add constraint fk_mariage_num_vip1 foreign key (num_vip1) references vip (num_vip);
+alter table mariage add constraint fk_mariage_num_vip2 foreign key (num_vip2) references vip (num_vip);
+
+alter table casting add constraint fk_casting_num_vip foreign key (num_vip) references vip (num_vip);
 
